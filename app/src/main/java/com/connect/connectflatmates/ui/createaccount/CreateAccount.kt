@@ -13,12 +13,14 @@ import androidx.navigation.findNavController
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.User
 import kotlinx.android.synthetic.main.create_account_fragment.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class CreateAccount : Fragment() {
+class CreateAccount : Fragment(), KodeinAware {
 
-    companion object {
-        fun newInstance() = CreateAccount()
-    }
+    override val kodein by closestKodein()
+    private val viewModelFactory: CreateAccountViewModelFactory by instance()
 
     private lateinit var viewModel: CreateAccountViewModel
 
@@ -31,10 +33,7 @@ class CreateAccount : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider
-            .AndroidViewModelFactory
-            .getInstance(activity!!.application)
-            .create(CreateAccountViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(CreateAccountViewModel::class.java)
 
 
         createAccount_createButton.setOnClickListener { view ->

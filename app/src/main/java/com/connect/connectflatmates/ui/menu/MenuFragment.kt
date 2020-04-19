@@ -10,12 +10,15 @@ import androidx.navigation.findNavController
 
 import com.connect.connectflatmates.R
 import kotlinx.android.synthetic.main.menu_fragment.*
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class MenuFragment : Fragment() {
+class MenuFragment : Fragment(), KodeinAware {
+    override val kodein by closestKodein()
+    private val viewModelFactory: MenuViewModelFactory by instance()
 
-    companion object {
-        fun newInstance() = MenuFragment()
-    }
 
     private lateinit var viewModel: MenuViewModel
 
@@ -28,7 +31,7 @@ class MenuFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MenuViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MenuViewModel::class.java)
 
         settings.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)

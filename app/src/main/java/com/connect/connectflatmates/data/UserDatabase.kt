@@ -7,26 +7,30 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [
-    User::class
+        User::class
     ],
     version = 1
 )
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
-    companion object{
+    companion object {
+        @Volatile
         private var instance: UserDatabase? = null
+        private val LOCK = Any()
 
-        fun getInstance(context: Context): UserDatabase?{
-            if(instance == null){
-                instance = Room.databaseBuilder(
-                    context,
-                    UserDatabase::class.java,
-                    "connect_database")
-                    .fallbackToDestructiveMigration()
-                    .build()
-            }
-            return instance
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
+            instance ?: buildDatabase(context).also { instance = it }
         }
+
+
+        private fun buildDatabase(context: Context) = Room.databaseBuilder(
+            context,
+            UserDatabase::class.java,
+            "connect_database"
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }
+

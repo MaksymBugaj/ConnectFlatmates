@@ -1,20 +1,23 @@
 package com.connect.connectflatmates.ui.menu.findpepople
 
-import android.app.Application
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-
+import androidx.lifecycle.ViewModelProviders
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.User
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class FindPeople : Fragment() {
+class FindPeople : Fragment(), KodeinAware {
+    override val kodein by closestKodein()
+    private val viewModelFactory: FindPeopleViewModelFactory by instance()
+
 
     companion object {
         fun newInstance() = FindPeople()
@@ -32,17 +35,14 @@ class FindPeople : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider
-            .AndroidViewModelFactory
-            .getInstance(activity!!.application)
-            .create(FindPeopleViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(FindPeopleViewModel::class.java)
 
         Log.d("NOPE","it: in on create")
         getUser()
     }
 
     private fun getUser() {
-        viewModel.getAllUser.observe(viewLifecycleOwner, Observer { usersList ->
+        viewModel.getAllUser().observe(viewLifecycleOwner, Observer { usersList ->
             Log.d("NOPE","sizein: ${usersList.size}")
 
             list = usersList

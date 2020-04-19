@@ -1,13 +1,10 @@
 package com.connect.connectflatmates.ui.createaccount
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.connect.connectflatmates.data.User
-import com.connect.connectflatmates.data.UserRepositoryImpl
+import com.connect.connectflatmates.data.UserRepository
 
-class CreateAccountViewModel(application: Application) : AndroidViewModel(application) {
-
-    private var userRepository: UserRepositoryImpl = UserRepositoryImpl(application)
+class CreateAccountViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun insert(user: User){
         userRepository.insertUser(user)

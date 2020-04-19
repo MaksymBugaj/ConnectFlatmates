@@ -84,8 +84,9 @@ dependencies {
     implementation "androidx.room:room-rxjava2:2.2.5"
 
 
-    // Koin for Android
-    implementation "org.koin:koin-android:$koin_version"
+    // Kodein
+    implementation 'org.kodein.di:kodein-di-generic-jvm:5.2.0'
+    implementation 'org.kodein.di:kodein-di-framework-android-x:5.2.0'
 
 
     def glideVersion = "4.9.0"
