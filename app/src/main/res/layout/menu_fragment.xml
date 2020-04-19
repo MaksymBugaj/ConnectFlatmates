@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bettercolor"
+    tools:context=".ui.menu.MenuFragment">
+
+
+    <TextView
+        android:id="@+id/peopleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="People"
+        app:layout_constraintEnd_toEndOf="@+id/peopleImage"
+        app:layout_constraintStart_toStartOf="@+id/peopleImage"
+        app:layout_constraintTop_toBottomOf="@+id/peopleImage" />
+
+    <TextView
+        android:id="@+id/houseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="house Activities"
+        app:layout_constraintEnd_toEndOf="@+id/houseActivities"
+        app:layout_constraintStart_toStartOf="@+id/houseActivities"
+        app:layout_constraintTop_toBottomOf="@+id/houseActivities" />
+
+
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/settings"
+        app:layout_constraintBottom_toTopOf="@+id/settingsText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/peopleImage" />
+
+    <ImageView
+        android:id="@+id/houseActivities"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="212dp"
+        android:background="@drawable/home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/peopleImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/peopleImage"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="212dp"
+        android:background="@drawable/people"
+        app:layout_constraintBottom_toTopOf="@+id/settings"
+        app:layout_constraintEnd_toStartOf="@+id/houseActivities"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/settingsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        app:layout_constraintEnd_toEndOf="@+id/settings"
+        app:layout_constraintStart_toStartOf="@+id/settings"
+        app:layout_constraintTop_toBottomOf="@+id/settings" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

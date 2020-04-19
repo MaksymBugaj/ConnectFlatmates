@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "191352877846",
+    "firebase_url": "https://connect-flatmates.firebaseio.com",
+    "project_id": "connect-flatmates",
+    "storage_bucket": "connect-flatmates.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191352877846:android:d4bceb2c783a82496b1637",
+        "android_client_info": {
+          "package_name": "com.connect.connectflatmates"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191352877846-6v762cfo016nc3bju8vcsp6mculif3b3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNzKKYvwO11DTZHqvdxo_q3CbIL9Inqh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191352877846-6v762cfo016nc3bju8vcsp6mculif3b3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
