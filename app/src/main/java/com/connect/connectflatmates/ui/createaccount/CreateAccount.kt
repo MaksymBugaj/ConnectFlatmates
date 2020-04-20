@@ -38,10 +38,10 @@ class CreateAccount : Fragment(), KodeinAware {
 
         createAccount_createButton.setOnClickListener { view ->
             val user = User(
-                name = createAccount_name.toString(),
-                surname = createAccount_surname.toString(),
-                login = createAccount_login.toString(),
-                password = createAccount_password.toString()
+                name = createAccount_name.text.toString(),
+                surname = createAccount_surname.text.toString(),
+                login = createAccount_login.text.toString(),
+                password = createAccount_password.text.toString()
             )
 
             viewModel.insert(user)

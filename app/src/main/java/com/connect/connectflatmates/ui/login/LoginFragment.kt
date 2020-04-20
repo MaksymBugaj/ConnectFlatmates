@@ -7,20 +7,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 
 import com.connect.connectflatmates.R
+import com.connect.connectflatmates.data.User
 import com.connect.connectflatmates.databinding.LoginFragmentBinding
 import kotlinx.android.synthetic.main.login_fragment.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class LoginFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
+class LoginFragment : Fragment(), KodeinAware {
+    override val kodein by closestKodein()
+    private val viewModelFactory: LoginViewModelFactory by instance()
 
     private lateinit var viewModel: LoginViewModel
-
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,16 +37,38 @@ class LoginFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
 
-        login_button.setOnClickListener {view ->
-            view.findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
-
+        login_button.setOnClickListener {
+            login()
         }
 
         create_account.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_loginFragment_to_createAccount)
         }
+    }
+
+    private fun login() {
+        login_username.text?.let {
+            val login = login_username.text.toString()
+            viewModel.getUserByLogin(login).observe(viewLifecycleOwner, Observer { user ->
+                user?.let {
+                    val password = login_password.text.toString()
+                    if (user.password == password) {
+                        findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
+                    } else {
+                        showToast("Wrong password")
+                    }
+                }  ?: kotlin.run{
+                    showToast("User does not exist")
+                }
+            })
+        }
+
+    }
+
+    private fun showToast(text: String) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
 }

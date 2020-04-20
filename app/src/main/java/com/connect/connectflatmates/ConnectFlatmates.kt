@@ -5,8 +5,10 @@ import com.connect.connectflatmates.data.UserDatabase
 import com.connect.connectflatmates.data.UserRepository
 import com.connect.connectflatmates.data.UserRepositoryImpl
 import com.connect.connectflatmates.ui.createaccount.CreateAccountViewModelFactory
+import com.connect.connectflatmates.ui.login.LoginViewModelFactory
 import com.connect.connectflatmates.ui.menu.MenuViewModelFactory
 import com.connect.connectflatmates.ui.menu.findpepople.FindPeopleViewModelFactory
+import com.connect.connectflatmates.ui.menu.userStats.UserViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -25,5 +27,7 @@ class ConnectFlatmates: Application(), KodeinAware {
         bind() from provider { CreateAccountViewModelFactory(instance()) }
         bind() from provider { FindPeopleViewModelFactory(instance()) }
         bind() from provider { MenuViewModelFactory() }
+        bind() from provider { UserViewModelFactory(instance()) }
+        bind() from provider { LoginViewModelFactory(instance()) }
     }
 }

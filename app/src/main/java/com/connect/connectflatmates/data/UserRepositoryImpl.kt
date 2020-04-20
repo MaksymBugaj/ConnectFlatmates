@@ -19,4 +19,8 @@ class UserRepositoryImpl(private val userDao: UserDao) : UserRepository {
     override fun getUsers(): LiveData<List<User>> {
         return userDao.getAll()
     }
+
+    override fun getUserByLogin(login: String): LiveData<User> {
+        return userDao.getUser(login)
+    }
 }

@@ -19,9 +19,6 @@ class FindPeople : Fragment(), KodeinAware {
     private val viewModelFactory: FindPeopleViewModelFactory by instance()
 
 
-    companion object {
-        fun newInstance() = FindPeople()
-    }
 
     private lateinit var viewModel: FindPeopleViewModel
     private lateinit var list : List<User>
@@ -37,11 +34,10 @@ class FindPeople : Fragment(), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(FindPeopleViewModel::class.java)
 
-        Log.d("NOPE","it: in on create")
-        getUser()
+        getUsers()
     }
 
-    private fun getUser() {
+    private fun getUsers() {
         viewModel.getAllUser().observe(viewLifecycleOwner, Observer { usersList ->
             Log.d("NOPE","sizein: ${usersList.size}")
 
@@ -49,6 +45,10 @@ class FindPeople : Fragment(), KodeinAware {
             for(l in list.indices)
             Log.d("NOPE","id: ${list[l].id}")
         })
+
+    }
+
+    private fun getUserByLogin(login: String){
 
     }
 }

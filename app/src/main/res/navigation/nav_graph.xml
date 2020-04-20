@@ -51,6 +51,13 @@
             app:exitAnim="@anim/slide_out_to_bottom"
             app:popEnterAnim="@anim/slide_in_from_top"
             app:popExitAnim="@anim/slide_out_to_top" />
+        <action
+            android:id="@+id/action_menuFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/slide_in_from_top"
+            app:exitAnim="@anim/slide_out_to_bottom"
+            app:popEnterAnim="@anim/slide_in_from_top"
+            app:popExitAnim="@anim/slide_out_to_top" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -80,4 +87,9 @@
         android:name="com.connect.connectflatmates.ui.menu.home.HomeActivities"
         android:label="home_activities_fragment"
         tools:layout="@layout/home_activities_fragment" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.connect.connectflatmates.ui.menu.userStats.UserFragment"
+        android:label="user_fragment"
+        tools:layout="@layout/user_fragment" />
 </navigation>

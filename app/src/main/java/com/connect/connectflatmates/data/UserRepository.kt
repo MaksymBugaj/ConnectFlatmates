@@ -7,4 +7,6 @@ interface UserRepository {
     fun insertUser(user: User)
 
     fun getUsers(): LiveData<List<User>>
+
+    fun getUserByLogin(login: String): LiveData<User>
 }
