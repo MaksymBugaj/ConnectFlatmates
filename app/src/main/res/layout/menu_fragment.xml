@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bettercolor"
+    android:background="@drawable/background"
     tools:context=".ui.menu.MenuFragment">
 
 
@@ -21,7 +21,7 @@
         android:id="@+id/houseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="house Activities"
+        android:text="home activities"
         app:layout_constraintEnd_toEndOf="@+id/houseActivities"
         app:layout_constraintStart_toStartOf="@+id/houseActivities"
         app:layout_constraintTop_toBottomOf="@+id/houseActivities" />
@@ -32,18 +32,18 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:background="@drawable/settings"
-        app:layout_constraintBottom_toTopOf="@+id/settingsText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/peopleImage" />
+        app:layout_constraintStart_toEndOf="@+id/myProfile"
+        app:layout_constraintTop_toBottomOf="@+id/houseActivities" />
 
     <ImageView
         android:id="@+id/houseActivities"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginTop="212dp"
         android:background="@drawable/home"
+        app:layout_constraintBottom_toTopOf="@+id/settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/peopleImage"
@@ -53,13 +53,12 @@
         android:id="@+id/peopleImage"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginTop="212dp"
-        android:background="@drawable/people"
-        app:layout_constraintBottom_toTopOf="@+id/settings"
+        android:background="@drawable/add_people"
+        app:layout_constraintBottom_toBottomOf="@+id/houseActivities"
         app:layout_constraintEnd_toStartOf="@+id/houseActivities"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/houseActivities" />
 
     <TextView
         android:id="@+id/settingsText"
@@ -69,5 +68,26 @@
         app:layout_constraintEnd_toEndOf="@+id/settings"
         app:layout_constraintStart_toStartOf="@+id/settings"
         app:layout_constraintTop_toBottomOf="@+id/settings" />
+
+
+    <ImageView
+        android:id="@+id/myProfile"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/profile"
+        app:layout_constraintBottom_toBottomOf="@+id/settings"
+        app:layout_constraintEnd_toStartOf="@+id/settings"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/settings" />
+
+    <TextView
+        android:id="@+id/profileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MyProfile"
+        app:layout_constraintEnd_toEndOf="@+id/myProfile"
+        app:layout_constraintStart_toStartOf="@+id/myProfile"
+        app:layout_constraintTop_toBottomOf="@+id/myProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
