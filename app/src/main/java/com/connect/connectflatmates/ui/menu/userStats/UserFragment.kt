@@ -11,12 +11,11 @@ import com.connect.connectflatmates.R
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UserFragment : Fragment(), KodeinAware {
-    override val kodein by closestKodein()
-    private val viewModelFactory: UserViewModelFactory by instance()
+class UserFragment : Fragment() {
+    private val viewModel by viewModel<UserViewModel>()
 
-    private lateinit var viewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +26,6 @@ class UserFragment : Fragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel::class.java)
 
 
     }

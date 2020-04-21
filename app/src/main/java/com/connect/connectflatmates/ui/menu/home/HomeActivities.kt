@@ -8,14 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.connect.connectflatmates.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivities : Fragment() {
 
-    companion object {
-        fun newInstance() = HomeActivities()
-    }
+    private val viewModel by viewModel<HomeActivitiesViewModel>()
 
-    private lateinit var viewModel: HomeActivitiesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +24,7 @@ class HomeActivities : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeActivitiesViewModel::class.java)
+
         // TODO: Use the ViewModel
     }
 

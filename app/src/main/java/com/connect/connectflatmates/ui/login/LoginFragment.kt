@@ -19,12 +19,11 @@ import kotlinx.android.synthetic.main.login_fragment.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment(), KodeinAware {
-    override val kodein by closestKodein()
-    private val viewModelFactory: LoginViewModelFactory by instance()
+class LoginFragment : Fragment() {
 
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel by viewModel<LoginViewModel>()
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +36,6 @@ class LoginFragment : Fragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
 
         login_button.setOnClickListener {
             login()

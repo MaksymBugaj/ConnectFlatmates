@@ -14,13 +14,11 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MenuFragment : Fragment(), KodeinAware {
-    override val kodein by closestKodein()
-    private val viewModelFactory: MenuViewModelFactory by instance()
+class MenuFragment : Fragment() {
 
-
-    private lateinit var viewModel: MenuViewModel
+    private val viewModel by viewModel<MenuViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +29,7 @@ class MenuFragment : Fragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MenuViewModel::class.java)
+
 
         settings.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)

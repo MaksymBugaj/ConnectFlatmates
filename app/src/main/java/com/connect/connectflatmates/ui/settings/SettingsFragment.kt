@@ -8,14 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.connect.connectflatmates.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SettingsFragment()
-    }
+    private val viewModel by viewModel<SettingsViewModel>()
 
-    private lateinit var viewModel: SettingsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +24,7 @@ class SettingsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
+
         // TODO: Use the ViewModel
     }
 

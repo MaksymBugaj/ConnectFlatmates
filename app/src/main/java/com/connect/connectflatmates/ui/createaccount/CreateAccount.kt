@@ -16,13 +16,11 @@ import kotlinx.android.synthetic.main.create_account_fragment.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CreateAccount : Fragment(), KodeinAware {
+class CreateAccount : Fragment() {
 
-    override val kodein by closestKodein()
-    private val viewModelFactory: CreateAccountViewModelFactory by instance()
-
-    private lateinit var viewModel: CreateAccountViewModel
+    private val viewModel by viewModel<CreateAccountViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +31,6 @@ class CreateAccount : Fragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(CreateAccountViewModel::class.java)
 
 
         createAccount_createButton.setOnClickListener { view ->

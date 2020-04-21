@@ -13,14 +13,13 @@ import com.connect.connectflatmates.data.User
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FindPeople : Fragment(), KodeinAware {
-    override val kodein by closestKodein()
-    private val viewModelFactory: FindPeopleViewModelFactory by instance()
+class FindPeople : Fragment() {
+
+    private val viewModel by viewModel<FindPeopleViewModel>()
 
 
-
-    private lateinit var viewModel: FindPeopleViewModel
     private lateinit var list : List<User>
 
     override fun onCreateView(
@@ -32,7 +31,6 @@ class FindPeople : Fragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(FindPeopleViewModel::class.java)
 
         getUsers()
     }
