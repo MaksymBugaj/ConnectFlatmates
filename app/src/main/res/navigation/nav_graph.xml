@@ -46,7 +46,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_menuFragment_to_homeActivities"
-            app:destination="@id/homeActivities"
+            app:destination="@id/homeActivityEntity"
             app:enterAnim="@anim/slide_in_from_bottom"
             app:exitAnim="@anim/slide_out_to_bottom"
             app:popEnterAnim="@anim/slide_in_from_top"
@@ -83,7 +83,7 @@
         android:label="find_people_fragment"
         tools:layout="@layout/find_people_fragment" />
     <fragment
-        android:id="@+id/homeActivities"
+        android:id="@+id/homeActivityEntity"
         android:name="com.connect.connectflatmates.ui.menu.home.HomeActivities"
         android:label="home_activities_fragment"
         tools:layout="@layout/home_activities_fragment" />

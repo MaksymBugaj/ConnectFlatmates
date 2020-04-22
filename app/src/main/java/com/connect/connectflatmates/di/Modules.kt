@@ -1,9 +1,7 @@
 package com.connect.connectflatmates.di
 
 import androidx.room.Room
-import com.connect.connectflatmates.data.UserDatabase
-import com.connect.connectflatmates.data.UserRepository
-import com.connect.connectflatmates.data.UserRepositoryImpl
+import com.connect.connectflatmates.data.db.*
 import com.connect.connectflatmates.ui.createaccount.CreateAccountViewModel
 import com.connect.connectflatmates.ui.login.LoginViewModel
 import com.connect.connectflatmates.ui.menu.MenuViewModel
@@ -20,7 +18,7 @@ val databaseModule = module {
     single {
         Room.databaseBuilder(
             androidContext(),
-            UserDatabase::class.java,
+            ConnectFlatmatesDatabase::class.java,
             "connect_database"
         )
             .fallbackToDestructiveMigration()
@@ -28,7 +26,15 @@ val databaseModule = module {
     }
 
     single {
-        get<UserDatabase>().userDao()
+        get<ConnectFlatmatesDatabase>().homeActivitiesDao()
+    }
+
+    single {
+        get<ConnectFlatmatesDatabase>().userDao()
+    }
+
+    single<HomeActivitiesRepository>{
+        HomeActivitiesRepositoryImpl(homeActivitiesDao = get())
     }
 
     single<UserRepository> {

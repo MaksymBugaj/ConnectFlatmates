@@ -7,12 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.connect.connectflatmates.R
-import com.connect.connectflatmates.data.User
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
-import org.kodein.di.generic.instance
+import com.connect.connectflatmates.data.db.entity.UserEntity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FindPeople : Fragment() {
@@ -20,7 +16,7 @@ class FindPeople : Fragment() {
     private val viewModel by viewModel<FindPeopleViewModel>()
 
 
-    private lateinit var list : List<User>
+    private lateinit var list : List<UserEntity>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

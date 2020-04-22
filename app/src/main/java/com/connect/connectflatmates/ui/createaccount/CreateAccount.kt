@@ -1,21 +1,15 @@
 package com.connect.connectflatmates.ui.createaccount
 
-import android.app.Application
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 
 import com.connect.connectflatmates.R
-import com.connect.connectflatmates.data.User
+import com.connect.connectflatmates.data.db.entity.UserEntity
 import kotlinx.android.synthetic.main.create_account_fragment.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreateAccount : Fragment() {
@@ -34,7 +28,7 @@ class CreateAccount : Fragment() {
 
 
         createAccount_createButton.setOnClickListener { view ->
-            val user = User(
+            val user = UserEntity(
                 name = createAccount_name.text.toString(),
                 surname = createAccount_surname.text.toString(),
                 login = createAccount_login.text.toString(),

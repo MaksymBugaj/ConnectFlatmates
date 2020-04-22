@@ -1,8 +1,6 @@
 package com.connect.connectflatmates.ui.login
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +11,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
 import com.connect.connectflatmates.R
-import com.connect.connectflatmates.data.User
 import com.connect.connectflatmates.databinding.LoginFragmentBinding
 import kotlinx.android.synthetic.main.login_fragment.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
