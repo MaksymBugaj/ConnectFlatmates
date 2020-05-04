@@ -49,16 +49,14 @@ class CreateAccount : Fragment() {
 
         createAccount_createButton.setOnClickListener { view ->
             createUserInDatabase()
-
-
-
-
         }
     }
 
 
     private fun createUserInDatabase(){
+        val userId = mFirebaseDatabase!!.push().key.toString()
         val user = UserEntity(
+            id = userId,
             name = createAccount_name.text.toString(),
             surname = createAccount_surname.text.toString(),
             login = createAccount_login.text.toString(),
@@ -66,7 +64,6 @@ class CreateAccount : Fragment() {
             password = createAccount_password.text.toString()
         )
 
-        val userId = mFirebaseDatabase!!.push().key.toString()
 
         firebaseAuth!!.createUserWithEmailAndPassword(user.email,user.password).addOnCompleteListener { task ->
             if(task.isSuccessful){
@@ -79,6 +76,7 @@ class CreateAccount : Fragment() {
                 }
 
             } else {
+                Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK ${task.exception}")
                 Toast.makeText(context,"Dupa koleś", Toast.LENGTH_SHORT).show()
             }
 
