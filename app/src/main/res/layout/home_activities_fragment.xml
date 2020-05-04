@@ -13,10 +13,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Your Activities" />
+        android:textSize="22sp"
+        android:text="Assigned to me:" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/homeActivities_yourActivities_recycler"
+        android:id="@+id/homeActivities_yourActivitiesRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/homeActivities_yourActivities"
@@ -27,27 +28,30 @@
         android:id="@+id/homeActivities_allActivities"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/homeActivities_yourActivities_recycler"
+        android:textSize="22sp"
+        app:layout_constraintTop_toBottomOf="@id/homeActivities_yourActivitiesRecycler"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Possible activities:" />
+        android:text="Unassigned:" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/homeActivities_allActivities_recycler"
+        android:id="@+id/homeActivities_allActivitiesRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/homeActivities_allActivities"
         app:layout_constraintStart_toStartOf="parent"
         />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+
+    <Button
         android:id="@+id/homeActivities_addButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/add_button"
-        android:layout_gravity="end|top"
+        android:layout_height="0dp"
+        android:text="add"
+        android:background="@drawable/round_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="16dp"/>
-
+        app:layout_constraintTop_toTopOf="@id/homeActivities_allActivities"
+        app:layout_constraintBottom_toBottomOf="@id/homeActivities_allActivities"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

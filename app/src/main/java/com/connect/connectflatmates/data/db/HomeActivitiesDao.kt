@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
+import io.reactivex.Flowable
 
 @Dao
 interface HomeActivitiesDao {
@@ -18,4 +19,7 @@ interface HomeActivitiesDao {
 
     @Query("select * from home_activities_table where name =:name")
     fun getHomeActivity(name: String): LiveData<HomeActivityEntity>
+
+    @Query("select * from home_activities_table")
+    fun getAllSingleTest(): Flowable<List<HomeActivityEntity>>
 }

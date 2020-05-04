@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "191352877846-vrsu0j3agqg3bu6ed1bvbt21ctvu37lc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.connect.connectflatmates",
+            "certificate_hash": "ee1022b5cde2113fb17f8865952cf7af21960331"
+          }
+        },
+        {
           "client_id": "191352877846-6v762cfo016nc3bju8vcsp6mculif3b3.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -8,6 +8,7 @@ data class UserEntity(
     val name: String,
     val surname: String,
     val login: String,
+    val email: String,
     val password: String
 ){
     @PrimaryKey(autoGenerate = true)

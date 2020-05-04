@@ -3,4 +3,14 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="create_account">Don\'t have account? Create One</string>
+
+    <string-array name="homeActivities_array">
+        <item>Cleaning</item>
+        <item>Washing the carpets</item>
+        <item>Vacuuming</item>
+        <item>Eating pussy</item>
+        <item>Drinking</item>
+        <item>Throw the rubbish</item>
+        <item>Drop the party</item>
+    </string-array>
 </resources>

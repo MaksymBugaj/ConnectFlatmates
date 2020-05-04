@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners
+        android:topLeftRadius="30dp"
+        android:bottomLeftRadius="30dp"
+        />
+
+    <stroke android:color="@color/cardview_dark_background" android:width="2dp"/>
+
+    <gradient android:angle="180"/>
+    <solid android:color="@color/colorTransparentLogin"/>
+</shape>

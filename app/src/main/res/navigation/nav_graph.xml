@@ -35,8 +35,8 @@
             app:destination="@id/settingsFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/slide_in_from_bottom"
-            app:popExitAnim="@anim/slide_in_from_top" />
+            app:popEnterAnim="@anim/slide_in_from_top"
+            app:popExitAnim="@anim/slide_out_to_bottom" />
         <action
             android:id="@+id/action_menuFragment_to_findPeople"
             app:destination="@id/findPeople"
@@ -46,7 +46,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_menuFragment_to_homeActivities"
-            app:destination="@id/homeActivityEntity"
+            app:destination="@id/homeActivity"
             app:enterAnim="@anim/slide_in_from_bottom"
             app:exitAnim="@anim/slide_out_to_bottom"
             app:popEnterAnim="@anim/slide_in_from_top"
@@ -83,13 +83,34 @@
         android:label="find_people_fragment"
         tools:layout="@layout/find_people_fragment" />
     <fragment
-        android:id="@+id/homeActivityEntity"
+        android:id="@+id/homeActivity"
         android:name="com.connect.connectflatmates.ui.menu.home.HomeActivities"
         android:label="home_activities_fragment"
-        tools:layout="@layout/home_activities_fragment" />
+        tools:layout="@layout/home_activities_fragment" >
+        <action
+            android:id="@+id/action_homeActivityEntity_to_addActivity"
+            app:destination="@id/addActivity"
+            app:enterAnim="@anim/slide_in_from_bottom"
+            app:exitAnim="@anim/slide_out_to_bottom"
+            app:popEnterAnim="@anim/slide_in_from_top"
+            app:popExitAnim="@anim/slide_out_to_top" />
+    </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.connect.connectflatmates.ui.menu.userStats.UserFragment"
         android:label="user_fragment"
         tools:layout="@layout/user_fragment" />
+    <fragment
+        android:id="@+id/addActivity"
+        android:name="com.connect.connectflatmates.ui.menu.home.AddActivity"
+        android:label="add_fragment"
+        tools:layout="@layout/add_fragment" >
+        <action
+            android:id="@+id/action_addActivity_to_homeActivity"
+            app:destination="@id/homeActivity"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+    </fragment>
 </navigation>
