@@ -1,6 +1,5 @@
-package com.connect.connectflatmates.ui.menu.home
+package com.connect.connectflatmates.ui.menu.home.add
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -55,7 +54,7 @@ class AddActivity : Fragment() {
         addActivity_numberPicker.displayedValues = dispplayedValues
         addActivity_numberPicker.minValue = 0
         addActivity_numberPicker.maxValue = dispplayedValues.size - 1
-        addActivity_numberPicker.wrapSelectorWheel = false
+        addActivity_numberPicker.wrapSelectorWheel = true
 
 //todo wstecz nie finiszuje
 
@@ -101,11 +100,11 @@ class AddActivity : Fragment() {
                             priority = addActivity_numberPicker.value.toString(),
                             startDate = chosenStartDate,
                             endDate = chosenEndDate,
-                            assignedUser = null
+                            assignedUser = "0"
                         )
 
                         viewModel.insert(homeActivity)
-//                        findNavController().navigate(R.id.action_addActivity_to_homeActivity)
+                        findNavController().navigate(R.id.action_addHomeActivity_to_unsingedActivities)
                     }
                     if (this@AddActivity::startDate.isInitialized && this@AddActivity::endDate.isInitialized) {
                         viewModel.setState(AddActivityState.DateChosen)
@@ -127,7 +126,7 @@ class AddActivity : Fragment() {
         })
 
         addActivity_dismissButton.setOnClickListener {
-//            findNavController().navigate(R.id.action_addActivity_to_homeActivity)
+            findNavController().navigate(R.id.action_addHomeActivity_to_myActivities)
         }
     }
 

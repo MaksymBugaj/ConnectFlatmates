@@ -1,4 +1,4 @@
-package com.connect.connectflatmates.ui.menu.home
+package com.connect.connectflatmates.ui.menu.home.add
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

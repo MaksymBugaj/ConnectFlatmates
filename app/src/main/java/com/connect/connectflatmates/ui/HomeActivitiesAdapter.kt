@@ -61,7 +61,7 @@ class HomeActivitiesAdapter : RecyclerView.Adapter<HomeActivitiesAdapter.ViewHol
             homeActivityItemName.text = homeActivityEntity.name
             homeActivityItemStartDate.text = homeActivityEntity.startDate
             homeActivityItemEndDate.text = homeActivityEntity.endDate
-            homeActivityItemButtom.text = if(homeActivityEntity.assignedUser != null) buttonTextDismiss else buttonTextAssign
+            homeActivityItemButtom.text = if(homeActivityEntity.assignedUser != "0") buttonTextDismiss else buttonTextAssign
         }
     }
 

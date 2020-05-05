@@ -6,8 +6,9 @@ import com.connect.connectflatmates.ui.createaccount.CreateAccountViewModel
 import com.connect.connectflatmates.ui.login.LoginViewModel
 import com.connect.connectflatmates.ui.menu.MenuViewModel
 import com.connect.connectflatmates.ui.menu.findpepople.FindPeopleViewModel
-import com.connect.connectflatmates.ui.menu.home.AddViewModel
-import com.connect.connectflatmates.ui.menu.home.HomeActivitiesViewModel
+import com.connect.connectflatmates.ui.menu.home.add.AddViewModel
+import com.connect.connectflatmates.ui.menu.home.available.UnsingedActivitiesViewModel
+import com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivitiesViewModel
 import com.connect.connectflatmates.ui.menu.userStats.UserViewModel
 import com.connect.connectflatmates.ui.settings.SettingsViewModel
 import org.koin.android.ext.koin.androidContext
@@ -56,7 +57,16 @@ val viewModelModule = module {
     }
 
     viewModel {
-        HomeActivitiesViewModel(homeActivitiesRepository = get(), userRepository = get())
+        HomeActivitiesViewModel(
+            homeActivitiesRepository = get(),
+            userRepository = get()
+        )
+    }
+
+    viewModel {
+        UnsingedActivitiesViewModel(
+            homeActivitiesRepository = get()
+        )
     }
 
     viewModel {

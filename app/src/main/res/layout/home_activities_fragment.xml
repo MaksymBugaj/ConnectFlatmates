@@ -5,53 +5,25 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.menu.home.HomeActivities">
+    tools:context=".ui.menu.home.userActivities.HomeActivities">
 
-    <TextView
-        android:id="@+id/homeActivities_yourActivities"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="22sp"
-        android:text="Assigned to me:" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeActivities_yourActivitiesRecycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/homeActivities_yourActivities"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/homeActivities_allActivities"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="22sp"
-        app:layout_constraintTop_toBottomOf="@id/homeActivities_yourActivitiesRecycler"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="Unassigned:" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/homeActivities_allActivitiesRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/homeActivities_allActivities"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-
-
-    <Button
-        android:id="@+id/homeActivities_addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="add"
-        android:background="@drawable/round_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/homeActivities_allActivities"
-        app:layout_constraintBottom_toBottomOf="@id/homeActivities_allActivities"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
+
+
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

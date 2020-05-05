@@ -1,4 +1,4 @@
-package com.connect.connectflatmates.ui.menu.home
+package com.connect.connectflatmates.ui.menu.home.userActivities
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +13,7 @@ class HomeActivitiesViewModel(private val homeActivitiesRepository: HomeActiviti
 
     fun getAll(): LiveData<List<HomeActivityEntity>> = homeActivitiesRepository.getAll()
 
-    fun getAssignedHomeActivities(userId: String): LiveData<List<HomeActivityEntity>> = homeActivitiesRepository.getAssignedHomeActivitiesToUser(userId)
+    fun getAssignedHomeActivities(userId: String?): LiveData<List<HomeActivityEntity>> = homeActivitiesRepository.getAssignedHomeActivitiesToUser(userId)
 
 
 }
