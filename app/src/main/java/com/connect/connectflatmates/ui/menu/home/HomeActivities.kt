@@ -48,19 +48,17 @@ class HomeActivities : Fragment() {
 
         (allActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setOnClickListener(object : HomeActivitiesAdapter.OnItemClickListener{
             override fun onItemClick(position: Int, view: View) {
-                Log.d("NOPE","DISMISS ME")
+                assignUser()
             }
         })
 
         (assignedActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setOnClickListener(object : HomeActivitiesAdapter.OnItemClickListener{
             override fun onItemClick(position: Int, view: View) {
-                Log.d("NOPE","SMISS ME")
+                dismissUser()
             }
         })
 
-        homeActivities_addButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeActivityEntity_to_addActivity)
-        }
+
 
         viewModel.getAll().observe(viewLifecycleOwner, Observer {listOfActivities ->
             if(listOfActivities.isNotEmpty()) {
@@ -79,6 +77,14 @@ class HomeActivities : Fragment() {
         })
 
 
+
+    }
+
+    private fun dismissUser() {
+
+    }
+
+    private fun assignUser() {
 
     }
 }

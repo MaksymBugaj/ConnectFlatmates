@@ -1,5 +1,6 @@
 package com.connect.connectflatmates.ui.menu
 
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 
 import com.connect.connectflatmates.R
+import com.connect.connectflatmates.ui.menu.home.BottomNavHolderActivity
 import kotlinx.android.synthetic.main.menu_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,7 +39,7 @@ class MenuFragment : Fragment() {
         }
 
         houseActivities.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_menuFragment_to_homeActivities)
+            startActivity(Intent(context, BottomNavHolderActivity::class.java))
         }
 
         peopleImage.setOnClickListener { view ->

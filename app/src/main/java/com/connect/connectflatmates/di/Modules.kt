@@ -56,7 +56,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        HomeActivitiesViewModel(homeActivitiesRepository = get())
+        HomeActivitiesViewModel(homeActivitiesRepository = get(), userRepository = get())
     }
 
     viewModel {

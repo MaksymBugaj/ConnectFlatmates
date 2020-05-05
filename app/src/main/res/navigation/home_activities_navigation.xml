@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_activities_navigation"
+    app:startDestination="@id/homeActivities">
+
+    <fragment
+        android:id="@+id/homeActivities"
+        android:name="com.connect.connectflatmates.ui.menu.home.HomeActivities"
+        android:label="home_activities_fragment"
+        tools:layout="@layout/home_activities_fragment" />
+    <fragment
+        android:id="@+id/addHomeActivity"
+        android:name="com.connect.connectflatmates.ui.menu.home.AddActivity"
+        android:label="add_fragment"
+        tools:layout="@layout/add_fragment" />
+</navigation>

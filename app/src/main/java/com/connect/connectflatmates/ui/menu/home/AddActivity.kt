@@ -105,7 +105,7 @@ class AddActivity : Fragment() {
                         )
 
                         viewModel.insert(homeActivity)
-                        findNavController().navigate(R.id.action_addActivity_to_homeActivity)
+//                        findNavController().navigate(R.id.action_addActivity_to_homeActivity)
                     }
                     if (this@AddActivity::startDate.isInitialized && this@AddActivity::endDate.isInitialized) {
                         viewModel.setState(AddActivityState.DateChosen)
@@ -127,7 +127,7 @@ class AddActivity : Fragment() {
         })
 
         addActivity_dismissButton.setOnClickListener {
-            findNavController().navigate(R.id.action_addActivity_to_homeActivity)
+//            findNavController().navigate(R.id.action_addActivity_to_homeActivity)
         }
     }
 

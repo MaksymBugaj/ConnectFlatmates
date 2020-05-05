@@ -3,6 +3,7 @@ package com.connect.connectflatmates.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.connect.connectflatmates.R
@@ -45,6 +46,7 @@ class HomeActivitiesAdapter : RecyclerView.Adapter<HomeActivitiesAdapter.ViewHol
         private val homeActivityItemName: TextView = itemView.homeActItem_itemName
         private val homeActivityItemStartDate: TextView = itemView.homeActItem_itemStartDate
         private val homeActivityItemEndDate: TextView = itemView.homeActItem_itemEndDate
+        private val homeActivityItemButtom: Button = itemView.homeActItem_button
 
         init {
             itemView.homeActItem_button.setOnClickListener {
@@ -54,9 +56,12 @@ class HomeActivitiesAdapter : RecyclerView.Adapter<HomeActivitiesAdapter.ViewHol
         }
 
         fun setItems(homeActivityEntity: HomeActivityEntity) {
+            val buttonTextAssign = "ASSIGN"
+            val buttonTextDismiss = "dismiss"
             homeActivityItemName.text = homeActivityEntity.name
             homeActivityItemStartDate.text = homeActivityEntity.startDate
             homeActivityItemEndDate.text = homeActivityEntity.endDate
+            homeActivityItemButtom.text = if(homeActivityEntity.assignedUser != null) buttonTextDismiss else buttonTextAssign
         }
     }
 
