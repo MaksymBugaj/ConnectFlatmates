@@ -10,7 +10,7 @@ import com.connect.connectflatmates.data.db.entity.UserEntity
         UserEntity::class,
         HomeActivityEntity::class
     ],
-    version = 1
+    version = 2
 )
 abstract class ConnectFlatmatesDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao

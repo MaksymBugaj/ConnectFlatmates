@@ -7,7 +7,8 @@ data class HomeActivityEntity(
     val name: String,
     val priority:String,
     val startDate: String,
-    val endDate: String
+    val endDate: String,
+    val assignedUser: String?
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

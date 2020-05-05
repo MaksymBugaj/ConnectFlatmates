@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.create_account_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
@@ -30,6 +31,7 @@ class CreateAccount : Fragment() {
     private var firebaseAuth: FirebaseAuth? = null
     private var mFirebaseDatabase: DatabaseReference? = null
     private var mFirebaseInstance: FirebaseDatabase? = null
+    private val subscriptions = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

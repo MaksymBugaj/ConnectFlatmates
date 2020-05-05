@@ -22,10 +22,11 @@ class HomeActivities : Fragment() {
 
     private val viewModel by viewModel<HomeActivitiesViewModel>()
 
-    private lateinit var dupa : String
-
     private lateinit var allActivitiesRecyclerView: RecyclerView
     private lateinit var listOfHomeActivities: List<HomeActivityEntity>
+
+    private lateinit var assignedActivitiesRecyclerView: RecyclerView
+    private lateinit var listOfAssignedHomeActivities: List<HomeActivityEntity>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,9 +42,19 @@ class HomeActivities : Fragment() {
         allActivitiesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         allActivitiesRecyclerView.adapter = HomeActivitiesAdapter()
 
+        assignedActivitiesRecyclerView = homeActivities_yourActivitiesRecycler
+        assignedActivitiesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        assignedActivitiesRecyclerView.adapter = HomeActivitiesAdapter()
+
         (allActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setOnClickListener(object : HomeActivitiesAdapter.OnItemClickListener{
             override fun onItemClick(position: Int, view: View) {
                 Log.d("NOPE","DISMISS ME")
+            }
+        })
+
+        (assignedActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setOnClickListener(object : HomeActivitiesAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int, view: View) {
+                Log.d("NOPE","SMISS ME")
             }
         })
 
@@ -55,6 +66,14 @@ class HomeActivities : Fragment() {
             if(listOfActivities.isNotEmpty()) {
                 listOfHomeActivities = listOfActivities
                 (allActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setItems(listOfHomeActivities)
+            }
+
+        })
+
+        viewModel.getAll().observe(viewLifecycleOwner, Observer {listOfActivities ->
+            if(listOfActivities.isNotEmpty()) {
+                listOfAssignedHomeActivities = listOfActivities
+                (assignedActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setItems(listOfAssignedHomeActivities)
             }
 
         })

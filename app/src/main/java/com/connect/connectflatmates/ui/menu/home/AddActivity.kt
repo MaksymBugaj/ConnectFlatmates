@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
+import com.connect.connectflatmates.state.AddActivityState
 import com.shrikanthravi.collapsiblecalendarview.data.Day
 import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
 import kotlinx.android.synthetic.main.add_fragment.*
@@ -62,9 +64,7 @@ class AddActivity : Fragment() {
 
         }
 
-        if (!this::startDate.isInitialized || !this::endDate.isInitialized) {
-            addActivity_addButton.text = "CONFIRM"
-        }
+       observeButton()
 
         addActivity_calendarView.setCalendarListener(object : CollapsibleCalendar.CalendarListener {
             override fun onClickListener() {
@@ -100,14 +100,17 @@ class AddActivity : Fragment() {
                             name = addActivity_spinner.selectedItem.toString(),
                             priority = addActivity_numberPicker.value.toString(),
                             startDate = chosenStartDate,
-                            endDate = chosenEndDate
+                            endDate = chosenEndDate,
+                            assignedUser = null
                         )
 
                         viewModel.insert(homeActivity)
                         findNavController().navigate(R.id.action_addActivity_to_homeActivity)
                     }
                     if (this@AddActivity::startDate.isInitialized && this@AddActivity::endDate.isInitialized) {
-                        addActivity_addButton.text = "ADD"
+                        viewModel.setState(AddActivityState.DateChosen)
+                    } else {
+                        viewModel.setState(AddActivityState.ChoosingDate)
                     }
                 }
             }
@@ -128,4 +131,17 @@ class AddActivity : Fragment() {
         }
     }
 
+    private fun observeButton(){
+        viewModel.addActivityState.observe(viewLifecycleOwner, Observer {addActivityState ->
+            when(addActivityState){
+                is AddActivityState.ChoosingDate -> {
+                    addActivity_addButton.text = "CONFIRM"
+                }
+                is AddActivityState.DateChosen -> {
+                    addActivity_addButton.text = "ADD"
+                }
+            }
+
+        })
+    }
 }

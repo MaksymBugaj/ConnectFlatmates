@@ -10,7 +10,7 @@ interface HomeActivitiesRepository {
 
     fun getAll(): LiveData<List<HomeActivityEntity>>
 
-    fun getHomeActivity(name: String): LiveData<HomeActivityEntity>
+    fun getAssignedHomeActivitiesToUser(userId: String): LiveData<List<HomeActivityEntity>>
 
     fun getAllTest(): Flowable<List<HomeActivityEntity>>
 }

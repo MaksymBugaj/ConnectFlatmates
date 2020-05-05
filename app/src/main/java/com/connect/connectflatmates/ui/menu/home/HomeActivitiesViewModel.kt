@@ -11,4 +11,6 @@ class HomeActivitiesViewModel(private val homeActivitiesRepository: HomeActiviti
     fun testGetAll(): Flowable<List<HomeActivityEntity>> = homeActivitiesRepository.getAllTest()
 
     fun getAll(): LiveData<List<HomeActivityEntity>> = homeActivitiesRepository.getAll()
+
+    fun getAssignedHomeActivities(userId: String): LiveData<List<HomeActivityEntity>> = homeActivitiesRepository.getAssignedHomeActivitiesToUser(userId)
 }

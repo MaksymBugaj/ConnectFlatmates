@@ -21,8 +21,8 @@ class HomeActivitiesRepositoryImpl(private val homeActivitiesDao: HomeActivities
         return homeActivitiesDao.getAll()
     }
 
-    override fun getHomeActivity(name: String): LiveData<HomeActivityEntity> {
-        return homeActivitiesDao.getHomeActivity(name)
+    override fun getAssignedHomeActivitiesToUser(userId: String): LiveData<List<HomeActivityEntity>> {
+        return homeActivitiesDao.getAssignedHomeActivitiesToUser(userId)
     }
 
     override fun getAllTest(): Flowable<List<HomeActivityEntity>> {
