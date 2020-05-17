@@ -46,7 +46,7 @@ class HomeActivitiesAdapter : RecyclerView.Adapter<HomeActivitiesAdapter.ViewHol
         private val homeActivityItemName: TextView = itemView.homeActItem_itemName
         private val homeActivityItemStartDate: TextView = itemView.homeActItem_itemStartDate
         private val homeActivityItemEndDate: TextView = itemView.homeActItem_itemEndDate
-        private val homeActivityItemButtom: Button = itemView.homeActItem_button
+        private val homeActivityItemButton: Button = itemView.homeActItem_button
 
         init {
             itemView.homeActItem_button.setOnClickListener {
@@ -61,7 +61,7 @@ class HomeActivitiesAdapter : RecyclerView.Adapter<HomeActivitiesAdapter.ViewHol
             homeActivityItemName.text = homeActivityEntity.name
             homeActivityItemStartDate.text = homeActivityEntity.startDate
             homeActivityItemEndDate.text = homeActivityEntity.endDate
-            homeActivityItemButtom.text = if(homeActivityEntity.assignedUser != "0") buttonTextDismiss else buttonTextAssign
+            homeActivityItemButton.text = if(homeActivityEntity.assignedUser != "0") buttonTextDismiss else buttonTextAssign
         }
     }
 

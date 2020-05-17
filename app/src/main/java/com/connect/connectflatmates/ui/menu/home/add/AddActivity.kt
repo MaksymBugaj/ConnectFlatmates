@@ -65,6 +65,28 @@ class AddActivity : Fragment() {
 
        observeButton()
 
+//       setCalendarListener()
+
+        addActivity_dismissButton.setOnClickListener {
+            findNavController().navigate(R.id.action_addHomeActivity_to_myActivities)
+        }
+    }
+
+    private fun observeButton(){
+        viewModel.addActivityState.observe(viewLifecycleOwner, Observer {addActivityState ->
+            when(addActivityState){
+                is AddActivityState.ChoosingDate -> {
+                    addActivity_addButton.text = "CONFIRM"
+                }
+                is AddActivityState.DateChosen -> {
+                    addActivity_addButton.text = "ADD"
+                }
+            }
+
+        })
+    }
+
+    /*private fun setCalendarListener(){
         addActivity_calendarView.setCalendarListener(object : CollapsibleCalendar.CalendarListener {
             override fun onClickListener() {
             }
@@ -124,23 +146,5 @@ class AddActivity : Fragment() {
             }
 
         })
-
-        addActivity_dismissButton.setOnClickListener {
-            findNavController().navigate(R.id.action_addHomeActivity_to_myActivities)
-        }
-    }
-
-    private fun observeButton(){
-        viewModel.addActivityState.observe(viewLifecycleOwner, Observer {addActivityState ->
-            when(addActivityState){
-                is AddActivityState.ChoosingDate -> {
-                    addActivity_addButton.text = "CONFIRM"
-                }
-                is AddActivityState.DateChosen -> {
-                    addActivity_addButton.text = "ADD"
-                }
-            }
-
-        })
-    }
+    }*/
 }
