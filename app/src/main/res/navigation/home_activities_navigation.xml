@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_activities_navigation"
+    app:startDestination="@id/myActivities">
+
+    <fragment
+        android:id="@+id/myActivities"
+        android:name="com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivities"
+        android:label="home_activities_fragment"
+        tools:layout="@layout/home_activities_fragment" />
+    <fragment
+        android:id="@+id/addHomeActivity"
+        android:name="com.connect.connectflatmates.ui.menu.home.add.AddActivity"
+        android:label="add_fragment"
+        tools:layout="@layout/add_fragment" >
+        <action
+            android:id="@+id/action_addHomeActivity_to_unsingedActivities"
+            app:destination="@id/unsingedActivities"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/action_addHomeActivity_to_myActivities"
+            app:destination="@id/myActivities"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/unsingedActivities"
+        android:name="com.connect.connectflatmates.ui.menu.home.available.UnsingedActivities"
+        android:label="unsinged_activities_fragment"
+        tools:layout="@layout/unsinged_activities_fragment" />
+</navigation>

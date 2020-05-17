@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.menu.home.add.AddActivity">
+
+    <TextView
+        android:id="@+id/addActivity_activityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activity:"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/addActivity_priorityText"
+        app:layout_constraintStart_toStartOf="@+id/addActivity_priorityText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/addActivity_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addActivity_activityText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addActivity_priorityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Priority:"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addActivity_numberPicker"
+        app:layout_constraintEnd_toStartOf="@id/addActivity_numberPicker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addActivity_numberPicker" />
+
+    <TextView
+        android:id="@+id/addActivity_startDateIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start date:"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="@+id/addActivity_numberPicker"
+        app:layout_constraintStart_toEndOf="@id/addActivity_numberPicker"
+        app:layout_constraintEnd_toStartOf="@id/addActivity_startDate"
+        app:layout_constraintBottom_toTopOf="@id/addActivity_endDateIndicator"
+        />
+
+    <TextView
+        android:id="@+id/addActivity_startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/addActivity_startDateIndicator"
+        app:layout_constraintStart_toEndOf="@id/addActivity_startDateIndicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/addActivity_endDateIndicator"
+        android:layout_width="59dp"
+        android:layout_height="wrap_content"
+        android:text="End date:"
+        app:layout_constraintBottom_toBottomOf="@id/addActivity_numberPicker"
+        app:layout_constraintEnd_toEndOf="@+id/addActivity_startDateIndicator"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/addActivity_startDateIndicator"
+        app:layout_constraintTop_toBottomOf="@id/addActivity_startDateIndicator" />
+
+    <TextView
+        android:id="@+id/addActivity_endDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/addActivity_endDateIndicator"
+        app:layout_constraintStart_toEndOf="@id/addActivity_endDateIndicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+    <NumberPicker
+        android:id="@+id/addActivity_numberPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintStart_toEndOf="@id/addActivity_priorityText"
+        app:layout_constraintTop_toBottomOf="@id/addActivity_spinner"
+        app:layout_constraintEnd_toStartOf="@id/addActivity_startDateIndicator"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addActivity_calendarView"/>
+
+    <Button
+        android:id="@+id/addActivity_addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button_top_right"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@id/addActivity_dismissButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addActivity_calendarView" />
+
+    <Button
+        android:id="@+id/addActivity_dismissButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button_top_left"
+        android:layout_marginTop="8dp"
+        android:text="DISMISS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/addActivity_addButton"
+        app:layout_constraintTop_toBottomOf="@id/addActivity_calendarView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

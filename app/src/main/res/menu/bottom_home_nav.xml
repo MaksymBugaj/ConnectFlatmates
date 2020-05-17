@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myActivities"
+        android:icon="@android:drawable/arrow_up_float"
+        android:title="My"/>
+
+    <item
+        android:id="@+id/addHomeActivity"
+        android:icon="@android:drawable/alert_light_frame"
+        android:title="Create" />
+
+    <item
+        android:id="@+id/unsingedActivities"
+        android:icon="@android:drawable/arrow_down_float"
+        android:title="Unsigned" />
+
+
+</menu>

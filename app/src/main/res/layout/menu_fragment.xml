@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backradial"
+    android:orientation="vertical"
+    tools:context=".ui.menu.MenuFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/check1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_gradient_animation_list"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/peopleImage"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/add_people"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/peopleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="People"
+                app:layout_constraintEnd_toEndOf="@+id/peopleImage"
+                app:layout_constraintStart_toStartOf="@+id/peopleImage"
+                app:layout_constraintTop_toBottomOf="@+id/peopleImage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/check2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_gradient_animation_list_tr"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/houseActivities"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/home"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/houseText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="home activities"
+                app:layout_constraintEnd_toEndOf="@+id/houseActivities"
+                app:layout_constraintStart_toStartOf="@+id/houseActivities"
+                app:layout_constraintTop_toBottomOf="@+id/houseActivities" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/check3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/drawable_gradient_animation_list_bl">
+
+            <ImageView
+                android:id="@+id/settings"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/settingsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                app:layout_constraintEnd_toEndOf="@+id/settings"
+                app:layout_constraintStart_toStartOf="@+id/settings"
+                app:layout_constraintTop_toBottomOf="@+id/settings" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/check4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_gradient_animation_list_br"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/myProfile"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                 />
+
+            <TextView
+                android:id="@+id/profileText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MyProfile"
+                app:layout_constraintEnd_toEndOf="@+id/myProfile"
+                app:layout_constraintStart_toStartOf="@+id/myProfile"
+                app:layout_constraintTop_toBottomOf="@+id/myProfile" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <!--
+     <TextView
+        android:id="@+id/peopleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="People"
+        app:layout_constraintEnd_toEndOf="@+id/peopleImage"
+        app:layout_constraintStart_toStartOf="@+id/peopleImage"
+        app:layout_constraintTop_toBottomOf="@+id/peopleImage" />
+
+    <TextView
+        android:id="@+id/houseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="home activities"
+        app:layout_constraintEnd_toEndOf="@+id/houseActivities"
+        app:layout_constraintStart_toStartOf="@+id/houseActivities"
+        app:layout_constraintTop_toBottomOf="@+id/houseActivities" />
+
+
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/myProfile"
+        app:layout_constraintTop_toBottomOf="@+id/houseActivities" />
+
+    <ImageView
+        android:id="@+id/houseActivities"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/home"
+        app:layout_constraintBottom_toTopOf="@+id/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/peopleImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/peopleImage"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/add_people"
+        app:layout_constraintBottom_toBottomOf="@+id/houseActivities"
+        app:layout_constraintEnd_toStartOf="@+id/houseActivities"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/houseActivities" />
+
+    <TextView
+        android:id="@+id/settingsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        app:layout_constraintEnd_toEndOf="@+id/settings"
+        app:layout_constraintStart_toStartOf="@+id/settings"
+        app:layout_constraintTop_toBottomOf="@+id/settings" />
+
+
+    <ImageView
+        android:id="@+id/myProfile"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/profile"
+        app:layout_constraintBottom_toBottomOf="@+id/settings"
+        app:layout_constraintEnd_toStartOf="@+id/settings"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/settings" />
+
+    <TextView
+        android:id="@+id/profileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MyProfile"
+        app:layout_constraintEnd_toEndOf="@+id/myProfile"
+        app:layout_constraintStart_toStartOf="@+id/myProfile"
+        app:layout_constraintTop_toBottomOf="@+id/myProfile" />
+        -->
+</LinearLayout>
