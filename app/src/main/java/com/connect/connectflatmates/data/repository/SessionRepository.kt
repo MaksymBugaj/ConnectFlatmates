@@ -1,13 +1,11 @@
 package com.connect.connectflatmates.data.repository
 
-import com.connect.connectflatmates.data.db.entity.UserEntity
-import io.reactivex.Completable
-import io.reactivex.Flowable
+import com.connect.connectflatmates.data.db.entity.UserProfile
 
 interface SessionRepository {
-    val currentUser: UserEntity?
+    val currentUser: UserProfile?
 
-    fun loadCurrentUser(): Flowable<UserEntity>
+    fun loadCurrentUser(): UserProfile
     fun clearCurrentUser()
-    fun saveUser(userEntity: UserEntity)
+    fun saveUser(userProfile: UserProfile)
 }

@@ -1,7 +1,11 @@
 package com.connect.connectflatmates.di
 
 import androidx.room.Room
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import com.connect.connectflatmates.data.db.*
+import com.connect.connectflatmates.data.repository.SessionRepository
+import com.connect.connectflatmates.data.repository.SessionRepositoryImpl
 import com.connect.connectflatmates.data.repository.UserRepository
 import com.connect.connectflatmates.data.repository.UserRepositoryImpl
 import com.connect.connectflatmates.ui.createaccount.CreateAccountViewModel
@@ -13,6 +17,7 @@ import com.connect.connectflatmates.ui.menu.home.available.UnsingedActivitiesVie
 import com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivitiesViewModel
 import com.connect.connectflatmates.ui.menu.userStats.UserViewModel
 import com.connect.connectflatmates.ui.settings.SettingsViewModel
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -44,14 +49,35 @@ val databaseModule = module {
     single<UserRepository> {
         UserRepositoryImpl(userDao = get())
     }
+
+    single<SessionRepository>{
+        SessionRepositoryImpl(userRepository = get(), sharedPreferences = get())
+    }
 }
+
+val appModule = module {
+    single {
+        val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        val sharedPreferences = EncryptedSharedPreferences
+            .create(
+                "com.connect.connectflatmates.safepath",
+                masterKeyAlias,
+                androidApplication(),
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            )
+        sharedPreferences
+    }
+}
+
+
 val viewModelModule = module {
     viewModel {
         CreateAccountViewModel(userRepository = get())
     }
 
     viewModel {
-        LoginViewModel(userRepository = get())
+        LoginViewModel(userRepository = get(), sessionRepository = get())
     }
 
     viewModel {

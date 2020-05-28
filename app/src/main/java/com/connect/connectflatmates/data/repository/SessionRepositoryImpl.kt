@@ -2,31 +2,30 @@ package com.connect.connectflatmates.data.repository
 
 import android.content.SharedPreferences
 import android.util.Log
-import com.connect.connectflatmates.data.db.UserDao
-import com.connect.connectflatmates.data.db.entity.UserEntity
+import com.connect.connectflatmates.data.db.entity.UserProfile
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+
+const val USER_ID_KEY = "user_id"
 
 class SessionRepositoryImpl(
     private val sharedPreferences: SharedPreferences,
     private val userRepository: UserRepository
 ) : SessionRepository {
 
-    private var user : UserEntity? = null
-
-    companion object {
-        val USER_ID_KEY = "user_id"
-    }
+    private var user : UserProfile? = null
 
 
 
-    override val currentUser: UserEntity?
+
+    override val currentUser: UserProfile?
         get() = user
 
-    override fun loadCurrentUser(): Flowable<UserEntity> {
-        val user
+    override fun loadCurrentUser(): UserProfile {
+        val userId = sharedPreferences.getInt(USER_ID_KEY, -1)
+        if(userId != null) user = userRepository.getUserById(userId)
+        return user!!
     }
 
     override fun clearCurrentUser() {
@@ -39,14 +38,14 @@ class SessionRepositoryImpl(
             }
     }
 
-    override fun saveUser(userEntity: UserEntity) {
+    override fun saveUser(userProfile: UserProfile) {
         Completable.fromAction {
-            sharedPreferences.edit().putString(USER_ID_KEY,userEntity.id).apply()
+            sharedPreferences.edit().putInt(USER_ID_KEY,userProfile.id).apply()
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 Log.d("NOPE","hue got ya")
-                this.user = userEntity
+                this.user = userProfile
             }
     }
 }
