@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
 import com.connect.connectflatmates.ui.HomeActivitiesAdapter
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.home_activities_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -49,18 +51,23 @@ class HomeActivities : Fragment() {
             }
         })
 
+        viewModel.getAll().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe{listOfActivities ->
+                if(listOfActivities.isNotEmpty()) {
+                    Log.d("NOPE","hue ${listOfActivities[0].assignedUser}")
+                    (assignedActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setItems(listOfActivities)
+                }
 
-
-
-
-        viewModel.getAll().observe(viewLifecycleOwner, Observer {listOfActivities ->
-            if(listOfActivities.isNotEmpty()) {
-                Log.d("NOPE","hue ${listOfActivities[0].assignedUser}")
-                listOfAssignedHomeActivities = listOfActivities
-                (assignedActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setItems(listOfAssignedHomeActivities)
             }
 
-        })
+        /*viewModel.getAll().observe(viewLifecycleOwner, Observer {listOfActivities ->
+            if(listOfActivities.isNotEmpty()) {
+                Log.d("NOPE","hue ${listOfActivities[0].assignedUser}")
+                (assignedActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setItems(listOfActivities)
+            }
+
+        })*/
 
 
 

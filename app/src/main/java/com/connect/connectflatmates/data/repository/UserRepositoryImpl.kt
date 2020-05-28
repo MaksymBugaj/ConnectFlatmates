@@ -1,6 +1,7 @@
-package com.connect.connectflatmates.data.db
+package com.connect.connectflatmates.data.repository
 
 import androidx.lifecycle.LiveData
+import com.connect.connectflatmates.data.db.UserDao
 import com.connect.connectflatmates.data.db.entity.UserEntity
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers

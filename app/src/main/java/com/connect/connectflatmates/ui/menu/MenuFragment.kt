@@ -46,7 +46,7 @@ class MenuFragment : Fragment() {
             view.findNavController().navigate(R.id.action_menuFragment_to_findPeople)
         }
 
-        animationDrawableTopLeft = check1.background as AnimationDrawable
+        /*animationDrawableTopLeft = check1.background as AnimationDrawable
         animationDrawableTopLeft.setEnterFadeDuration(4000)
         animationDrawableTopLeft.setExitFadeDuration(4000)
 
@@ -61,13 +61,13 @@ class MenuFragment : Fragment() {
 
         animationDrawableBottomRight = check4.background as AnimationDrawable
         animationDrawableBottomRight.setEnterFadeDuration(4000)
-        animationDrawableBottomRight.setExitFadeDuration(4000)
+        animationDrawableBottomRight.setExitFadeDuration(4000)*/
 
     }
 
     override fun onResume() {
         super.onResume()
-        if (!animationDrawableTopLeft.isRunning) {
+       /* if (!animationDrawableTopLeft.isRunning) {
             // start the animation
             animationDrawableTopLeft.start()
         }
@@ -85,12 +85,12 @@ class MenuFragment : Fragment() {
         if (!animationDrawableBottomRight.isRunning) {
             // start the animation
             animationDrawableBottomRight.start()
-        }
+        }*/
     }
 
     override fun onPause() {
         super.onPause()
-        if (animationDrawableTopLeft.isRunning) {
+       /* if (animationDrawableTopLeft.isRunning) {
             // stop the animation
             animationDrawableTopLeft.stop()
         }
@@ -107,6 +107,6 @@ class MenuFragment : Fragment() {
         if (!animationDrawableBottomRight.isRunning) {
             // start the animation
             animationDrawableBottomRight.stop()
-        }
+        }*/
     }
 }

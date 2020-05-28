@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="colorTransparentLogin">#D964B5F6</color>
+    <color name="colorLater">#D964B5F6</color>
+
+    <color name="colorTransparentLogin">#52FFFFFF</color>
 
     <color name="calendarBackground">#3752fe</color>
 

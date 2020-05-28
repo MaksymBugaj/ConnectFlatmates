@@ -2,6 +2,8 @@ package com.connect.connectflatmates.di
 
 import androidx.room.Room
 import com.connect.connectflatmates.data.db.*
+import com.connect.connectflatmates.data.repository.UserRepository
+import com.connect.connectflatmates.data.repository.UserRepositoryImpl
 import com.connect.connectflatmates.ui.createaccount.CreateAccountViewModel
 import com.connect.connectflatmates.ui.login.LoginViewModel
 import com.connect.connectflatmates.ui.menu.MenuViewModel

@@ -1,4 +1,4 @@
-package com.connect.connectflatmates.data.db
+package com.connect.connectflatmates.data.repository
 
 import androidx.lifecycle.LiveData
 import com.connect.connectflatmates.data.db.entity.UserEntity
