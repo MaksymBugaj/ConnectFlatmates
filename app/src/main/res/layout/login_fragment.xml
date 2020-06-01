@@ -16,30 +16,24 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/surfacebck"
+        android:padding="10dp"
         tools:context=".MainActivity">
 
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:background="@drawable/round_corners_login"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutLogin_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxBackgroundColor ="@color/surfaceOn"
                 app:boxStrokeColor ="@color/surfaceOn"
                 android:textColorHint="@color/color_white_F"
                 app:hintTextColor="@color/color_white_F"
-                android:hint="@string/username">
+
+                android:hint="@string/username"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layoutLogin_password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_username"
@@ -51,13 +45,18 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutLogin_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxBackgroundColor ="@color/surfaceOn"
                 app:boxStrokeColor ="@color/surfaceOn"
                 android:textColorHint="@color/color_white_F"
                 app:hintTextColor="@color/color_white_F"
-                android:hint="@string/password">
+                android:hint="@string/password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutLogin_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layoutLogin_button">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_password"
@@ -71,30 +70,39 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/login_button"
+                android:id="@+id/layoutLogin_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/surfaceOn"
                 android:text="OK"
+                android:layout_marginTop="8dp"
                 android:textColor="@color/color_white_F"
-                android:onClick="@{() -> viewModel.onLoginClick()}"/>
+                android:onClick="@{() -> viewModel.onLoginClick()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutLogin_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layoutLogin_noAccountText"/>
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/layoutLogin_noAccountText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
+                android:layout_marginTop="8dp"
                 android:textColor="@color/color_white_F"
-                android:onClick="@{() -> viewModel.onNoAccountClick()}"
                 android:text="@string/no_account"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutLogin_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf = "@id/layoutLogin_createAccountText"/>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/create_account"
-
+            <TextView
+                android:id="@+id/layoutLogin_createAccountText"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,11 +113,15 @@
                 android:textColor="@color/color_white_F"
                 android:onClick="@{() -> viewModel.onNoAccountClick()}"
                 android:text="@string/create_one"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutLogin_noAccountText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 
-        </LinearLayout>
+
 
         <RelativeLayout
             android:id="@+id/progress_bar_layout"

@@ -1,34 +1,28 @@
 package com.connect.connectflatmates.ui.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.databinding.LoginFragmentBinding
-import com.fevziomurtekin.customprogress.Type
-import io.reactivex.Observable
-import kotlinx.android.synthetic.main.login_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.concurrent.TimeUnit
 
 class LoginFragment : Fragment() {
 
-    private val viewModel by viewModel<LoginViewModel>()
+    private val loginViewModel by viewModel<LoginViewModel>()
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return LoginFragmentBinding.inflate(inflater, container, false).apply {
-            viewModel = viewModel
+            viewModel = loginViewModel
             lifecycleOwner = viewLifecycleOwner
         }.root
     }
@@ -36,13 +30,9 @@ class LoginFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        login_button.setOnClickListener {
-            //assertPassword()
-            //faster going to next screens
-            login()
-        }
 
-        viewModel.loginStatus.observe(this@LoginFragment, Observer {loginState ->
+
+        loginViewModel.loginStatus.observe(this@LoginFragment, Observer { loginState ->
             when (loginState) {
                 LoginValid -> {
                     login()
@@ -54,10 +44,10 @@ class LoginFragment : Fragment() {
 
         })
 
-        viewModel.getAll()
+        loginViewModel.getAll()
     }
 
-    private fun assertPassword() {
+    /*private fun assertPassword() {
         login_username.text?.let {
             val login = login_username.text.toString()
             viewModel.getUserByLogin(login).observe(viewLifecycleOwner, Observer { user ->
@@ -81,7 +71,7 @@ class LoginFragment : Fragment() {
             })
         }
 
-    }
+    }*/
 
     private fun noAccount(){
         findNavController().navigate(R.id.action_loginFragment_to_createAccount)

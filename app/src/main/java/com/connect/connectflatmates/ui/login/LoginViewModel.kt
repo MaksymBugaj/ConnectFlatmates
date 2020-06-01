@@ -56,6 +56,7 @@ class LoginViewModel(
 
     fun onNoAccountClick(){
         _loginStatus.value = NoUser
+        Log.d("NOPE", "status?")
     }
 
     fun getUserById(id: Int) {
