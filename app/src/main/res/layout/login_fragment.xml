@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/surfacebck"
-        android:padding="10dp"
+        android:padding="15dp"
         tools:context=".MainActivity">
 
             <com.google.android.material.textfield.TextInputLayout

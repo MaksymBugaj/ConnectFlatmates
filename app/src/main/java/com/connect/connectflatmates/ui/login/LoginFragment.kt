@@ -1,6 +1,7 @@
 package com.connect.connectflatmates.ui.login
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,11 @@ class LoginFragment : Fragment() {
                 }
                 NoUser -> {
                     noAccount()
+                    Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+                }
+                //todo back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
+                InitialState -> {
+                    Log.d("NOPE","NOPE HELP MEEEE. IM not STUCKK")
                 }
             }
 
@@ -85,4 +91,8 @@ class LoginFragment : Fragment() {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
+    override fun onResume() {
+        super.onResume()
+        loginViewModel.onVisible()
+    }
 }

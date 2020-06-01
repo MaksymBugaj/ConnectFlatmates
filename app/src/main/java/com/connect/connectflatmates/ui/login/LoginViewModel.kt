@@ -19,6 +19,7 @@ class LoginViewModel(
     val login = ObservableField<String>("")
     val password = ObservableField<String>("")
 
+
     lateinit var usersList: List<UserProfile>
 
     private val _loginStatus = MutableLiveData<LoginState>()
@@ -26,6 +27,9 @@ class LoginViewModel(
 
     fun getUserByLogin(login: String): LiveData<UserProfile> = userRepository.getUserByLogin(login)
 
+    fun onVisible(){
+        _loginStatus.value = InitialState
+    }
     fun getAll() {
         userRepository.getUsers()
             .subscribeOn(Schedulers.io())
@@ -71,6 +75,7 @@ class LoginViewModel(
 
 sealed class LoginState
 
+object InitialState : LoginState()
 object LoginValid : LoginState()
 object WrongPassword : LoginState()
 object NoPassword : LoginState()
