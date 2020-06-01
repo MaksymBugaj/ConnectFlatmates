@@ -5,12 +5,17 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.connect.connectflatmates.ui.login.LoginViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/surfacebck"
         tools:context=".MainActivity">
 
         <ImageView
@@ -28,6 +33,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:background="@drawable/round_corners_login"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,28 +41,53 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <EditText
-                android:id="@+id/login_username"
-                android:layout_width="245dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/username"
-                android:inputType="text" />
+                app:boxBackgroundColor ="@color/surfaceOn"
+                app:boxStrokeColor ="@color/color_white_F"
+                android:textColorHint="@color/color_white_F"
+                app:hintTextColor="@color/color_white_F"
+                android:hint="@string/username">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/color_white_F"
+                android:text="@{viewModel.login}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor ="@color/surfaceOn"
+                app:boxStrokeColor ="@color/color_white_F"
+                android:textColorHint="@color/color_white_F"
+                app:hintTextColor="@color/color_white_F"
+                android:hint="@string/password">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
+                android:textColor="@color/color_white_F"
+                android:inputType="textPassword"
+                android:text="@{viewModel.password}"/>
 
-            <Button
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/login_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/round_button"
-                android:text="OK" />
+                android:backgroundTint="@color/surfaceOn"
+                android:text="OK"
+                android:textColor="@color/color_white_F"
+                android:onClick="@{() -> viewModel.onLoginClick()}"/>
 
             <TextView
                 android:id="@+id/create_account"
@@ -66,6 +97,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
+                android:textColor="@color/color_white_F"
+                android:onClick="@{() -> viewModel.onNoAccountClick()}"
                 android:text="@string/create_account"
                 android:textSize="16sp" />
 

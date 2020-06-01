@@ -46,10 +46,25 @@ class CreateAccount : Fragment() {
 
 
         createAccount_createButton.setOnClickListener { view ->
-            createUserInDatabase()
+            create()
         }
     }
 
+    private fun create(){
+        val user = UserProfile(
+            name = createAccount_name.text.toString(),
+            surname = createAccount_surname.text.toString(),
+            login = createAccount_login.text.toString(),
+            email = createAccount_email.text.toString(),
+            password = createAccount_password.text.toString()
+        )
+
+        viewModel.insert(user)
+        Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe{
+            view!!.findNavController().navigate(R.id.action_createAccount_to_loginFragment)
+            Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+        }
+    }
 
     //todo move to viewModel
     //disable firebase for a while

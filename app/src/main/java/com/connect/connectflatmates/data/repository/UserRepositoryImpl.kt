@@ -1,9 +1,11 @@
 package com.connect.connectflatmates.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.connect.connectflatmates.data.db.UserDao
 import com.connect.connectflatmates.data.db.entity.UserProfile
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -15,11 +17,13 @@ class UserRepositoryImpl(private val userDao: UserDao) :
             userDao.insert(userProfile)
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
+            .subscribe{
+                Log.d("NOPE","DONE")
+            }
 
     }
 
-    override fun getUsers(): LiveData<List<UserProfile>> {
+    override fun getUsers(): Flowable<List<UserProfile>> {
         return userDao.getAll()
     }
 
@@ -27,7 +31,7 @@ class UserRepositoryImpl(private val userDao: UserDao) :
         return userDao.getUser(login)
     }
 
-    override fun getUserById(id: Int): UserProfile {
+    override fun getUserById(id: Int): Flowable<UserProfile> {
         return userDao.getUserById(id)
     }
 }

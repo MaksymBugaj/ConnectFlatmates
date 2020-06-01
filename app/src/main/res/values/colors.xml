@@ -15,6 +15,9 @@
     <color name="RightTopBackground">#80FF0000</color>
     <color name="rightBottomBackground">#809CF11B</color>
 
+    <color name="surfacebck">#363640</color>
+    <color name="surfaceOn">#303035</color>
+
     <!-- 1st Gradient color -->
     <color name="colorPurple_A400">#D500F9</color>
     <color name="colorPurple_900">#4A148C</color>

@@ -28,10 +28,10 @@ class FindPeople : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        getUsers()
+        //getUsers()
     }
 
-    private fun getUsers() {
+    /*private fun getUsers() {
         viewModel.getAllUser().observe(viewLifecycleOwner, Observer { usersList ->
             Log.d("NOPE","sizein: ${usersList.size}")
 
@@ -40,7 +40,7 @@ class FindPeople : Fragment() {
             Log.d("NOPE","id: ${list[l].id}")
         })
 
-    }
+    }*/
 
     private fun getUserByLogin(login: String){
 

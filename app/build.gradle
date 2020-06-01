@@ -35,7 +35,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
 
@@ -53,9 +53,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.firebase:firebase-auth:16.0.5'
-    implementation 'com.google.firebase:firebase-database:16.0.4'
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    //firebase
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'com.google.firebase:firebase-database:19.3.0'
 
 
     // Better dateTime-time support even on older Android versions
@@ -68,9 +70,7 @@ dependencies {
 
     implementation 'co.metalab.asyncawait:asyncawait:1.0.0'
 
-    //groupie view holder
-    implementation 'com.xwray:groupie:2.7.0'
-    implementation 'com.xwray:groupie-kotlin-android-extensions:2.7.0'
+
 
 
     //multidex
@@ -107,16 +107,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    //tattarka
-    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:3.1.1'
-    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:3.1.1'
-    implementation 'com.facebook.stetho:stetho:1.5.1'
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1' //java 8 date backport
 
-    def groupie = "2.7.0"
-    implementation "com.xwray:groupie:$groupie"
-    implementation "com.xwray:groupie-kotlin-android-extensions:$groupie"
-    implementation "com.xwray:groupie-databinding:$groupie"
+    //java 8 date backport
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1' //java 8 date backport
 
     //swiperecycler
     implementation 'io.sulek.ssml:simpleswipemenulayout:1.0.4'
@@ -143,7 +136,10 @@ dependencies {
     implementation "com.github.skydoves:powerspinner:1.0.5"
 
     //encrypted shared preferences
-    implementation "androidx.security:security-crypto:1.0.0-rc01"
+    implementation "androidx.security:security-crypto:1.0.0-rc02"
+
+    //stetho
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

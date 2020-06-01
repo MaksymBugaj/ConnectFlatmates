@@ -28,6 +28,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return LoginFragmentBinding.inflate(inflater, container, false).apply {
+            viewModel = viewModel
             lifecycleOwner = viewLifecycleOwner
         }.root
     }
@@ -41,9 +42,19 @@ class LoginFragment : Fragment() {
             login()
         }
 
-        create_account.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_loginFragment_to_createAccount)
-        }
+        viewModel.loginStatus.observe(this@LoginFragment, Observer {loginState ->
+            when (loginState) {
+                LoginValid -> {
+                    login()
+                }
+                NoUser -> {
+                    noAccount()
+                }
+            }
+
+        })
+
+        viewModel.getAll()
     }
 
     private fun assertPassword() {
@@ -70,6 +81,10 @@ class LoginFragment : Fragment() {
             })
         }
 
+    }
+
+    private fun noAccount(){
+        findNavController().navigate(R.id.action_loginFragment_to_createAccount)
     }
 
     private fun login(){
