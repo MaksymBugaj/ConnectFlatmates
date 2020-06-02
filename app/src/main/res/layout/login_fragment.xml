@@ -5,61 +5,123 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.connect.connectflatmates.ui.login.LoginViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_bck"
         android:orientation="vertical"
+        android:background="@drawable/login_bck_2"
+        android:padding="15dp"
         tools:context=".MainActivity">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corners_login"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <EditText
-                android:id="@+id/login_username"
-                android:layout_width="245dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutLogin_username"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/username"
-                android:inputType="text" />
+                app:boxBackgroundColor ="@color/lightPrimaryColor"
+                app:boxStrokeColor ="@color/dividerColor"
+                android:textColorHint="@color/textColorPrimary"
+                app:hintTextColor="@color/secondaryText"
 
-            <EditText
+                android:hint="@string/username"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layoutLogin_password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/textColorPrimary"
+                android:text="@{viewModel.login}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutLogin_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor ="@color/lightPrimaryColor"
+                app:boxStrokeColor ="@color/dividerColor"
+                android:textColorHint="@color/textColorPrimary"
+                app:hintTextColor="@color/secondaryText"
+                android:hint="@string/password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutLogin_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layoutLogin_button">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
+                android:textColor="@color/textColorPrimary"
+                android:inputType="textPassword"
+                android:text="@{viewModel.password}"/>
 
-            <Button
-                android:id="@+id/login_button"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/layoutLogin_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/round_button"
-                android:text="OK" />
+                android:backgroundTint="@color/lightPrimaryColor"
+                android:text="OK"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/textColorPrimary"
+                android:onClick="@{() -> viewModel.onLoginClick()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutLogin_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layoutLogin_noAccountText"/>
 
-            <TextView
-                android:id="@+id/create_account"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/layoutLogin_noAccountText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:text="@string/create_account"
-                android:textSize="16sp" />
+                android:layout_marginTop="8dp"
+                android:textColor="@color/textColorPrimary"
+                android:text="@string/no_account"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutLogin_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf = "@id/layoutLogin_createAccountText"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/layoutLogin_createAccountText"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:textColor="@color/secondaryText"
+                android:onClick="@{() -> viewModel.onNoAccountClick()}"
+                android:text="@string/create_one"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutLogin_noAccountText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
 
         <RelativeLayout
             android:id="@+id/progress_bar_layout"

@@ -7,56 +7,53 @@
     android:orientation="vertical"
     tools:context=".ui.menu.home.add.AddActivity">
 
-    <TextView
-        android:id="@+id/addActivity_activityText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activity:"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="@+id/addActivity_priorityText"
-        app:layout_constraintStart_toStartOf="@+id/addActivity_priorityText"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
+
+    <com.skydoves.powerspinner.PowerSpinnerView
         android:id="@+id/addActivity_spinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textAlignment="viewEnd"
+        android:background="@color/colorAmber_900"
+        android:gravity="center"
+        android:hint="Choose Activity"
+        android:padding="10dp"
+        android:textColor="@color/colorPurple_900"
+        android:textColorHint="@color/colorGreen_A400"
+        android:textSize="14.5sp"
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="8dp"
+        app:spinner_divider_color="@color/calendarBackground"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="0.4dp"
+        app:spinner_item_array="@array/homeActivities_array"
+        app:spinner_popup_animation="fade"
+        app:spinner_popup_background="@color/design_default_color_surface"
+        app:spinner_popup_elevation="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addActivity_activityText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/addActivity_priorityText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Priority:"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/addActivity_numberPicker"
-        app:layout_constraintEnd_toStartOf="@id/addActivity_numberPicker"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addActivity_numberPicker" />
+
+
 
     <TextView
         android:id="@+id/addActivity_startDateIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start date:"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintTop_toTopOf="@+id/addActivity_numberPicker"
-        app:layout_constraintStart_toEndOf="@id/addActivity_numberPicker"
-        app:layout_constraintEnd_toStartOf="@id/addActivity_startDate"
-        app:layout_constraintBottom_toTopOf="@id/addActivity_endDateIndicator"
+        app:layout_constraintTop_toBottomOf="@+id/addActivity_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/addActivity_endDateIndicator"
+        app:layout_constraintBottom_toTopOf="@id/addActivity_startDate"
         />
 
     <TextView
         android:id="@+id/addActivity_startDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/addActivity_startDateIndicator"
-        app:layout_constraintStart_toEndOf="@id/addActivity_startDateIndicator"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addActivity_startDateIndicator"
+        app:layout_constraintStart_toStartOf="@id/addActivity_startDateIndicator"
+        app:layout_constraintEnd_toEndOf="@id/addActivity_startDateIndicator"
         />
 
     <TextView
@@ -64,36 +61,42 @@
         android:layout_width="59dp"
         android:layout_height="wrap_content"
         android:text="End date:"
-        app:layout_constraintBottom_toBottomOf="@id/addActivity_numberPicker"
-        app:layout_constraintEnd_toEndOf="@+id/addActivity_startDateIndicator"
+
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@+id/addActivity_startDateIndicator"
-        app:layout_constraintTop_toBottomOf="@id/addActivity_startDateIndicator" />
+        app:layout_constraintStart_toEndOf="@+id/addActivity_startDateIndicator"
+        app:layout_constraintTop_toBottomOf="@id/addActivity_spinner" />
 
     <TextView
         android:id="@+id/addActivity_endDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/addActivity_endDateIndicator"
-        app:layout_constraintStart_toEndOf="@id/addActivity_endDateIndicator"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addActivity_endDateIndicator"
+        app:layout_constraintStart_toStartOf="@id/addActivity_endDateIndicator"
+        app:layout_constraintEnd_toEndOf="@id/addActivity_endDateIndicator"
         />
 
 
-    <NumberPicker
-        android:id="@+id/addActivity_numberPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:focusable="false"
-        app:layout_constraintStart_toEndOf="@id/addActivity_priorityText"
-        app:layout_constraintTop_toBottomOf="@id/addActivity_spinner"
-        app:layout_constraintEnd_toStartOf="@id/addActivity_startDateIndicator"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addActivity_endDate"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addActivity_calendarView"/>
+        android:id="@+id/addActivity_calendarView"
+
+        app:primaryColor="@color/calendarBackground"
+        app:textColor="@android:color/white"
+        app:selectedItem_textColor="@android:color/holo_red_dark"
+        app:todayItem_textColor="@android:color/white"
+        app:todayItem_background="@drawable/circle_white_stroke_background"
+        app:selectedItem_background="@drawable/circle_white_solid_background"
+        app:buttonLeft_drawableTintColor="@android:color/white"
+        app:buttonRight_drawableTintColor="@android:color/white"
+        app:expandIconColor="@android:color/white">
+    </com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar>
 
     <Button
         android:id="@+id/addActivity_addButton"

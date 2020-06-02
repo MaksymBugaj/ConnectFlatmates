@@ -1,6 +1,5 @@
 package com.connect.connectflatmates.ui.createaccount
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,10 +10,7 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 
 import com.connect.connectflatmates.R
-import com.connect.connectflatmates.data.db.entity.UserEntity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
+import com.connect.connectflatmates.data.db.entity.UserProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -50,14 +46,31 @@ class CreateAccount : Fragment() {
 
 
         createAccount_createButton.setOnClickListener { view ->
-            createUserInDatabase()
+            create()
         }
     }
 
+    private fun create(){
+        val user = UserProfile(
+            name = createAccount_name.text.toString(),
+            surname = createAccount_surname.text.toString(),
+            login = createAccount_login.text.toString(),
+            email = createAccount_email.text.toString(),
+            password = createAccount_password.text.toString()
+        )
 
+        viewModel.insert(user)
+        Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe{
+            view!!.findNavController().navigate(R.id.action_createAccount_to_loginFragment)
+            Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+        }
+    }
+
+    //todo move to viewModel
+    //disable firebase for a while
     private fun createUserInDatabase(){
-        val userId = mFirebaseDatabase!!.push().key.toString()
-        val user = UserEntity(
+        val userId = mFirebaseDatabase!!.push().key!!.toInt()
+        val user = UserProfile(
             id = userId,
             name = createAccount_name.text.toString(),
             surname = createAccount_surname.text.toString(),
@@ -71,7 +84,7 @@ class CreateAccount : Fragment() {
             if(task.isSuccessful){
                 Toast.makeText(context,"Creating account successful", Toast.LENGTH_SHORT).show()
                 viewModel.insert(user)
-                mFirebaseDatabase!!.child(userId).setValue(user)
+                mFirebaseDatabase!!.child(userId.toString()).setValue(user)
                 Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe{
                     view!!.findNavController().navigate(R.id.action_createAccount_to_loginFragment)
                     Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.connect.connectflatmates.R
-import com.connect.connectflatmates.data.db.entity.UserEntity
+import com.connect.connectflatmates.data.db.entity.UserProfile
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FindPeople : Fragment() {
@@ -16,7 +16,7 @@ class FindPeople : Fragment() {
     private val viewModel by viewModel<FindPeopleViewModel>()
 
 
-    private lateinit var list : List<UserEntity>
+    private lateinit var list : List<UserProfile>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,10 +28,10 @@ class FindPeople : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        getUsers()
+        //getUsers()
     }
 
-    private fun getUsers() {
+    /*private fun getUsers() {
         viewModel.getAllUser().observe(viewLifecycleOwner, Observer { usersList ->
             Log.d("NOPE","sizein: ${usersList.size}")
 
@@ -40,7 +40,7 @@ class FindPeople : Fragment() {
             Log.d("NOPE","id: ${list[l].id}")
         })
 
-    }
+    }*/
 
     private fun getUserByLogin(login: String){
 

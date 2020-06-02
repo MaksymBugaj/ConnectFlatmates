@@ -39,7 +39,7 @@ class AddActivity : Fragment() {
 
 
 // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
+        /*ArrayAdapter.createFromResource(
             context!!,
             R.array.homeActivities_array,
             android.R.layout.simple_spinner_item
@@ -48,13 +48,9 @@ class AddActivity : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
             addActivity_spinner.adapter = adapter
-        }
+        }*/
 
-        val dispplayedValues = arrayOf("HIGH", "MEDIUM", "LOW")
-        addActivity_numberPicker.displayedValues = dispplayedValues
-        addActivity_numberPicker.minValue = 0
-        addActivity_numberPicker.maxValue = dispplayedValues.size - 1
-        addActivity_numberPicker.wrapSelectorWheel = true
+
 
 //todo wstecz nie finiszuje
 

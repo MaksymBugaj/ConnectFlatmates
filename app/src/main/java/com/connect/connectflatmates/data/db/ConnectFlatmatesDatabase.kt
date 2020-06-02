@@ -3,14 +3,14 @@ package com.connect.connectflatmates.data.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
-import com.connect.connectflatmates.data.db.entity.UserEntity
+import com.connect.connectflatmates.data.db.entity.UserProfile
 
 @Database(
     entities = [
-        UserEntity::class,
+        UserProfile::class,
         HomeActivityEntity::class
     ],
-    version = 2
+    version = 3
 )
 abstract class ConnectFlatmatesDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao

@@ -15,7 +15,7 @@ interface HomeActivitiesDao {
     fun insert(homeActivityEntity: HomeActivityEntity)
 
     @Query("select * from home_activities_table")
-    fun getAll(): LiveData<List<HomeActivityEntity>>
+    fun getAll(): Flowable<List<HomeActivityEntity>>
 
     @Query("select * from home_activities_table where assignedUser =:userId")
     fun getAssignedHomeActivitiesToUser(userId: String?): LiveData<List<HomeActivityEntity>>

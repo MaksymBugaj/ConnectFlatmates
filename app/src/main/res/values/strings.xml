@@ -2,7 +2,8 @@
     <string name="app_name">ConnectFlatmates</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="create_account">Don\'t have account? Create One</string>
+    <string name="no_account">Don\'t have account?</string>
+    <string name="create_one">Create one</string>
 
     <string-array name="homeActivities_array">
         <item>Cleaning</item>

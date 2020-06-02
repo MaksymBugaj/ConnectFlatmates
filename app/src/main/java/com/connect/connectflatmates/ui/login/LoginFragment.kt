@@ -8,26 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
 
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.databinding.LoginFragmentBinding
-import com.fevziomurtekin.customprogress.Type
-import io.reactivex.Observable
+import com.connect.connectflatmates.state.login.LoginState
 import kotlinx.android.synthetic.main.login_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.concurrent.TimeUnit
 
 class LoginFragment : Fragment() {
 
-    private val viewModel by viewModel<LoginViewModel>()
+    private val loginViewModel by viewModel<LoginViewModel>()
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return LoginFragmentBinding.inflate(inflater, container, false).apply {
+            viewModel = loginViewModel
             lifecycleOwner = viewLifecycleOwner
         }.root
     }
@@ -35,18 +34,59 @@ class LoginFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        login_button.setOnClickListener {
-            //assertPassword()
-            //faster going to next screens
-            login()
-        }
+        /*layoutLogin_createAccountText.setOnClickListener {
+            noAccount()
+            Log.d("NOPE","NOPE HELP anybpody?. IM STUCKK")
+        }*/
 
-        create_account.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_loginFragment_to_createAccount)
-        }
+        loginViewModel.loginStatus.observe(this@LoginFragment, Observer { loginState ->
+            Log.d("NOPE","Current state $loginState")
+            when (loginState) {
+                LoginState.LoginValid -> {
+                    login()
+                    //todo after login 
+                    loginViewModel.setStateToInitial()
+                }
+                LoginState.NoUser -> {
+                    noAccount()
+                    loginViewModel.setStateToInitial()
+                    Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+                }
+                //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
+                LoginState.InitialState -> {
+                    Log.d("NOPE","NOPE HELP MEEEE. IM not STUCKK")
+                }
+
+
+            }
+
+        })
+
+        /*loginViewModel.loginStatusT.observe(this@LoginFragment, Observer { loginState ->
+            Log.d("NOPE","Current state $loginState")
+            when (loginState) {
+                LoginValid -> {
+                    login()
+                }
+                NoUser -> {
+                    noAccount()
+                    loginViewModel.setStateToInitial()
+                    Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+                }
+                //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
+                InitialState -> {
+                    Log.d("NOPE","NOPE HELP MEEEE. IM not STUCKK")
+                }
+
+
+            }
+
+        })*/
+
+        loginViewModel.getAll()
     }
 
-    private fun assertPassword() {
+    /*private fun assertPassword() {
         login_username.text?.let {
             val login = login_username.text.toString()
             viewModel.getUserByLogin(login).observe(viewLifecycleOwner, Observer { user ->
@@ -70,9 +110,17 @@ class LoginFragment : Fragment() {
             })
         }
 
+    }*/
+
+    private fun noAccount(){
+        val destination: NavDestination? = findNavController().currentDestination
+        if(R.id.loginFragment == destination?.id)
+        findNavController().navigate(R.id.action_loginFragment_to_createAccount)
     }
 
     private fun login(){
+        val destination: NavDestination? = findNavController().currentDestination
+        if(R.id.loginFragment == destination?.id)
         findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
     }
 
@@ -80,4 +128,8 @@ class LoginFragment : Fragment() {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
+    override fun onResume() {
+        super.onResume()
+        loginViewModel.onVisible()
+    }
 }
