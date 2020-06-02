@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
 
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.databinding.LoginFragmentBinding
+import com.connect.connectflatmates.state.login.LoginState
+import kotlinx.android.synthetic.main.login_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -31,24 +34,54 @@ class LoginFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
+        /*layoutLogin_createAccountText.setOnClickListener {
+            noAccount()
+            Log.d("NOPE","NOPE HELP anybpody?. IM STUCKK")
+        }*/
 
         loginViewModel.loginStatus.observe(this@LoginFragment, Observer { loginState ->
+            Log.d("NOPE","Current state $loginState")
+            when (loginState) {
+                LoginState.LoginValid -> {
+                    login()
+                    //todo after login 
+                    loginViewModel.setStateToInitial()
+                }
+                LoginState.NoUser -> {
+                    noAccount()
+                    loginViewModel.setStateToInitial()
+                    Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+                }
+                //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
+                LoginState.InitialState -> {
+                    Log.d("NOPE","NOPE HELP MEEEE. IM not STUCKK")
+                }
+
+
+            }
+
+        })
+
+        /*loginViewModel.loginStatusT.observe(this@LoginFragment, Observer { loginState ->
+            Log.d("NOPE","Current state $loginState")
             when (loginState) {
                 LoginValid -> {
                     login()
                 }
                 NoUser -> {
                     noAccount()
+                    loginViewModel.setStateToInitial()
                     Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
                 }
-                //todo back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
+                //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
                 InitialState -> {
                     Log.d("NOPE","NOPE HELP MEEEE. IM not STUCKK")
                 }
+
+
             }
 
-        })
+        })*/
 
         loginViewModel.getAll()
     }
@@ -80,10 +113,14 @@ class LoginFragment : Fragment() {
     }*/
 
     private fun noAccount(){
+        val destination: NavDestination? = findNavController().currentDestination
+        if(R.id.loginFragment == destination?.id)
         findNavController().navigate(R.id.action_loginFragment_to_createAccount)
     }
 
     private fun login(){
+        val destination: NavDestination? = findNavController().currentDestination
+        if(R.id.loginFragment == destination?.id)
         findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
     }
 

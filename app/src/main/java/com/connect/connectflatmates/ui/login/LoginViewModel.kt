@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import com.connect.connectflatmates.data.db.entity.UserProfile
 import com.connect.connectflatmates.data.repository.SessionRepository
 import com.connect.connectflatmates.data.repository.UserRepository
+import com.connect.connectflatmates.state.login.LoginState
+import com.connect.connectflatmates.state.login.LoginStateManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -22,14 +24,22 @@ class LoginViewModel(
 
     lateinit var usersList: List<UserProfile>
 
-    private val _loginStatus = MutableLiveData<LoginState>()
-    val loginStatus :LiveData<LoginState> = _loginStatus
+    private val loginStateManager = LoginStateManager()
+    val loginStatus: LiveData<LoginState>
+    get() = loginStateManager.currentState
 
+    private fun setState(state: LoginState){
+        loginStateManager.setState(state)
+    }
+
+    private val _loginStatus = MutableLiveData<LoginStateT>()
+    val loginStatusT :LiveData<LoginStateT> = _loginStatus
     fun getUserByLogin(login: String): LiveData<UserProfile> = userRepository.getUserByLogin(login)
 
     fun onVisible(){
-        _loginStatus.value = InitialState
+        setStateToInitial()
     }
+
     fun getAll() {
         userRepository.getUsers()
             .subscribeOn(Schedulers.io())
@@ -50,10 +60,32 @@ class LoginViewModel(
         for (users in usersList) {
             if(login.equals(users.login)){
                 if(password.equals(users.password)){
-
-                    _loginStatus.value = LoginValid
+                    setState(LoginState.LoginValid)
+                } else {
+                    setState(LoginState.WrongPassword)
                 }
-                _loginStatus.value = WrongPassword
+            }
+        }
+    }
+
+    fun onNoAccountClick(){
+        //_loginStatus.value = NoUser
+        setState(LoginState.NoUser)
+        Log.d("NOPE", "status?")
+    }
+
+   /* fun onLoginClick() {
+
+        val login = login.get()!!
+        val password = password.get()!!
+
+        for (users in usersList) {
+            if(login.equals(users.login)){
+                if(password.equals(users.password)){
+                    _loginStatus.value = (LoginValid)
+                } else {
+                    _loginStatus.value = (WrongPassword)
+                }
             }
         }
     }
@@ -61,7 +93,7 @@ class LoginViewModel(
     fun onNoAccountClick(){
         _loginStatus.value = NoUser
         Log.d("NOPE", "status?")
-    }
+    }*/
 
     fun getUserById(id: Int) {
         userRepository.getUserById(id)
@@ -71,12 +103,18 @@ class LoginViewModel(
                 Log.d("NOPE", "We got user ${it.name}")
             }
     }
+
+    //fixme delete this or change to sth better
+    fun setStateToInitial(){
+        setState(LoginState.InitialState)
+    }
 }
 
-sealed class LoginState
+sealed class LoginStateT
 
-object InitialState : LoginState()
-object LoginValid : LoginState()
-object WrongPassword : LoginState()
-object NoPassword : LoginState()
-object NoUser : LoginState()
+object InitialState : LoginStateT()
+    object CreatingAccount : LoginStateT()
+    object LoginValid : LoginStateT()
+    object WrongPassword : LoginStateT()
+    object NoPassword : LoginStateT()
+    object NoUser : LoginStateT()
