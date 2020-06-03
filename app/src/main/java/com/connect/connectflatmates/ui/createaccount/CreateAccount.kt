@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.UserProfile
+import com.connect.connectflatmates.databinding.CreateAccountFragmentBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -33,7 +35,10 @@ class CreateAccount : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.create_account_fragment, container, false)
+        return CreateAccountFragmentBinding.inflate(inflater, container, false).apply {
+            vm = viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -45,9 +50,14 @@ class CreateAccount : Fragment() {
         mFirebaseDatabase = mFirebaseInstance!!.getReference("users")
 
 
-        createAccount_createButton.setOnClickListener { view ->
-            create()
-        }
+
+        viewModel.observeCreateAccount.observe(this@CreateAccount, Observer {
+            when(it){
+                true -> view!!.findNavController().popBackStack(R.id.loginFragment,true)
+                false -> Unit
+            }
+        })
+
     }
 
     private fun create(){
@@ -59,10 +69,10 @@ class CreateAccount : Fragment() {
             password = createAccount_password.text.toString()
         )
 
-        viewModel.insert(user)
+
         Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe{
             view!!.findNavController().navigate(R.id.action_createAccount_to_loginFragment)
-            Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+            Log.d("NOPE","NOPE HELP MEEEE. to te login")
         }
     }
 

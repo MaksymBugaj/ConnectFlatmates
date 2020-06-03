@@ -15,7 +15,8 @@ import io.reactivex.schedulers.Schedulers
 
 class LoginViewModel(
     private val userRepository: UserRepository,
-    private val sessionRepository: SessionRepository
+    private val sessionRepository: SessionRepository,
+    private val loginStateManager: LoginStateManager
 ) : ViewModel() {
 
     val login = ObservableField<String>("")
@@ -24,7 +25,7 @@ class LoginViewModel(
 
     lateinit var usersList: List<UserProfile>
 
-    private val loginStateManager = LoginStateManager()
+
     val loginStatus: LiveData<LoginState>
     get() = loginStateManager.currentState
 
@@ -34,7 +35,7 @@ class LoginViewModel(
 
     private val _loginStatus = MutableLiveData<LoginStateT>()
     val loginStatusT :LiveData<LoginStateT> = _loginStatus
-    fun getUserByLogin(login: String): LiveData<UserProfile> = userRepository.getUserByLogin(login)
+//    fun getUserByLogin(login: String): LiveData<UserProfile> = userRepository.getUserByLogin(login)
 
     fun onVisible(){
         setStateToInitial()

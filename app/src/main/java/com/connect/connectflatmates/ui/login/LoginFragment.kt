@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.NavDestination
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 
 import com.connect.connectflatmates.R
@@ -45,16 +46,20 @@ class LoginFragment : Fragment() {
                 LoginState.LoginValid -> {
                     login()
                     //todo after login 
-                    loginViewModel.setStateToInitial()
+//                    loginViewModel.setStateToInitial()
                 }
                 LoginState.NoUser -> {
                     noAccount()
-                    loginViewModel.setStateToInitial()
+//                    loginViewModel.setStateToInitial()
                     Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
                 }
                 //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
                 LoginState.InitialState -> {
                     Log.d("NOPE","NOPE HELP MEEEE. IM not STUCKK")
+                }
+                LoginState.AccountCreated -> {
+                    Log.d("NOPE","acc created")
+
                 }
 
 
