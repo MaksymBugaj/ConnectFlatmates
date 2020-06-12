@@ -52,15 +52,51 @@ class CreateAccount : Fragment() {
 
 
         viewModel.observeCreateAccount.observe(this@CreateAccount, Observer {
-            when(it){
-                true -> view!!.findNavController().popBackStack(R.id.loginFragment,true)
+            when (it) {
+                true -> view!!.findNavController().popBackStack(R.id.loginFragment, true)
                 false -> Unit
+            }
+        })
+
+        viewModel.observeInput.observe(this@CreateAccount, Observer {
+            when (it) {
+                CreatingAccount.NoName -> {
+                    createAccountLayout_name.error = resources.getString(R.string.field_not_empty)
+                }
+
+                CreatingAccount.NoSurname -> {
+                    createAccountLayout_surname.error = resources.getString(R.string.field_not_empty)
+                }
+
+                CreatingAccount.NoLogin ->{
+                    createAccountLayout_login.error = resources.getString(R.string.field_not_empty)
+                }
+
+                CreatingAccount.WrongEmail ->{
+                    createAccountLayout_email.error = resources.getString(R.string.not_an_email)
+                }
+
+                CreatingAccount.NoEmail ->{
+                    createAccountLayout_email.error = resources.getString(R.string.field_not_empty)
+                }
+
+                CreatingAccount.NoPassword ->{
+                    createAccountLayout_password.error = resources.getString(R.string.field_not_empty)
+                }
+
+                CreatingAccount.NoRepeatedPassword ->{
+                    createAccountLayout_passwordCorrect.error = resources.getString(R.string.field_not_empty)
+                }
+
+                CreatingAccount.PasswordDoesntMatch ->{
+                    createAccountLayout_passwordCorrect.error = resources.getString(R.string.password_does_not_match)
+                }
             }
         })
 
     }
 
-    private fun create(){
+    private fun create() {
         val user = UserProfile(
             name = createAccount_name.text.toString(),
             surname = createAccount_surname.text.toString(),
@@ -70,15 +106,15 @@ class CreateAccount : Fragment() {
         )
 
 
-        Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe{
+        Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe {
             view!!.findNavController().navigate(R.id.action_createAccount_to_loginFragment)
-            Log.d("NOPE","NOPE HELP MEEEE. to te login")
+            Log.d("NOPE", "NOPE HELP MEEEE. to te login")
         }
     }
 
     //todo move to viewModel
     //disable firebase for a while
-    private fun createUserInDatabase(){
+    private fun createUserInDatabase() {
         val userId = mFirebaseDatabase!!.push().key!!.toInt()
         val user = UserProfile(
             id = userId,
@@ -90,21 +126,24 @@ class CreateAccount : Fragment() {
         )
 
 
-        firebaseAuth!!.createUserWithEmailAndPassword(user.email,user.password).addOnCompleteListener { task ->
-            if(task.isSuccessful){
-                Toast.makeText(context,"Creating account successful", Toast.LENGTH_SHORT).show()
-                viewModel.insert(user)
-                mFirebaseDatabase!!.child(userId.toString()).setValue(user)
-                Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe{
-                    view!!.findNavController().navigate(R.id.action_createAccount_to_loginFragment)
-                    Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+        firebaseAuth!!.createUserWithEmailAndPassword(user.email, user.password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(context, "Creating account successful", Toast.LENGTH_SHORT)
+                        .show()
+                    viewModel.insert(user)
+                    mFirebaseDatabase!!.child(userId.toString()).setValue(user)
+                    Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe {
+                        view!!.findNavController()
+                            .navigate(R.id.action_createAccount_to_loginFragment)
+                        Log.d("NOPE", "NOPE HELP MEEEE. IM STUCKK")
+                    }
+
+                } else {
+                    Log.d("NOPE", "NOPE HELP MEEEE. IM STUCKK ${task.exception}")
+                    Toast.makeText(context, "Dupa koleś", Toast.LENGTH_SHORT).show()
                 }
 
-            } else {
-                Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK ${task.exception}")
-                Toast.makeText(context,"Dupa koleś", Toast.LENGTH_SHORT).show()
             }
-
-        }
     }
 }

@@ -15,8 +15,11 @@ import androidx.navigation.fragment.findNavController
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.databinding.LoginFragmentBinding
 import com.connect.connectflatmates.state.login.LoginState
+import com.fevziomurtekin.customprogress.Type
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.login_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.concurrent.TimeUnit
 
 class LoginFragment : Fragment() {
 
@@ -43,9 +46,17 @@ class LoginFragment : Fragment() {
         loginViewModel.state.subscribe {
             when(it){
                 LoginState.LoginValid -> {
-                    login()
+                    progress_bar.settype(Type.INTERWIND)
+                    progress_bar.setdurationTime(100)
+                    progress_bar.show()
+                    Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe{
+                        login()
+                        Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+                    }
                     //todo after login
 //                    loginViewModel.setStateToInitial()
+                    layoutLogin_username.isErrorEnabled = false
+                    layoutLogin_password.isErrorEnabled = false
                 }
                 LoginState.NoUser -> {
                     noAccount()
@@ -59,6 +70,11 @@ class LoginFragment : Fragment() {
                 LoginState.AccountCreated -> {
                     Log.d("NOPE","acc created")
 
+                }
+
+                LoginState.WrongPassword ->{
+                    layoutLogin_username.error = "Wrong user or password"
+                    layoutLogin_password.error = "Wrong user or password"
                 }
             }
         }
@@ -147,6 +163,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun login(){
+        Log.d("NOPE","login")
         val destination: NavDestination? = findNavController().currentDestination
         if(R.id.loginFragment == destination?.id)
         findNavController().navigate(R.id.action_loginFragment_to_menuFragment)

@@ -22,6 +22,8 @@ class LoginViewModel(
 
     val observableLogin = ObservableField<String>("")
     val observablePassword = ObservableField<String>("")
+    val errorLogin = ObservableField<Boolean>(false)
+    val errorPassword = ObservableField<Boolean>()
 
 
     lateinit var usersList: List<UserProfile>
@@ -29,17 +31,17 @@ class LoginViewModel(
     val state = PublishSubject.create<LoginState>()
 
     val loginStatus: LiveData<LoginState>
-    get() = loginStateManager.currentState
+        get() = loginStateManager.currentState
 
-    private fun setState(state: LoginState){
+    private fun setState(state: LoginState) {
         loginStateManager.setState(state)
     }
 
     private val _loginStatus = MutableLiveData<LoginStateT>()
-    val loginStatusT :LiveData<LoginStateT> = _loginStatus
+    val loginStatusT: LiveData<LoginStateT> = _loginStatus
 //    fun getUserByLogin(login: String): LiveData<UserProfile> = userRepository.getUserByLogin(login)
 
-    fun onVisible(){
+    fun onVisible() {
         setStateToInitial()
     }
 
@@ -49,72 +51,69 @@ class LoginViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 Log.d("NOPE", "We got users ${it.size}")
-                if(it!= null)
-                usersList = it
+                if (it != null)
+                    usersList = it
             }
 
     }
 
     fun onLoginClick() {
-
         val login = observableLogin.get()!!
-        val password = observablePassword.get()!!
+        getUserByLogin(login)
+    }
 
-        for (users in usersList) {
-            Log.d("NOPE","NOPE HELP MEEEE. IM userslist ${usersList.size} getLogin: $login get pass = $password")
-            if(login.equals(users.login)){
-                if(password.equals(users.password)){
-//                    setState(LoginState.LoginValid)
-                    Log.d("NOPE","NOPE HELP MEEEE. IM loginValid")
-                    state.onNext(LoginState.LoginValid)
-                } else {
-//                    setState(LoginState.WrongPassword)
-                    Log.d("NOPE","NOPE HELP MEEEE. IM password bad")
-                    state.onNext(LoginState.WrongPassword)
-                }
+    private fun getUserByLogin(login: String) {
+        userRepository.getUserByLogin(login)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                Log.d("NOPE", "We got user ${it.name}")
+                performLogin(it)
             }
+    }
+
+    private fun performLogin(userProfile: UserProfile) {
+        val password = observablePassword.get()!!
+        if (password == userProfile.password) {
+            Log.d("NOPE", "NOPE HELP MEEEE. IM loginValid")
+            state.onNext(LoginState.LoginValid)
+        } else {
+            Log.d("NOPE", "NOPE HELP MEEEE. IM password bad")
+            state.onNext(LoginState.WrongPassword)
+            errorLogin.set(true)
         }
     }
 
-    fun onNoAccountClick(){
-        //_loginStatus.value = NoUser
+    fun onNoAccountClick() {
         setState(LoginState.NoUser)
         state.onNext(LoginState.NoUser)
         Log.d("NOPE", "status?")
     }
 
-   /* fun onLoginClick() {
+    /* fun onLoginClick() {
 
-        val login = login.get()!!
-        val password = password.get()!!
+         val login = login.get()!!
+         val password = password.get()!!
 
-        for (users in usersList) {
-            if(login.equals(users.login)){
-                if(password.equals(users.password)){
-                    _loginStatus.value = (LoginValid)
-                } else {
-                    _loginStatus.value = (WrongPassword)
-                }
-            }
-        }
-    }
+         for (users in usersList) {
+             if(login.equals(users.login)){
+                 if(password.equals(users.password)){
+                     _loginStatus.value = (LoginValid)
+                 } else {
+                     _loginStatus.value = (WrongPassword)
+                 }
+             }
+         }
+     }
 
-    fun onNoAccountClick(){
-        _loginStatus.value = NoUser
-        Log.d("NOPE", "status?")
-    }*/
+     fun onNoAccountClick(){
+         _loginStatus.value = NoUser
+         Log.d("NOPE", "status?")
+     }*/
 
-    fun getUserById(id: Int) {
-        userRepository.getUserById(id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                Log.d("NOPE", "We got user ${it.name}")
-            }
-    }
 
     //fixme delete this or change to sth better
-    fun setStateToInitial(){
+    fun setStateToInitial() {
         setState(LoginState.InitialState)
         state.onNext(LoginState.InitialState)
     }
@@ -123,8 +122,8 @@ class LoginViewModel(
 sealed class LoginStateT
 
 object InitialState : LoginStateT()
-    object CreatingAccount : LoginStateT()
-    object LoginValid : LoginStateT()
-    object WrongPassword : LoginStateT()
-    object NoPassword : LoginStateT()
-    object NoUser : LoginStateT()
+object CreatingAccount : LoginStateT()
+object LoginValid : LoginStateT()
+object WrongPassword : LoginStateT()
+object NoPassword : LoginStateT()
+object NoUser : LoginStateT()
