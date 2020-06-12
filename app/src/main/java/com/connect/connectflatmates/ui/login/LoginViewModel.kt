@@ -12,6 +12,7 @@ import com.connect.connectflatmates.state.login.LoginState
 import com.connect.connectflatmates.state.login.LoginStateManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
 
 class LoginViewModel(
     private val userRepository: UserRepository,
@@ -19,12 +20,13 @@ class LoginViewModel(
     private val loginStateManager: LoginStateManager
 ) : ViewModel() {
 
-    val login = ObservableField<String>("")
-    val password = ObservableField<String>("")
+    val observableLogin = ObservableField<String>("")
+    val observablePassword = ObservableField<String>("")
 
 
     lateinit var usersList: List<UserProfile>
 
+    val state = PublishSubject.create<LoginState>()
 
     val loginStatus: LiveData<LoginState>
     get() = loginStateManager.currentState
@@ -55,15 +57,20 @@ class LoginViewModel(
 
     fun onLoginClick() {
 
-        val login = login.get()!!
-        val password = password.get()!!
+        val login = observableLogin.get()!!
+        val password = observablePassword.get()!!
 
         for (users in usersList) {
+            Log.d("NOPE","NOPE HELP MEEEE. IM userslist ${usersList.size} getLogin: $login get pass = $password")
             if(login.equals(users.login)){
                 if(password.equals(users.password)){
-                    setState(LoginState.LoginValid)
+//                    setState(LoginState.LoginValid)
+                    Log.d("NOPE","NOPE HELP MEEEE. IM loginValid")
+                    state.onNext(LoginState.LoginValid)
                 } else {
-                    setState(LoginState.WrongPassword)
+//                    setState(LoginState.WrongPassword)
+                    Log.d("NOPE","NOPE HELP MEEEE. IM password bad")
+                    state.onNext(LoginState.WrongPassword)
                 }
             }
         }
@@ -72,6 +79,7 @@ class LoginViewModel(
     fun onNoAccountClick(){
         //_loginStatus.value = NoUser
         setState(LoginState.NoUser)
+        state.onNext(LoginState.NoUser)
         Log.d("NOPE", "status?")
     }
 
@@ -108,6 +116,7 @@ class LoginViewModel(
     //fixme delete this or change to sth better
     fun setStateToInitial(){
         setState(LoginState.InitialState)
+        state.onNext(LoginState.InitialState)
     }
 }
 

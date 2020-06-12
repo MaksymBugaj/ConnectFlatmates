@@ -40,7 +40,30 @@ class LoginFragment : Fragment() {
             Log.d("NOPE","NOPE HELP anybpody?. IM STUCKK")
         }*/
 
-        loginViewModel.loginStatus.observe(this@LoginFragment, Observer { loginState ->
+        loginViewModel.state.subscribe {
+            when(it){
+                LoginState.LoginValid -> {
+                    login()
+                    //todo after login
+//                    loginViewModel.setStateToInitial()
+                }
+                LoginState.NoUser -> {
+                    noAccount()
+//                    loginViewModel.setStateToInitial()
+                    Log.d("NOPE","NOPE HELP MEEEE. IM NoUser")
+                }
+                //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
+                LoginState.InitialState -> {
+                    Log.d("NOPE","NOPE HELP MEEEE. IM InitialState STUCKK")
+                }
+                LoginState.AccountCreated -> {
+                    Log.d("NOPE","acc created")
+
+                }
+            }
+        }
+
+        /*loginViewModel.loginStatus.observe(this@LoginFragment, Observer { loginState ->
             Log.d("NOPE","Current state $loginState")
             when (loginState) {
                 LoginState.LoginValid -> {
@@ -65,7 +88,7 @@ class LoginFragment : Fragment() {
 
             }
 
-        })
+        })*/
 
         /*loginViewModel.loginStatusT.observe(this@LoginFragment, Observer { loginState ->
             Log.d("NOPE","Current state $loginState")
