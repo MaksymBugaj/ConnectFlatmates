@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_drawer"
+    app:startDestination="@id/unsingedActivities2">
+
+    <activity
+        android:id="@+id/navigationDrawerHoldingActivity"
+        android:name="com.connect.connectflatmates.ui.menu.NavigationDrawerHoldingActivity"
+        android:label="activity_navigation_drawer_holding"
+        tools:layout="@layout/activity_navigation_drawer_holding" />
+    <fragment
+        android:id="@+id/findPeople2"
+        android:name="com.connect.connectflatmates.ui.menu.findpepople.FindPeople"
+        android:label="find_people_fragment"
+        tools:layout="@layout/find_people_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment2"
+        android:name="com.connect.connectflatmates.ui.settings.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
+    <fragment
+        android:id="@+id/userFragment2"
+        android:name="com.connect.connectflatmates.ui.menu.userStats.UserFragment"
+        android:label="user_fragment"
+        tools:layout="@layout/user_fragment" />
+    <fragment
+        android:id="@+id/unsingedActivities2"
+        android:name="com.connect.connectflatmates.ui.menu.home.available.UnsingedActivities"
+        android:label="unsinged_activities_fragment"
+        tools:layout="@layout/unsinged_activities_fragment" />
+</navigation>

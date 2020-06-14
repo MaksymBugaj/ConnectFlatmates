@@ -166,7 +166,7 @@ class LoginFragment : Fragment() {
         Log.d("NOPE","login")
         val destination: NavDestination? = findNavController().currentDestination
         if(R.id.loginFragment == destination?.id)
-        findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
+        findNavController().navigate(R.id.action_loginFragment_to_navigation_drawer)
     }
 
     private fun showToast(text: String) {
