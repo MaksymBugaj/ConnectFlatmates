@@ -10,14 +10,14 @@
 
 
 
-    <fragment
+    <!--<fragment
         android:id="@+id/homeActivities_navHost"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:navGraph="@navigation/home_activities_navigation"
-        app:defaultNavHost="true" />
+        app:defaultNavHost="true" />-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/homeActivities_bottomNav"

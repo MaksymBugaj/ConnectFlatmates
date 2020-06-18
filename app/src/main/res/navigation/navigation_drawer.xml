@@ -6,6 +6,7 @@
     app:startDestination="@id/findPeople2">
 
 
+
     <fragment
         android:id="@+id/findPeople2"
         android:name="com.connect.connectflatmates.ui.menu.findpepople.FindPeople"

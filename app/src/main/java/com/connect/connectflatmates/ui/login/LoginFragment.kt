@@ -52,7 +52,7 @@ class LoginFragment : Fragment() {
                 LoginState.LoginValid -> {
                     progress_bar.settype(Type.INTERWIND)
                     progress_bar.setdurationTime(100)
-                    progress_bar.show()
+//                    progress_bar.show()
                         login()
                         Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
 
