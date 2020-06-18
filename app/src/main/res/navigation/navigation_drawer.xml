@@ -3,13 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_drawer"
-    app:startDestination="@id/unsingedActivities2">
+    app:startDestination="@id/findPeople2">
 
-    <activity
-        android:id="@+id/navigationDrawerHoldingActivity"
-        android:name="com.connect.connectflatmates.ui.menu.NavigationDrawerHoldingActivity"
-        android:label="activity_navigation_drawer_holding"
-        tools:layout="@layout/activity_navigation_drawer_holding" />
+
     <fragment
         android:id="@+id/findPeople2"
         android:name="com.connect.connectflatmates.ui.menu.findpepople.FindPeople"

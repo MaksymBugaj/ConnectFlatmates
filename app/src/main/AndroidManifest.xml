@@ -12,10 +12,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+        android:theme="@style/Theme.MaterialComponents.Light"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme">
-        <activity android:name=".ui.menu.NavigationDrawerHoldingActivity"/>
+        <activity android:name=".ui.menu.NavigationDrawerHoldingActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Transparent"/>
         <activity android:name=".ui.menu.home.BottomNavHolderActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,5 +1,6 @@
 package com.connect.connectflatmates.ui.menu.findpepople
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -44,5 +45,9 @@ class FindPeople : Fragment() {
 
     private fun getUserByLogin(login: String){
 
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 }

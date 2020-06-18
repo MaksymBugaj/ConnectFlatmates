@@ -49,10 +49,9 @@ class LoginFragment : Fragment() {
                     progress_bar.settype(Type.INTERWIND)
                     progress_bar.setdurationTime(100)
                     progress_bar.show()
-                    Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe{
                         login()
                         Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
-                    }
+
                     //todo after login
 //                    loginViewModel.setStateToInitial()
                     layoutLogin_username.isErrorEnabled = false
