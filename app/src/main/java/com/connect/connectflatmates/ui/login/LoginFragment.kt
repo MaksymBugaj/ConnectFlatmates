@@ -17,6 +17,7 @@ import com.connect.connectflatmates.databinding.LoginFragmentBinding
 import com.connect.connectflatmates.state.login.LoginState
 import com.fevziomurtekin.customprogress.Type
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.login_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
@@ -24,6 +25,8 @@ import java.util.concurrent.TimeUnit
 class LoginFragment : Fragment() {
 
     private val loginViewModel by viewModel<LoginViewModel>()
+
+    private val compositeDisposable= CompositeDisposable()
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +46,7 @@ class LoginFragment : Fragment() {
             Log.d("NOPE","NOPE HELP anybpody?. IM STUCKK")
         }*/
 
+        compositeDisposable.add(
         loginViewModel.state.subscribe {
             when(it){
                 LoginState.LoginValid -> {
@@ -77,7 +81,7 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-
+        )
         /*loginViewModel.loginStatus.observe(this@LoginFragment, Observer { loginState ->
             Log.d("NOPE","Current state $loginState")
             when (loginState) {
@@ -175,5 +179,11 @@ class LoginFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         loginViewModel.onVisible()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        compositeDisposable.clear()
     }
 }
