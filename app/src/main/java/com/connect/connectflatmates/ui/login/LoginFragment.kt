@@ -17,6 +17,7 @@ import com.connect.connectflatmates.databinding.LoginFragmentBinding
 import com.connect.connectflatmates.state.login.LoginState
 import com.fevziomurtekin.customprogress.Type
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.login_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
@@ -24,6 +25,8 @@ import java.util.concurrent.TimeUnit
 class LoginFragment : Fragment() {
 
     private val loginViewModel by viewModel<LoginViewModel>()
+
+    private val compositeDisposable = CompositeDisposable()
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,16 +46,16 @@ class LoginFragment : Fragment() {
             Log.d("NOPE","NOPE HELP anybpody?. IM STUCKK")
         }*/
 
+        compositeDisposable.add(
         loginViewModel.state.subscribe {
             when(it){
                 LoginState.LoginValid -> {
                     progress_bar.settype(Type.INTERWIND)
                     progress_bar.setdurationTime(100)
                     progress_bar.show()
-                    Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe{
                         login()
                         Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
-                    }
+
                     //todo after login
 //                    loginViewModel.setStateToInitial()
                     layoutLogin_username.isErrorEnabled = false
@@ -78,7 +81,7 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-
+        )
         /*loginViewModel.loginStatus.observe(this@LoginFragment, Observer { loginState ->
             Log.d("NOPE","Current state $loginState")
             when (loginState) {
@@ -166,7 +169,7 @@ class LoginFragment : Fragment() {
         Log.d("NOPE","login")
         val destination: NavDestination? = findNavController().currentDestination
         if(R.id.loginFragment == destination?.id)
-        findNavController().navigate(R.id.action_loginFragment_to_navigation_drawer)
+        findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
     }
 
     private fun showToast(text: String) {
@@ -176,5 +179,10 @@ class LoginFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         loginViewModel.onVisible()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }
