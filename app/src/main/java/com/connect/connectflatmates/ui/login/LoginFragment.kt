@@ -1,5 +1,6 @@
 package com.connect.connectflatmates.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.databinding.LoginFragmentBinding
 import com.connect.connectflatmates.state.login.LoginState
+import com.connect.connectflatmates.ui.menu.NavigationDrawerHoldingActivity
 import com.fevziomurtekin.customprogress.Type
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
@@ -27,7 +29,7 @@ class LoginFragment : Fragment() {
     private val loginViewModel by viewModel<LoginViewModel>()
 
     private val compositeDisposable = CompositeDisposable()
-    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,40 +49,40 @@ class LoginFragment : Fragment() {
         }*/
 
         compositeDisposable.add(
-        loginViewModel.state.subscribe {
-            when(it){
-                LoginState.LoginValid -> {
-                    progress_bar.settype(Type.INTERWIND)
-                    progress_bar.setdurationTime(100)
-                    progress_bar.show()
+            loginViewModel.state.subscribe {
+                when (it) {
+                    LoginState.LoginValid -> {
+                        progress_bar.settype(Type.INTERWIND)
+                        progress_bar.setdurationTime(100)
+                        progress_bar.show()
                         login()
-                        Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
+                        Log.d("NOPE", "NOPE HELP MEEEE. IM STUCKK")
 
-                    //todo after login
+                        //todo after login
 //                    loginViewModel.setStateToInitial()
-                    layoutLogin_username.isErrorEnabled = false
-                    layoutLogin_password.isErrorEnabled = false
-                }
-                LoginState.NoUser -> {
-                    noAccount()
+                        layoutLogin_username.isErrorEnabled = false
+                        layoutLogin_password.isErrorEnabled = false
+                    }
+                    LoginState.NoUser -> {
+                        noAccount()
 //                    loginViewModel.setStateToInitial()
-                    Log.d("NOPE","NOPE HELP MEEEE. IM NoUser")
-                }
-                //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
-                LoginState.InitialState -> {
-                    Log.d("NOPE","NOPE HELP MEEEE. IM InitialState STUCKK")
-                }
-                LoginState.AccountCreated -> {
-                    Log.d("NOPE","acc created")
+                        Log.d("NOPE", "NOPE HELP MEEEE. IM NoUser")
+                    }
+                    //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
+                    LoginState.InitialState -> {
+                        Log.d("NOPE", "NOPE HELP MEEEE. IM InitialState STUCKK")
+                    }
+                    LoginState.AccountCreated -> {
+                        Log.d("NOPE", "acc created")
 
-                }
+                    }
 
-                LoginState.WrongPassword ->{
-                    layoutLogin_username.error = "Wrong user or password"
-                    layoutLogin_password.error = "Wrong user or password"
+                    LoginState.WrongPassword -> {
+                        layoutLogin_username.error = "Wrong user or password"
+                        layoutLogin_password.error = "Wrong user or password"
+                    }
                 }
             }
-        }
         )
         /*loginViewModel.loginStatus.observe(this@LoginFragment, Observer { loginState ->
             Log.d("NOPE","Current state $loginState")
@@ -159,17 +161,15 @@ class LoginFragment : Fragment() {
 
     }*/
 
-    private fun noAccount(){
+    private fun noAccount() {
         val destination: NavDestination? = findNavController().currentDestination
-        if(R.id.loginFragment == destination?.id)
-        findNavController().navigate(R.id.action_loginFragment_to_createAccount)
+        if (R.id.loginFragment == destination?.id)
+            findNavController().navigate(R.id.action_loginFragment_to_createAccount)
     }
 
-    private fun login(){
-        Log.d("NOPE","login")
-        val destination: NavDestination? = findNavController().currentDestination
-        if(R.id.loginFragment == destination?.id)
-        findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
+    private fun login() {
+        Log.d("NOPE", "login")
+        startActivity(Intent(context, NavigationDrawerHoldingActivity::class.java))
     }
 
     private fun showToast(text: String) {
