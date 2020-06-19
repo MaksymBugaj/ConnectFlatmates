@@ -34,17 +34,7 @@ class MenuFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-        settings.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)
-        }
 
-        houseActivities.setOnClickListener { view ->
-            startActivity(Intent(context, BottomNavHolderActivity::class.java))
-        }
-
-        peopleImage.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_menuFragment_to_findPeople)
-        }
 
         /*animationDrawableTopLeft = check1.background as AnimationDrawable
         animationDrawableTopLeft.setEnterFadeDuration(4000)
