@@ -23,14 +23,14 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer_holding)
 
-       /* val toolbarLayout: Toolbar = toolbar
+        /* val toolbarLayout: Toolbar = toolbar
 
-        setSupportActionBar(toolbarLayout)
+         setSupportActionBar(toolbarLayout)
 
-        val navigationView = navigation_drawer_view
-        navigationView.setNavigationItemSelectedListener(this)
-        drawer = drawer_layout
-       *//* navController = Navigation.findNavController(this,R.id.fragment_container)
+         val navigationView = navigation_drawer_view
+         navigationView.setNavigationItemSelectedListener(this)
+         drawer = drawer_layout
+        *//* navController = Navigation.findNavController(this,R.id.fragment_container)
         NavigationUI.setupActionBarWithNavController(this,navController,drawer)
         NavigationUI.setupWithNavController(navigationView,navController)*//*
 
@@ -50,17 +50,17 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
         drawer = drawer_layout
         val navigationView = navigation_drawer_view
 
-        navController = Navigation.findNavController(this,R.id.fragment_container)
+        navController = Navigation.findNavController(this, R.id.fragment_container)
 
-        NavigationUI.setupActionBarWithNavController(this,navController,drawer)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawer)
 
-        NavigationUI.setupWithNavController(navigationView,navController)
+        NavigationUI.setupWithNavController(navigationView, navController)
 
         navigationView.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
@@ -68,33 +68,36 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.fragment_container), drawer)
+        return NavigationUI.navigateUp(
+            Navigation.findNavController(this, R.id.fragment_container),
+            drawer
+        )
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.userFragment ->{
-
+        when (item.itemId) {
+            R.id.userFragment -> {
+                navController.navigate(R.id.userFragment)
             }
             //todo change the NAME!!!!!!!!!!!!!!!!!!!
             R.id.findPeople -> {
-
+                navController.navigate(R.id.findPeople)
             }
 
             R.id.homeActivities -> {
-
+                navController.navigate(R.id.homeActivities)
             }
 
             R.id.addActivity -> {
-
+                navController.navigate(R.id.addActivity)
             }
 
             R.id.unsingedActivities -> {
-
+                navController.navigate(R.id.unsingedActivities)
             }
 
             R.id.settingsFragment -> {
-
+                navController.navigate(R.id.settingsFragment)
             }
 
         }
