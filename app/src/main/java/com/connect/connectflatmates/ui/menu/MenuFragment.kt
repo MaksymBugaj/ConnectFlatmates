@@ -34,7 +34,7 @@ class MenuFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-        settings.setOnClickListener { view ->
+        /*settings.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)
         }
 
@@ -44,7 +44,7 @@ class MenuFragment : Fragment() {
 
         peopleImage.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_menuFragment_to_findPeople)
-        }
+        }*/
 
         /*animationDrawableTopLeft = check1.background as AnimationDrawable
         animationDrawableTopLeft.setEnterFadeDuration(4000)

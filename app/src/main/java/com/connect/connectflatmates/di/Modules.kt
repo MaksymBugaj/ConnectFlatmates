@@ -5,6 +5,8 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.connect.connectflatmates.data.db.*
 import com.connect.connectflatmates.data.repository.*
+import com.connect.connectflatmates.state.login.LoginStateManager
+import com.connect.connectflatmates.state.login.LoginStateManagerImpl
 import com.connect.connectflatmates.ui.createaccount.CreateAccountViewModel
 import com.connect.connectflatmates.ui.login.LoginViewModel
 import com.connect.connectflatmates.ui.menu.MenuViewModel
@@ -50,6 +52,10 @@ val databaseModule = module {
     single<SessionRepository>{
         SessionRepositoryImpl(userRepository = get(), sharedPreferences = get())
     }
+
+    single<LoginStateManager>{
+        LoginStateManagerImpl()
+    }
 }
 
 val appModule = module {
@@ -70,11 +76,11 @@ val appModule = module {
 
 val viewModelModule = module {
     viewModel {
-        CreateAccountViewModel(userRepository = get())
+        CreateAccountViewModel(userRepository = get(), loginStateManager = get())
     }
 
     viewModel {
-        LoginViewModel(userRepository = get(), sessionRepository = get())
+        LoginViewModel(userRepository = get(), sessionRepository = get(), loginStateManager = get())
     }
 
     viewModel {

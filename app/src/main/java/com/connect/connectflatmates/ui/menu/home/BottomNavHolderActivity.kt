@@ -16,8 +16,8 @@ class BottomNavHolderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_nav_holder)
 
-        navController = Navigation.findNavController(this, R.id.homeActivities_navHost)
+        //navController = Navigation.findNavController(this, R.id.homeActivities_navHost)
 
-        homeActivities_bottomNav.setupWithNavController(navController)
+        //homeActivities_bottomNav.setupWithNavController(navController)
     }
 }
