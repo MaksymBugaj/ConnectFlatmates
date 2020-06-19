@@ -23,12 +23,10 @@
                 android:id="@+id/layoutLogin_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor ="@color/lightPrimaryColor"
-                app:boxStrokeColor ="@color/dividerColor"
-                android:textColorHint="@color/textColorPrimary"
-                app:hintTextColor="@color/secondaryText"
-
+                style="@style/TextInputLayout"
                 android:hint="@string/username"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed_900"
                 app:layout_constraintVertical_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -40,19 +38,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:textColor="@color/textColorPrimary"
-                android:text="@{viewModel.login}"/>
+                style="@style/TextInputEditText"
+
+
+                android:text="@={viewModel.observableLogin}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutLogin_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor ="@color/lightPrimaryColor"
-                app:boxStrokeColor ="@color/dividerColor"
-                android:textColorHint="@color/textColorPrimary"
-                app:hintTextColor="@color/secondaryText"
+                style="@style/TextInputLayout"
                 android:hint="@string/password"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorRed_900"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutLogin_username"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,10 +61,9 @@
                 android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/textColorPrimary"
                 android:inputType="textPassword"
-                android:text="@{viewModel.password}"/>
+                style="@style/TextInputEditText"
+                android:text="@={viewModel.observablePassword}"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,11 +71,8 @@
                 android:id="@+id/layoutLogin_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/lightPrimaryColor"
+                style="@style/ButtonStyle"
                 android:text="OK"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/textColorPrimary"
                 android:onClick="@{() -> viewModel.onLoginClick()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutLogin_password"
@@ -113,6 +108,7 @@
                 android:textColor="@color/secondaryText"
                 android:onClick="@{() -> viewModel.onNoAccountClick()}"
                 android:text="@string/create_one"
+                android:fontFamily="@font/roboto_medium_italic"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutLogin_noAccountText"

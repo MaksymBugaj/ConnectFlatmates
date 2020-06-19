@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "home_activities_table")
 data class HomeActivityEntity(
     val name: String,
-    val priority:String,
     val startDate: String,
     val endDate: String,
     val assignedUser: String?

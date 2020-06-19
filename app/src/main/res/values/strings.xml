@@ -4,14 +4,19 @@
     <string name="password">Password</string>
     <string name="no_account">Don\'t have account?</string>
     <string name="create_one">Create one</string>
+    <string name="field_not_empty">This field must not be empty!</string>
+    <string name="not_an_email">It is not an email address!</string>
+    <string name="password_does_not_match">Password does not match!</string>
 
     <string-array name="homeActivities_array">
         <item>Cleaning</item>
         <item>Washing the carpets</item>
         <item>Vacuuming</item>
-        <item>Eating pussy</item>
         <item>Drinking</item>
         <item>Throw the rubbish</item>
         <item>Drop the party</item>
     </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

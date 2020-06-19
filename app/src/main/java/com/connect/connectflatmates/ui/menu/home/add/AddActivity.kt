@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 
@@ -27,6 +28,7 @@ class AddActivity : Fragment() {
     private lateinit var chosenStartDate: String
     private lateinit var chosenEndDate: String
 
+    private val mutableSpinnerItem =  MutableLiveData<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +39,9 @@ class AddActivity : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        addActivity_spinner.setOnSpinnerItemSelectedListener<String> { position, item ->
+            mutableSpinnerItem.value = item
+        }
 
 // Create an ArrayAdapter using the string array and a default spinner layout
         /*ArrayAdapter.createFromResource(
@@ -61,7 +66,7 @@ class AddActivity : Fragment() {
 
        observeButton()
 
-//       setCalendarListener()
+       setCalendarListener()
 
         addActivity_dismissButton.setOnClickListener {
             findNavController().navigate(R.id.action_addHomeActivity_to_myActivities)
@@ -82,7 +87,7 @@ class AddActivity : Fragment() {
         })
     }
 
-    /*private fun setCalendarListener(){
+    private fun setCalendarListener(){
         addActivity_calendarView.setCalendarListener(object : CollapsibleCalendar.CalendarListener {
             override fun onClickListener() {
             }
@@ -114,8 +119,7 @@ class AddActivity : Fragment() {
 
                         Log.d("NOPE","HERE")
                         val homeActivity = HomeActivityEntity(
-                            name = addActivity_spinner.selectedItem.toString(),
-                            priority = addActivity_numberPicker.value.toString(),
+                            name = mutableSpinnerItem.value!!,
                             startDate = chosenStartDate,
                             endDate = chosenEndDate,
                             assignedUser = "0"
@@ -142,5 +146,5 @@ class AddActivity : Fragment() {
             }
 
         })
-    }*/
+    }
 }
