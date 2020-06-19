@@ -4,27 +4,31 @@
     >
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/myProfile"
+        <item android:id="@+id/userFragment"
             android:icon="@drawable/profile"
             android:title="My Profile"/>
 
-        <item android:id="@+id/gloryHole"
-            android:icon="@drawable/ic_baseline_star_border_24"
+        <item android:id="@+id/findPeople"
+            android:icon="@drawable/add_people"
             android:title="Add people"/>
 
     </group>
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/home_Act"
+        <item android:id="@+id/homeActivities"
             android:icon="@drawable/home"
             android:title="Home Activities"/>
 
-        <item android:id="@+id/home_Act_add"
+        <item android:id="@+id/addActivity"
             android:icon="@drawable/add_button"
             android:title="Add home activities"/>
 
-        <item android:id="@+id/home_Act_list"
+        <item android:id="@+id/unsingedActivities"
             android:icon="@drawable/ic_list"
-            android:title="List of act"/>
+            android:title="Unsigned Activities"/>
     </group>
+
+    <item android:id="@+id/settingsFragment"
+        android:icon="@drawable/settings"
+        android:title="Settings"/>
 </menu>

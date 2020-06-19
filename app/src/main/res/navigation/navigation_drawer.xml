@@ -3,27 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_drawer"
-    app:startDestination="@id/findPeople2">
+    app:startDestination="@id/findPeople">
 
 
     <fragment
-        android:id="@+id/findPeople2"
+        android:id="@+id/findPeople"
         android:name="com.connect.connectflatmates.ui.menu.findpepople.FindPeople"
         android:label="find_people_fragment"
         tools:layout="@layout/find_people_fragment" />
     <fragment
-        android:id="@+id/settingsFragment2"
+        android:id="@+id/settingsFragment"
         android:name="com.connect.connectflatmates.ui.settings.SettingsFragment"
         android:label="settings_fragment"
         tools:layout="@layout/settings_fragment" />
     <fragment
-        android:id="@+id/userFragment2"
+        android:id="@+id/userFragment"
         android:name="com.connect.connectflatmates.ui.menu.userStats.UserFragment"
         android:label="user_fragment"
         tools:layout="@layout/user_fragment" />
     <fragment
-        android:id="@+id/unsingedActivities2"
+        android:id="@+id/unsingedActivities"
         android:name="com.connect.connectflatmates.ui.menu.home.available.UnsingedActivities"
         android:label="unsinged_activities_fragment"
         tools:layout="@layout/unsinged_activities_fragment" />
+    <fragment
+        android:id="@+id/homeActivities"
+        android:name="com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivities"
+        android:label="home_activities_fragment"
+        tools:layout="@layout/home_activities_fragment" />
+    <fragment
+        android:id="@+id/addActivity"
+        android:name="com.connect.connectflatmates.ui.menu.home.add.AddActivity"
+        android:label="add_fragment"
+        tools:layout="@layout/add_fragment" />
 </navigation>

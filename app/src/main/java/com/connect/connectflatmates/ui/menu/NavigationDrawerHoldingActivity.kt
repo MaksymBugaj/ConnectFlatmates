@@ -73,23 +73,27 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
-            R.id.myProfile ->{
+            R.id.userFragment ->{
 
             }
             //todo change the NAME!!!!!!!!!!!!!!!!!!!
-            R.id.gloryHole -> {
+            R.id.findPeople -> {
 
             }
 
-            R.id.home_Act -> {
+            R.id.homeActivities -> {
 
             }
 
-            R.id.home_Act_add -> {
+            R.id.addActivity -> {
 
             }
 
-            R.id.home_Act_list -> {
+            R.id.unsingedActivities -> {
+
+            }
+
+            R.id.settingsFragment -> {
 
             }
 
