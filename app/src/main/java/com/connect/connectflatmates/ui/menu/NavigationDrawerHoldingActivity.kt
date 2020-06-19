@@ -1,7 +1,6 @@
 package com.connect.connectflatmates.ui.menu
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +19,6 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer: DrawerLayout
     private lateinit var navController: NavController
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer_holding)
@@ -52,9 +50,7 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
         drawer = drawer_layout
         val navigationView = navigation_drawer_view
 
-        navController = Navigation.findNavController(this,R.id.navigation_drawer_holder)
-
-Log.d("NOPE","HEEEEEEEEEEEEEEEEEEELP")
+        navController = Navigation.findNavController(this,R.id.fragment_container)
 
         NavigationUI.setupActionBarWithNavController(this,navController,drawer)
 
@@ -72,7 +68,7 @@ Log.d("NOPE","HEEEEEEEEEEEEEEEEEEELP")
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.navigation_drawer_holder), drawer)
+        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.fragment_container), drawer)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
