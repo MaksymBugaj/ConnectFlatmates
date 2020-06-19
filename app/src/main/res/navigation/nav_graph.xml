@@ -24,7 +24,7 @@
 
         <action
             android:id="@+id/action_loginFragment_to_navigation_drawer"
-            app:destination="@id/mobile_navigation"
+            app:destination="@id/drawer_nav"
             app:enterAnim="@anim/fragment_close_enter" />
     </fragment>
     <!--<fragment
@@ -51,5 +51,5 @@
             app:popExitAnim="@anim/nav_default_exit_anim"/>
     </fragment>
     <include app:graph="@navigation/home_activities_navigation" />
-    <include app:graph="@navigation/mobile_navigation" />
+    <include app:graph="@navigation/drawer_nav" />
 </navigation>

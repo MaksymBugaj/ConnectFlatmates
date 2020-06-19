@@ -1,5 +1,6 @@
 package com.connect.connectflatmates.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.databinding.LoginFragmentBinding
 import com.connect.connectflatmates.state.login.LoginState
+import com.connect.connectflatmates.ui.menu.NavigationDrawerHoldingActivity
 import com.fevziomurtekin.customprogress.Type
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
@@ -50,8 +52,8 @@ class LoginFragment : Fragment() {
         loginViewModel.state.subscribe {
             when(it){
                 LoginState.LoginValid -> {
-                    progress_bar.settype(Type.INTERWIND)
-                    progress_bar.setdurationTime(100)
+//                    progress_bar.settype(Type.INTERWIND)
+//                    progress_bar.setdurationTime(100)
 //                    progress_bar.show()
                         login()
                         Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
@@ -167,9 +169,7 @@ class LoginFragment : Fragment() {
 
     private fun login(){
         Log.d("NOPE","login")
-        val destination: NavDestination? = findNavController().currentDestination
-        if(R.id.loginFragment == destination?.id)
-        findNavController().navigate(R.id.action_loginFragment_to_navigation_drawer)
+        startActivity(Intent(context, NavigationDrawerHoldingActivity::class.java))
     }
 
     private fun showToast(text: String) {
