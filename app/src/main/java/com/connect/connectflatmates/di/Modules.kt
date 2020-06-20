@@ -12,6 +12,7 @@ import com.connect.connectflatmates.ui.login.LoginViewModel
 import com.connect.connectflatmates.ui.menu.MenuViewModel
 import com.connect.connectflatmates.ui.menu.findpepople.FindPeopleViewModel
 import com.connect.connectflatmates.ui.menu.home.add.AddViewModel
+import com.connect.connectflatmates.ui.menu.home.add.createnew.CreateNewViewModel
 import com.connect.connectflatmates.ui.menu.home.available.UnsingedActivitiesViewModel
 import com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivitiesViewModel
 import com.connect.connectflatmates.ui.menu.userStats.UserViewModel
@@ -114,5 +115,9 @@ val viewModelModule = module {
 
     viewModel {
         AddViewModel(homeActivitiesRepository = get())
+    }
+
+    single {
+        CreateNewViewModel()
     }
 }

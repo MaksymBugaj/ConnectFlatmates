@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.connect.connectflatmates.ui.menu.home.add.createnew.CreateNewViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.menu.home.add.createnew.CreateNewActivity">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/createNewActivityLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorRed_900"
+            app:counterEnabled="true"
+            app:counterMaxLength="45"
+            android:layout_marginTop="10dp"
+            app:endIconMode="custom"
+            style="@style/TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/createNewActivityLayout_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputEditText"
+                android:inputType="text"
+                android:enabled="false"
+                android:text="@={viewModel.activityToAdd}"
+                android:hint="Home Activity" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/addActivity_addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            style="@style/ButtonStyle"
+            android:text="SUBMIT"
+            app:layout_constraintTop_toBottomOf="@+id/createNewActivityLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

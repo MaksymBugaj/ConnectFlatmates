@@ -52,9 +52,9 @@ class LoginFragment : Fragment() {
             loginViewModel.state.subscribe {
                 when (it) {
                     LoginState.LoginValid -> {
-                        progress_bar.settype(Type.INTERWIND)
-                        progress_bar.setdurationTime(100)
-                        progress_bar.show()
+//                        progress_bar.settype(Type.INTERWIND)
+//                        progress_bar.setdurationTime(100)
+//                        progress_bar.show()
                         login()
                         Log.d("NOPE", "NOPE HELP MEEEE. IM STUCKK")
 
@@ -80,6 +80,14 @@ class LoginFragment : Fragment() {
                     LoginState.WrongPassword -> {
                         layoutLogin_username.error = "Wrong user or password"
                         layoutLogin_password.error = "Wrong user or password"
+                    }
+
+                    LoginState.EmptyLogin -> {
+                        layoutLogin_username.error = "This field cannot be empty"
+                    }
+
+                    LoginState.EmptyPassword -> {
+                        layoutLogin_password.error = "This field cannot be empty"
                     }
                 }
             }

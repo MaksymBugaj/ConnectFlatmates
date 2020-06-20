@@ -11,6 +11,7 @@ import com.connect.connectflatmates.data.repository.UserRepository
 import com.connect.connectflatmates.state.login.LoginState
 import com.connect.connectflatmates.state.login.LoginStateManager
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 
@@ -24,6 +25,7 @@ class LoginViewModel(
     val observablePassword = ObservableField<String>("")
     val errorLogin = ObservableField<Boolean>(false)
     val errorPassword = ObservableField<Boolean>()
+    private val compositeDisposable = CompositeDisposable()
 
 
     lateinit var usersList: List<UserProfile>
@@ -46,6 +48,7 @@ class LoginViewModel(
     }
 
     fun getAll() {
+        compositeDisposable.add(
         userRepository.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -54,15 +57,25 @@ class LoginViewModel(
                 if (it != null)
                     usersList = it
             }
+        )
 
     }
 
     fun onLoginClick() {
         val login = observableLogin.get()!!
-        getUserByLogin(login)
+        if(login.isNullOrEmpty()){
+            state.onNext(LoginState.EmptyLogin)
+        } else getUserByLogin(login)
+        //quickLogin()
+    }
+
+    //todo delete after test
+    private fun quickLogin(){
+        state.onNext(LoginState.LoginValid)
     }
 
     private fun getUserByLogin(login: String) {
+        compositeDisposable.add(
         userRepository.getUserByLogin(login)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -70,6 +83,7 @@ class LoginViewModel(
                 Log.d("NOPE", "We got user ${it.name}")
                 performLogin(it)
             }
+        )
     }
 
     private fun performLogin(userProfile: UserProfile) {
@@ -77,6 +91,8 @@ class LoginViewModel(
         if (password == userProfile.password) {
             Log.d("NOPE", "NOPE HELP MEEEE. IM loginValid")
             state.onNext(LoginState.LoginValid)
+        } else if(password.isNullOrEmpty()){
+            state.onNext(LoginState.EmptyPassword)
         } else {
             Log.d("NOPE", "NOPE HELP MEEEE. IM password bad")
             state.onNext(LoginState.WrongPassword)
@@ -116,6 +132,11 @@ class LoginViewModel(
     fun setStateToInitial() {
         setState(LoginState.InitialState)
         state.onNext(LoginState.InitialState)
+    }
+
+    override fun onCleared() {
+        Log.d("NOPE","Disposable cleared")
+        compositeDisposable.clear()
     }
 }
 

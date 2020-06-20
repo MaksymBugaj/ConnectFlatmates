@@ -17,11 +17,11 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/homeActivities"
             android:icon="@drawable/home"
-            android:title="Home Activities"/>
+            android:title="My Activities"/>
 
         <item android:id="@+id/addActivity"
             android:icon="@drawable/add_button"
-            android:title="Add home activities"/>
+            android:title="Add home activity"/>
 
         <item android:id="@+id/unsingedActivities"
             android:icon="@drawable/ic_list"

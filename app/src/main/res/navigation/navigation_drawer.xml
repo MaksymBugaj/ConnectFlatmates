@@ -3,37 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_drawer"
-    app:startDestination="@id/findPeople">
+    app:startDestination="@id/homeActivities">
 
 
     <fragment
         android:id="@+id/findPeople"
         android:name="com.connect.connectflatmates.ui.menu.findpepople.FindPeople"
-        android:label="find_people_fragment"
+        android:label="Find New People"
         tools:layout="@layout/find_people_fragment" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.connect.connectflatmates.ui.settings.SettingsFragment"
-        android:label="settings_fragment"
+        android:label="Settings"
         tools:layout="@layout/settings_fragment" />
     <fragment
         android:id="@+id/userFragment"
         android:name="com.connect.connectflatmates.ui.menu.userStats.UserFragment"
-        android:label="user_fragment"
+        android:label="My Profile"
         tools:layout="@layout/user_fragment" />
     <fragment
         android:id="@+id/unsingedActivities"
         android:name="com.connect.connectflatmates.ui.menu.home.available.UnsingedActivities"
-        android:label="unsinged_activities_fragment"
+        android:label="Unsigned Activities"
         tools:layout="@layout/unsinged_activities_fragment" />
     <fragment
         android:id="@+id/homeActivities"
         android:name="com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivities"
-        android:label="home_activities_fragment"
+        android:label="Home Activities"
         tools:layout="@layout/home_activities_fragment" />
     <fragment
         android:id="@+id/addActivity"
         android:name="com.connect.connectflatmates.ui.menu.home.add.AddActivity"
-        android:label="add_fragment"
-        tools:layout="@layout/add_fragment" />
+        android:label="Add home activities"
+        tools:layout="@layout/add_fragment" >
+        <action
+            android:id="@+id/action_addActivity_to_createNewActivity"
+            app:destination="@id/createNewActivity"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNewActivity"
+        android:name="com.connect.connectflatmates.ui.menu.home.add.createnew.CreateNewActivity"
+        android:label="create_new_fragment"
+        tools:layout="@layout/create_new_fragment" />
+
+
 </navigation>

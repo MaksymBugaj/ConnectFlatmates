@@ -38,15 +38,18 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
         drawer.addDrawerListener(toggle)
         toggle.syncState()*/
 
+        setupToolbar()
         setupNavigation()
     }
 
-    private fun setupNavigation() {
+    private fun setupToolbar() {
         val toolbarLayout: Toolbar = toolbar
         setSupportActionBar(toolbarLayout)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
 
+    private fun setupNavigation() {
         drawer = drawer_layout
         val navigationView = navigation_drawer_view
 

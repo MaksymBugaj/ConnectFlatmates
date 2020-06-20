@@ -57,11 +57,11 @@ class HomeActivitiesAdapter : RecyclerView.Adapter<HomeActivitiesAdapter.ViewHol
 
         fun setItems(homeActivityEntity: HomeActivityEntity) {
             val buttonTextAssign = "ASSIGN"
-            val buttonTextDismiss = "dismiss"
+            val buttonTextDismiss = "COMPLETE"
             homeActivityItemName.text = homeActivityEntity.name
             homeActivityItemStartDate.text = homeActivityEntity.startDate
             homeActivityItemEndDate.text = homeActivityEntity.endDate
-            homeActivityItemButton.text = if(homeActivityEntity.assignedUser != "0") buttonTextDismiss else buttonTextAssign
+            homeActivityItemButton.text = if(homeActivityEntity.assignedUser != null) buttonTextDismiss else buttonTextAssign
         }
     }
 

@@ -1,5 +1,6 @@
 package com.connect.connectflatmates.ui.menu.home.add
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -18,6 +20,7 @@ import com.shrikanthravi.collapsiblecalendarview.data.Day
 import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
 import kotlinx.android.synthetic.main.add_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class AddActivity : Fragment() {
 
@@ -27,6 +30,9 @@ class AddActivity : Fragment() {
 
     private lateinit var chosenStartDate: String
     private lateinit var chosenEndDate: String
+
+    private lateinit var datePickerDialog: DatePickerDialog
+    private lateinit var calendar: Calendar
 
     private val mutableSpinnerItem =  MutableLiveData<String>()
     override fun onCreateView(
@@ -43,17 +49,39 @@ class AddActivity : Fragment() {
             mutableSpinnerItem.value = item
         }
 
-// Create an ArrayAdapter using the string array and a default spinner layout
-        /*ArrayAdapter.createFromResource(
-            context!!,
-            R.array.homeActivities_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            addActivity_spinner.adapter = adapter
-        }*/
+        calendar = Calendar.getInstance()
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val month = calendar.get(Calendar.MONTH)
+        val year = calendar.get(Calendar.YEAR)
+
+        addActivityLayout_startDate.setEndIconOnClickListener {
+            datePickerDialog = DatePickerDialog(requireContext(),
+            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                val dateToDb: Date = Date(year,month,dayOfMonth)
+                val date = dayOfMonth.toString() + "/" + (month+1).toString() + "/" + year.toString()
+                addActivity_startDate.setText(date)
+                addActivity_startDate.isEnabled = false
+                chosenStartDate = date
+            }, year,month,day)
+
+            datePickerDialog.show()
+        }
+
+        addActivityLayout_endDate.setEndIconOnClickListener {
+            datePickerDialog = DatePickerDialog(requireContext(),
+                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                    val date = dayOfMonth.toString() + "/" + (month+1).toString() + "/" + year.toString()
+                    addActivity_endDate.setText(date)
+                    addActivity_endDate.isEnabled = false
+                    chosenEndDate = date
+                }, year,month,day)
+
+            datePickerDialog.show()
+        }
+
+        addActivity_createActivity.setOnClickListener {
+            Toast.makeText(requireContext(),"To be implemented",Toast.LENGTH_SHORT).show()
+        }
 
 
 
@@ -62,32 +90,30 @@ class AddActivity : Fragment() {
         addActivity_addButton.setOnClickListener {
             Log.d("NOPE","HERE text: ${addActivity_addButton.text}")
 
+            val homeActivity = HomeActivityEntity(
+                name = mutableSpinnerItem.value!!,
+                startDate = chosenStartDate,
+                endDate = chosenEndDate,
+                assignedUser = null,
+                finished = null
+            )
+
+            viewModel.insert(homeActivity)
+            findNavController().popBackStack(R.id.homeActivities, false)
         }
 
-       observeButton()
 
-       setCalendarListener()
 
-        addActivity_dismissButton.setOnClickListener {
-            findNavController().navigate(R.id.action_addHomeActivity_to_myActivities)
-        }
+
+
+       //setCalendarListener()
+
+
     }
 
-    private fun observeButton(){
-        viewModel.addActivityState.observe(viewLifecycleOwner, Observer {addActivityState ->
-            when(addActivityState){
-                is AddActivityState.ChoosingDate -> {
-                    addActivity_addButton.text = "CONFIRM"
-                }
-                is AddActivityState.DateChosen -> {
-                    addActivity_addButton.text = "ADD"
-                }
-            }
 
-        })
-    }
 
-    private fun setCalendarListener(){
+    /*private fun setCalendarListener(){
         addActivity_calendarView.setCalendarListener(object : CollapsibleCalendar.CalendarListener {
             override fun onClickListener() {
             }
@@ -146,5 +172,5 @@ class AddActivity : Fragment() {
             }
 
         })
-    }
+    }*/
 }

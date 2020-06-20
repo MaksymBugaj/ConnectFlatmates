@@ -1,125 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.menu.home.add.AddActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
+        <variable
+            name="viewModel"
+            type="com.connect.connectflatmates.ui.menu.home.add.AddViewModel" />
+    </data>
 
-    <com.skydoves.powerspinner.PowerSpinnerView
-        android:id="@+id/addActivity_spinner"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAmber_900"
-        android:gravity="center"
-        android:hint="Choose Activity"
-        android:padding="10dp"
-        android:textColor="@color/colorPurple_900"
-        android:textColorHint="@color/colorGreen_A400"
-        android:textSize="14.5sp"
-        app:spinner_arrow_gravity="end"
-        app:spinner_arrow_padding="8dp"
-        app:spinner_divider_color="@color/calendarBackground"
-        app:spinner_divider_show="true"
-        app:spinner_divider_size="0.4dp"
-        app:spinner_item_array="@array/homeActivities_array"
-        app:spinner_popup_animation="fade"
-        app:spinner_popup_background="@color/design_default_color_surface"
-        app:spinner_popup_elevation="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.menu.home.add.AddActivity">
 
 
+        <com.skydoves.powerspinner.PowerSpinnerView
+            android:id="@+id/addActivity_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightPrimaryColor"
+            android:gravity="center"
+            android:hint="Choose Activity"
+            android:padding="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/textColorPrimary"
+            android:textColorHint="@color/secondaryText"
+            android:textSize="14.5sp"
+            app:spinner_arrow_gravity="end"
+            app:spinner_arrow_padding="8dp"
+            app:spinner_divider_color="@color/secondaryText"
+            app:spinner_divider_show="true"
+            app:spinner_divider_size="0.4dp"
+            app:spinner_item_array="@array/homeActivities_array"
+            app:spinner_popup_animation="fade"
+            app:spinner_popup_background="@color/design_default_color_surface"
+            app:spinner_popup_elevation="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:focusableInTouchMode="true"
+            android:layout_marginTop="10dp"
+            android:id="@+id/addActivityLayout_startDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addActivity_spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorRed_900"
+            app:endIconDrawable="@drawable/calendar"
+            app:endIconMode="custom"
+            style="@style/TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addActivity_startDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputEditText"
+                android:inputType="text"
+                android:enabled="false"
+                android:hint="Start Date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addActivityLayout_endDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addActivityLayout_startDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorRed_900"
+            app:endIconDrawable="@drawable/calendar"
+            app:endIconMode="custom"
+            style="@style/TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addActivity_endDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputEditText"
+                android:inputType="text"
+                android:enabled="false"
+                android:hint="End Date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <TextView
-        android:id="@+id/addActivity_startDateIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start date:"
-        app:layout_constraintTop_toBottomOf="@+id/addActivity_spinner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/addActivity_endDateIndicator"
-        app:layout_constraintBottom_toTopOf="@id/addActivity_startDate"
-        />
+        <Button
+            android:id="@+id/addActivity_addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            style="@style/ButtonStyle"
+            android:text="SUBMIT"
+            app:layout_constraintTop_toBottomOf="@+id/addActivityLayout_endDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/addActivity_startDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/addActivity_startDateIndicator"
-        app:layout_constraintStart_toStartOf="@id/addActivity_startDateIndicator"
-        app:layout_constraintEnd_toEndOf="@id/addActivity_startDateIndicator"
-        />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/addActivity_noActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/textColorPrimary"
+            android:text="Dont see your activity?"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addActivity_addButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/addActivity_createActivity" />
 
-    <TextView
-        android:id="@+id/addActivity_endDateIndicator"
-        android:layout_width="59dp"
-        android:layout_height="wrap_content"
-        android:text="End date:"
+        <TextView
+            android:id="@+id/addActivity_createActivity"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:textColor="@color/secondaryText"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/addActivity_startDateIndicator"
-        app:layout_constraintTop_toBottomOf="@id/addActivity_spinner" />
-
-    <TextView
-        android:id="@+id/addActivity_endDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/addActivity_endDateIndicator"
-        app:layout_constraintStart_toStartOf="@id/addActivity_endDateIndicator"
-        app:layout_constraintEnd_toEndOf="@id/addActivity_endDateIndicator"
-        />
-
+            android:text="@string/create_one"
+            android:fontFamily="@font/roboto_medium_italic"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addActivity_noActivity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
-
-    <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addActivity_endDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/addActivity_calendarView"
-
-        app:primaryColor="@color/calendarBackground"
-        app:textColor="@android:color/white"
-        app:selectedItem_textColor="@android:color/holo_red_dark"
-        app:todayItem_textColor="@android:color/white"
-        app:todayItem_background="@drawable/circle_white_stroke_background"
-        app:selectedItem_background="@drawable/circle_white_solid_background"
-        app:buttonLeft_drawableTintColor="@android:color/white"
-        app:buttonRight_drawableTintColor="@android:color/white"
-        app:expandIconColor="@android:color/white">
-    </com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar>
-
-    <Button
-        android:id="@+id/addActivity_addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/round_button_top_right"
-        android:layout_marginTop="8dp"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintEnd_toStartOf="@id/addActivity_dismissButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addActivity_calendarView" />
-
-    <Button
-        android:id="@+id/addActivity_dismissButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/round_button_top_left"
-        android:layout_marginTop="8dp"
-        android:text="DISMISS"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/addActivity_addButton"
-        app:layout_constraintTop_toBottomOf="@id/addActivity_calendarView" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

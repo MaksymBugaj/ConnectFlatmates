@@ -34,9 +34,9 @@
             android:layout_marginStart="5dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/homeActItem_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/homeActItem_button">
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <TextView
@@ -50,156 +50,189 @@
                 android:textSize="22sp"
                 tools:text="Activity" />
 
-            <TextView
-                android:id="@+id/homeActItem_itemStartDate"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                android:textSize="14sp"
-                tools:text="Some comment" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/homeActItemLayout_itemStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Start Date:"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/homeActItem_itemStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@id/homeActItemLayout_itemStartDate"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Some comment" />
 
 
-            <TextView
-                android:id="@+id/homeActItem_itemEndDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                android:textSize="14sp"
-                tools:text="Some comment" />
+                <TextView
+                    android:id="@+id/homeActItemLayout_itemEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="End Date:"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/homeActItemLayout_itemStartDate"
+                    app:layout_constraintTop_toBottomOf="@id/homeActItemLayout_itemStartDate" />
 
+                <TextView
+                    android:id="@+id/homeActItem_itemEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/homeActItem_itemStartDate"
+                    app:layout_constraintTop_toBottomOf="@id/homeActItem_itemStartDate"
+                    tools:text="Some comment" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
+
 
         <Button
             android:id="@+id/homeActItem_button"
+            style="@style/ButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/round_button_top_right"
-            android:text="assign"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.cardview.widget.CardView>
 
-<!--
-<View
-        android:id="@+id/homeActItem_topBarrier"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@drawable/item_background_shape"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--
+    <View
+            android:id="@+id/homeActItem_topBarrier"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/item_background_shape"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/homeActItem_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/homeActItem_bottomBarrier"
-        app:layout_constraintEnd_toStartOf="@id/homeActItem_rightBarrier"
-        app:layout_constraintStart_toEndOf="@id/homeActItem_leftBarrier"
-        app:layout_constraintTop_toBottomOf="@+id/homeActItem_topBarrier">
-
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/homeActItem_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/homeActItem_button">
+            app:layout_constraintBottom_toTopOf="@id/homeActItem_bottomBarrier"
+            app:layout_constraintEnd_toStartOf="@id/homeActItem_rightBarrier"
+            app:layout_constraintStart_toEndOf="@id/homeActItem_leftBarrier"
+            app:layout_constraintTop_toBottomOf="@+id/homeActItem_topBarrier">
 
 
-            <TextView
-                android:id="@+id/homeActItem_itemName"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="22sp"
-                tools:text="Activity" />
+                android:layout_marginStart="5dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/homeActItem_button">
 
-            <TextView
-                android:id="@+id/homeActItem_itemStartDate"
+
+                <TextView
+                    android:id="@+id/homeActItem_itemName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="22sp"
+                    tools:text="Activity" />
+
+                <TextView
+                    android:id="@+id/homeActItem_itemStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textSize="14sp"
+                    tools:text="Some comment" />
+
+
+                <TextView
+                    android:id="@+id/homeActItem_itemEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textSize="14sp"
+                    tools:text="Some comment" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/homeActItem_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                android:textSize="14sp"
-                tools:text="Some comment" />
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_button_top_right"
+                android:text="minus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <TextView
-                android:id="@+id/homeActItem_itemEndDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                android:textSize="14sp"
-                tools:text="Some comment" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/homeActItem_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_button_top_right"
-            android:text="minus"
+        <View
+            android:id="@+id/homeActItem_bottomBarrier"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@android:color/holo_blue_dark"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="5dp"/>
+
+        <View
+            android:id="@+id/homeActItem_rightBarrier"
+            android:layout_width="3dp"
+            android:layout_height="0dp"
+            android:background="@android:color/holo_blue_dark"
+            app:layout_constraintBottom_toBottomOf="@id/homeActItem_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="@+id/homeActItem_layout" />
 
-    <View
-        android:id="@+id/homeActItem_bottomBarrier"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@android:color/holo_blue_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="5dp"/>
-
-    <View
-        android:id="@+id/homeActItem_rightBarrier"
-        android:layout_width="3dp"
-        android:layout_height="0dp"
-        android:background="@android:color/holo_blue_dark"
-        app:layout_constraintBottom_toBottomOf="@id/homeActItem_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/homeActItem_layout" />
-
-    <View
-        android:id="@+id/homeActItem_leftBarrier"
-        android:layout_width="3dp"
-        android:layout_height="0dp"
-        android:background="@android:color/holo_blue_dark"
-        app:layout_constraintBottom_toBottomOf="@id/homeActItem_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/homeActItem_layout" />
--->
+        <View
+            android:id="@+id/homeActItem_leftBarrier"
+            android:layout_width="3dp"
+            android:layout_height="0dp"
+            android:background="@android:color/holo_blue_dark"
+            app:layout_constraintBottom_toBottomOf="@id/homeActItem_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/homeActItem_layout" />
+    -->

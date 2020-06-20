@@ -8,9 +8,13 @@ interface HomeActivitiesRepository {
 
     fun insert(homeActivity: HomeActivityEntity)
 
+    fun delete(homeActivityEntity: HomeActivityEntity)
+
     fun getAll(): Flowable<List<HomeActivityEntity>>
 
-    fun getAssignedHomeActivitiesToUser(userId: String?): LiveData<List<HomeActivityEntity>>
+    fun getAssignedHomeActivitiesToUser(userId: String?): Flowable<List<HomeActivityEntity>>
+
+    fun getUnassignedHomeActivitiesToUser(): Flowable<List<HomeActivityEntity>>
 
     fun getAllTest(): Flowable<List<HomeActivityEntity>>
 }

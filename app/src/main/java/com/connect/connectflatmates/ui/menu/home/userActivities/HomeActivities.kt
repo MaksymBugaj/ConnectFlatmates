@@ -14,6 +14,7 @@ import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
 import com.connect.connectflatmates.ui.HomeActivitiesAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.home_activities_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,6 +24,7 @@ class HomeActivities : Fragment() {
     private val viewModel by viewModel<HomeActivitiesViewModel>()
 
 
+    private val compositeDisposable = CompositeDisposable()
 
     private lateinit var assignedActivitiesRecyclerView: RecyclerView
     private lateinit var listOfAssignedHomeActivities: List<HomeActivityEntity>
@@ -51,7 +53,8 @@ class HomeActivities : Fragment() {
             }
         })
 
-        viewModel.getAll().subscribeOn(Schedulers.io())
+        compositeDisposable.add(
+        viewModel.getAssignedHomeActivities("0").subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{listOfActivities ->
                 if(listOfActivities.isNotEmpty()) {
@@ -60,6 +63,7 @@ class HomeActivities : Fragment() {
                 }
 
             }
+        )
 
         /*viewModel.getAll().observe(viewLifecycleOwner, Observer {listOfActivities ->
             if(listOfActivities.isNotEmpty()) {
