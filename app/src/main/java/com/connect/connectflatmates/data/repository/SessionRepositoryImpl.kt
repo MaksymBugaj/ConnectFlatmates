@@ -24,7 +24,9 @@ class SessionRepositoryImpl(
 
     override fun loadCurrentUser(): UserProfile {
         val userId = sharedPreferences.getInt(USER_ID_KEY, -1)
-        //if(userId != null) user = userRepository.getUserById(userId).map { it }
+        if(userId != -1) userRepository.getUserById(userId).map {
+            user = it
+        }
         return user!!
     }
 

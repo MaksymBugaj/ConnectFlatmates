@@ -7,5 +7,13 @@ import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
 
 class UnsingedActivitiesViewModel(private val homeActivitiesRepository: HomeActivitiesRepository) : ViewModel() {
 
-    fun getAssignedHomeActivities(userId: String): LiveData<List<HomeActivityEntity>> = homeActivitiesRepository.getAssignedHomeActivitiesToUser(userId)
+//    fun getAssignedHomeActivities(userId: String): LiveData<List<HomeActivityEntity>> = homeActivitiesRepository.getAssignedHomeActivitiesToUser(userId)
+
+    fun assignActivity(homeActivityEntity: HomeActivityEntity){
+        homeActivitiesRepository.insert(homeActivityEntity)
+    }
+
+    fun delete(homeActivityEntity: HomeActivityEntity){
+        homeActivitiesRepository.delete(homeActivityEntity = homeActivityEntity)
+    }
 }

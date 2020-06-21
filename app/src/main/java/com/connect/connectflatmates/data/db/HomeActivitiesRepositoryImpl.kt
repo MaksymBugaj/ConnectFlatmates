@@ -17,12 +17,24 @@ class HomeActivitiesRepositoryImpl(private val homeActivitiesDao: HomeActivities
             .subscribe()
     }
 
+    override fun delete(homeActivityEntity: HomeActivityEntity) {
+        Completable.fromAction {
+        homeActivitiesDao.delete(homeActivityEntity)
+        }.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+    }
+
     override fun getAll(): Flowable<List<HomeActivityEntity>> {
         return homeActivitiesDao.getAll()
     }
 
-    override fun getAssignedHomeActivitiesToUser(userId: String?): LiveData<List<HomeActivityEntity>> {
+    override fun getAssignedHomeActivitiesToUser(userId: String?): Flowable<List<HomeActivityEntity>> {
         return homeActivitiesDao.getAssignedHomeActivitiesToUser(userId)
+    }
+
+    override fun getUnassignedHomeActivitiesToUser(): Flowable<List<HomeActivityEntity>> {
+        return homeActivitiesDao.getUnassignedHomeActivitiesToUser()
     }
 
     override fun getAllTest(): Flowable<List<HomeActivityEntity>> {

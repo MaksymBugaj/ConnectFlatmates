@@ -9,14 +9,11 @@ import com.connect.connectflatmates.state.AddActivityState
 
 class AddViewModel(private val homeActivitiesRepository: HomeActivitiesRepository) : ViewModel() {
 
+    //fixme change it
     fun insert(homeActivity: HomeActivityEntity) = homeActivitiesRepository.insert(homeActivity)
 
-    val addActivityManager = AddActivityManager()
 
-    val addActivityState: LiveData<AddActivityState>
-        get() = addActivityManager.addActivityState
+    fun onNoActivityClick(){
 
-    fun setState(state: AddActivityState){
-        addActivityManager.setAddActivityState(state)
     }
 }
