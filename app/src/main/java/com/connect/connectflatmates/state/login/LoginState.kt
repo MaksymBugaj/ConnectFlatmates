@@ -10,6 +10,7 @@ sealed class LoginState {
     object WrongPassword : LoginState()
     object EmptyLogin : LoginState()
     object EmptyPassword : LoginState()
+    object UserNotExists : LoginState()
     object NoUser : LoginState()
     object AccountCreated : LoginState()
 }

@@ -10,10 +10,12 @@ import com.connect.connectflatmates.data.repository.SessionRepository
 import com.connect.connectflatmates.data.repository.UserRepository
 import com.connect.connectflatmates.state.login.LoginState
 import com.connect.connectflatmates.state.login.LoginStateManager
+import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+
 
 class LoginViewModel(
     private val userRepository: UserRepository,
@@ -69,6 +71,8 @@ class LoginViewModel(
         //quickLogin()
     }
 
+
+
     //todo delete after test
     private fun quickLogin(){
         state.onNext(LoginState.LoginValid)
@@ -79,10 +83,11 @@ class LoginViewModel(
         userRepository.getUserByLogin(login)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                Log.d("NOPE", "We got user ${it.name}")
-                performLogin(it)
-            }
+            .subscribe(
+                { t: UserProfile? -> performLogin(t!!) },
+                { obj: Throwable -> Log.d("NOPE", "UserNoExists")
+                    state.onNext(LoginState.UserNotExists)}
+            )
         )
     }
 
@@ -90,6 +95,7 @@ class LoginViewModel(
         val password = observablePassword.get()!!
         if (password == userProfile.password) {
             Log.d("NOPE", "NOPE HELP MEEEE. IM loginValid")
+            sessionRepository.saveUser(userProfile)
             state.onNext(LoginState.LoginValid)
         } else if(password.isNullOrEmpty()){
             state.onNext(LoginState.EmptyPassword)

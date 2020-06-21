@@ -7,6 +7,7 @@ import com.connect.connectflatmates.data.db.entity.UserProfile
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Maybe
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -28,7 +29,7 @@ class UserRepositoryImpl(private val userDao: UserDao) :
         return userDao.getAll()
     }
 
-    override fun getUserByLogin(login: String): Maybe<UserProfile> {
+    override fun getUserByLogin(login: String): Single<UserProfile> {
         return userDao.getUser(login)
     }
 

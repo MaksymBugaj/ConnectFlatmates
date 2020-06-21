@@ -10,12 +10,7 @@
         android:id="@+id/peple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello" />
+        android:text="To Be Implemented" />
 
-    <TextView
-        android:id="@+id/user_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="dupa" />
 
 </LinearLayout>

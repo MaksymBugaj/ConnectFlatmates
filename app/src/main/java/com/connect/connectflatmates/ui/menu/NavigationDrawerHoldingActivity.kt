@@ -1,8 +1,9 @@
 package com.connect.connectflatmates.ui.menu
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -11,14 +12,18 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.connect.connectflatmates.R
+import com.connect.connectflatmates.data.db.entity.UserProfile
+import com.connect.connectflatmates.data.repository.SessionRepository
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_navigation_drawer_holding.*
+import org.koin.android.ext.android.inject
 
 
 class NavigationDrawerHoldingActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer: DrawerLayout
     private lateinit var navController: NavController
+    private val sessionRepository by inject<SessionRepository>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer_holding)
@@ -40,6 +45,7 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
 
         setupToolbar()
         setupNavigation()
+        getCurrentUser()
     }
 
     private fun setupToolbar() {
@@ -82,7 +88,6 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
             R.id.userFragment -> {
                 navController.navigate(R.id.userFragment)
             }
-            //todo change the NAME!!!!!!!!!!!!!!!!!!!
             R.id.findPeople -> {
                 navController.navigate(R.id.findPeople)
             }
@@ -107,5 +112,22 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
 
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun getCurrentUser() {
+        val currentUser = sessionRepository.currentUser
+        Log.d("NOPE", "Current User = ${currentUser?.name}")
+        setNavigationDrawerWithUser(currentUser!!)
+    }
+
+    private fun setNavigationDrawerWithUser(userProfile: UserProfile){
+        val navigationView = navigation_drawer_view
+        val headerView = navigationView.getHeaderView(0)
+        val userName = headerView.findViewById(R.id.navHeader_userName) as TextView
+        val nameToDisplay = userProfile.name + " " + userProfile.surname
+        userName.text = nameToDisplay
+        val userEmail = headerView.findViewById(R.id.navHeader_userEmail) as TextView
+        val emailToDisplay = userProfile.email
+        userEmail.text = emailToDisplay
     }
 }

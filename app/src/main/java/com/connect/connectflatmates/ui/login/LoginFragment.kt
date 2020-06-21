@@ -77,7 +77,7 @@ class LoginFragment : Fragment() {
 
                     }
 
-                    LoginState.WrongPassword -> {
+                    LoginState.WrongPassword, LoginState.UserNotExists -> {
                         layoutLogin_username.error = "Wrong user or password"
                         layoutLogin_password.error = "Wrong user or password"
                     }
