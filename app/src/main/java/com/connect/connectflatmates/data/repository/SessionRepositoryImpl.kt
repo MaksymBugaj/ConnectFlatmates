@@ -6,6 +6,7 @@ import com.connect.connectflatmates.data.db.entity.UserProfile
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.BehaviorSubject
 
 const val USER_ID_KEY = "user_id"
 
@@ -22,12 +23,13 @@ class SessionRepositoryImpl(
     override val currentUser: UserProfile?
         get() = user
 
-    override fun loadCurrentUser(): UserProfile {
+    override fun loadCurrentUser(): UserProfile? {
         val userId = sharedPreferences.getInt(USER_ID_KEY, -1)
         if(userId != -1) userRepository.getUserById(userId).map {
+            Log.d("NOPE","loaded")
             user = it
         }
-        return user!!
+        return user
     }
 
     override fun clearCurrentUser() {

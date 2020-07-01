@@ -35,9 +35,6 @@ class CreateAccountViewModel(
     }
 
 
-    val loginStatus: LiveData<LoginState>
-        get() = loginStateManager.currentState
-
     private fun setState(state: LoginState) {
         loginStateManager.setState(state)
     }
