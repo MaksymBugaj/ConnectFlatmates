@@ -1,5 +1,6 @@
 package com.connect.connectflatmates.ui.login
 
+import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
@@ -20,7 +22,10 @@ import com.connect.connectflatmates.ui.menu.NavigationDrawerHoldingActivity
 import com.fevziomurtekin.customprogress.Type
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.login_fragment.*
+import kotlinx.android.synthetic.main.login_fragment.loadingProgressBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
@@ -29,6 +34,8 @@ class LoginFragment : Fragment() {
     private val loginViewModel by viewModel<LoginViewModel>()
 
     private val compositeDisposable = CompositeDisposable()
+
+    var czujka6 = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,23 +59,16 @@ class LoginFragment : Fragment() {
             loginViewModel.state.subscribe {
                 when (it) {
                     LoginState.LoginValid -> {
-//                        progress_bar.settype(Type.INTERWIND)
-//                        progress_bar.setdurationTime(100)
-//                        progress_bar.show()
-                        login()
-                        Log.d("NOPE", "NOPE HELP MEEEE. IM STUCKK")
 
-                        //todo after login
-//                    loginViewModel.setStateToInitial()
+                        login()
                         layoutLogin_username.isErrorEnabled = false
                         layoutLogin_password.isErrorEnabled = false
+                        Log.d("NOPE", "NOPE HELP MEEEE. IM STUCKK")
                     }
                     LoginState.NoUser -> {
                         noAccount()
-//                    loginViewModel.setStateToInitial()
                         Log.d("NOPE", "NOPE HELP MEEEE. IM NoUser")
                     }
-                    //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
                     LoginState.InitialState -> {
                         Log.d("NOPE", "NOPE HELP MEEEE. IM InitialState STUCKK")
                     }
@@ -89,58 +89,54 @@ class LoginFragment : Fragment() {
                     LoginState.EmptyPassword -> {
                         layoutLogin_password.error = "This field cannot be empty"
                     }
+                    LoginState.UserFromSession -> {
+                        if (czujka6) login() else czujka6 = true
+                    }
                 }
             }
         )
-        /*loginViewModel.loginStatus.observe(this@LoginFragment, Observer { loginState ->
-            Log.d("NOPE","Current state $loginState")
-            when (loginState) {
-                LoginState.LoginValid -> {
-                    login()
-                    //todo after login 
-//                    loginViewModel.setStateToInitial()
+
+        compositeDisposable.add(
+        Observable.interval(45, TimeUnit.MILLISECONDS, Schedulers.newThread())
+            .take(50)
+            .subscribeBy(
+                onNext = {
+                    loadingProgressBar.progress = (it.toInt() +1)*2
+
+                },
+                onComplete = {
+                    loadingProgressBar.progress = 100
+                    startAnimation()
                 }
-                LoginState.NoUser -> {
-                    noAccount()
-//                    loginViewModel.setStateToInitial()
-                    Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
-                }
-                //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
-                LoginState.InitialState -> {
-                    Log.d("NOPE","NOPE HELP MEEEE. IM not STUCKK")
-                }
-                LoginState.AccountCreated -> {
-                    Log.d("NOPE","acc created")
-
-                }
-
-
-            }
-
-        })*/
-
-        /*loginViewModel.loginStatusT.observe(this@LoginFragment, Observer { loginState ->
-            Log.d("NOPE","Current state $loginState")
-            when (loginState) {
-                LoginValid -> {
-                    login()
-                }
-                NoUser -> {
-                    noAccount()
-                    loginViewModel.setStateToInitial()
-                    Log.d("NOPE","NOPE HELP MEEEE. IM STUCKK")
-                }
-                //fixme back button on create account need to be pressed twice, and after that, in login screen tapping the create one text field crashes the app
-                InitialState -> {
-                    Log.d("NOPE","NOPE HELP MEEEE. IM not STUCKK")
-                }
-
-
-            }
-
-        })*/
+            )
+        )
 
         loginViewModel.getAll()
+    }
+
+    private fun startAnimation() {
+        bookIconImageView.animate().apply {
+            x(50f)
+            y(100f)
+            duration = 1000
+        }.setListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(p0: Animator?) {
+
+            }
+
+            override fun onAnimationEnd(p0: Animator?) {
+                animationLayout.visibility = View.GONE
+                if (czujka6) login() else loginConstraintLayout.visibility = View.VISIBLE
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {
+
+            }
+
+            override fun onAnimationStart(p0: Animator?) {
+
+            }
+        })
     }
 
     /*private fun assertPassword() {

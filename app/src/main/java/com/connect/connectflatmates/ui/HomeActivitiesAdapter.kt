@@ -1,5 +1,6 @@
 package com.connect.connectflatmates.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,8 +36,14 @@ class HomeActivitiesAdapter : RecyclerView.Adapter<HomeActivitiesAdapter.ViewHol
     }
 
     fun setItems(homeActivities: List<HomeActivityEntity>){
+        listOfActivities.clear()
         listOfActivities = homeActivities as ArrayList<HomeActivityEntity>
+        Log.d("NOPE","Adapter size ${listOfActivities.size} ")
         notifyDataSetChanged()
+    }
+
+    fun removeAt(position: Int){
+
     }
 
 

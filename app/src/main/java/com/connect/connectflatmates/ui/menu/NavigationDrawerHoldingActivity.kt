@@ -3,6 +3,7 @@ package com.connect.connectflatmates.ui.menu
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -15,8 +16,11 @@ import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.UserProfile
 import com.connect.connectflatmates.data.repository.SessionRepository
 import com.google.android.material.navigation.NavigationView
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_navigation_drawer_holding.*
 import org.koin.android.ext.android.inject
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class NavigationDrawerHoldingActivity : AppCompatActivity(),
@@ -27,21 +31,6 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer_holding)
-
-        /* val toolbarLayout: Toolbar = toolbar
-
-         setSupportActionBar(toolbarLayout)
-
-         val navigationView = navigation_drawer_view
-         navigationView.setNavigationItemSelectedListener(this)
-         drawer = drawer_layout
-        *//* navController = Navigation.findNavController(this,R.id.fragment_container)
-        NavigationUI.setupActionBarWithNavController(this,navController,drawer)
-        NavigationUI.setupWithNavController(navigationView,navController)*//*
-
-        val toggle = ActionBarDrawerToggle(this, drawer, toolbarLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()*/
 
         setupToolbar()
         setupNavigation()
@@ -107,9 +96,15 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
             R.id.settingsFragment -> {
                 navController.navigate(R.id.settingsFragment)
             }
+            R.id.logout -> {
+                sessionRepository.clearCurrentUser()
+                navDrawer_group_loading.visibility = View.VISIBLE
+                Observable.just(1).delay(5,TimeUnit.SECONDS).subscribe {
+                    navController.navigate(R.id.loginFragment)
 
+                }
+            }
         }
-
         drawer.closeDrawer(GravityCompat.START)
         return true
     }

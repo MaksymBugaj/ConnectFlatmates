@@ -38,4 +38,5 @@
     </fragment>
     <include app:graph="@navigation/home_activities_navigation" />
     <include app:graph="@navigation/navigation_drawer" />
+
 </navigation>

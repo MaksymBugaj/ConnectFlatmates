@@ -5,7 +5,7 @@ package com.connect.connectflatmates.state.login
 sealed class LoginState {
 
     object InitialState : LoginState()
-    object CreatingAccount : LoginState()
+    object UserFromSession : LoginState()
     object LoginValid : LoginState()
     object WrongPassword : LoginState()
     object EmptyLogin : LoginState()

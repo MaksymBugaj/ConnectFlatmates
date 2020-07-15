@@ -42,4 +42,7 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
+    <style name="ProgressBarStyle">
+        <item name="colorAccent">@color/colorProgressBar</item>
+    </style>
 </resources>

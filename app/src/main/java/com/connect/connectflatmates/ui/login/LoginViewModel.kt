@@ -10,7 +10,6 @@ import com.connect.connectflatmates.data.repository.SessionRepository
 import com.connect.connectflatmates.data.repository.UserRepository
 import com.connect.connectflatmates.state.login.LoginState
 import com.connect.connectflatmates.state.login.LoginStateManager
-import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -34,8 +33,7 @@ class LoginViewModel(
 
     val state = PublishSubject.create<LoginState>()
 
-    val loginStatus: LiveData<LoginState>
-        get() = loginStateManager.currentState
+
 
     private fun setState(state: LoginState) {
         loginStateManager.setState(state)
@@ -46,7 +44,21 @@ class LoginViewModel(
 //    fun getUserByLogin(login: String): LiveData<UserProfile> = userRepository.getUserByLogin(login)
 
     fun onVisible() {
+        checkIfUserLogged()
         setStateToInitial()
+    }
+
+    private fun checkIfUserLogged() {
+        compositeDisposable.add(sessionRepository.loadCurrentUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { userProfile, throwable ->
+            userProfile?.let {
+                Log.d("NOPE","we got him")
+                state.onNext(LoginState.UserFromSession)}
+            throwable?.let { Log.d("NOPE","Null user") }
+        }
+        )
+       /* sessionRepository.loadCurrentUser()
+        val user = sessionRepository.currentUser
+        Log.d("NOPE","User ${user?.let { it.name }}")*/
     }
 
     fun getAll() {
@@ -135,8 +147,8 @@ class LoginViewModel(
 
 
     //fixme delete this or change to sth better
-    fun setStateToInitial() {
-        setState(LoginState.InitialState)
+    private fun setStateToInitial() {
+        Log.d("NOPE","State Initial")
         state.onNext(LoginState.InitialState)
     }
 

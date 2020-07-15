@@ -16,6 +16,6 @@ class ConnectFlatmates : Application() {
             androidContext(this@ConnectFlatmates)
             modules(listOf(viewModelModule, databaseModule, appModule))
         }
-        Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this)
     }
 }

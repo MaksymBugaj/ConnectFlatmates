@@ -11,20 +11,23 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
+import com.connect.connectflatmates.data.repository.SessionRepository
 import com.connect.connectflatmates.ui.HomeActivitiesAdapter
 import com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivitiesViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.unsinged_activities_fragment.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UnsingedActivities : Fragment() {
 
     private val homeActivitiesViewModel by viewModel<HomeActivitiesViewModel>()
     private val unsignedActivitiesViewModel by viewModel<UnsingedActivitiesViewModel>()
+    private val sessionRepository by inject<SessionRepository>()
     private lateinit var allActivitiesRecyclerView: RecyclerView
-    private lateinit var listOfHomeActivities: List<HomeActivityEntity>
+    private lateinit var listOfHomeActivities : List<HomeActivityEntity>
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -53,11 +56,11 @@ class UnsingedActivities : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{listOfActivities ->
                 Log.d("NOPE","Unassigned Activities")
-            if(listOfActivities.isNotEmpty()) {
+
                 Log.d("NOPE","Unassigned Activities ${listOfActivities.size}")
-                listOfHomeActivities = listOfActivities
+                listOfHomeActivities = (listOfActivities)
                 (allActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setItems(listOfHomeActivities)
-            }
+
 
         })
     }
@@ -65,18 +68,22 @@ class UnsingedActivities : Fragment() {
     private fun setRecyclerListener(){
         (allActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setOnClickListener(object : HomeActivitiesAdapter.OnItemClickListener{
             override fun onItemClick(position: Int, view: View) {
-                assignUser(position)
                 Log.d("NOPE","Unassigned Activities Click: ${listOfHomeActivities[position].name} id: ${listOfHomeActivities[position].id}")
+                assignUser(position)
             }
         })
     }
 
     private fun assignUser(position: Int) {
-        val homeActivity = listOfHomeActivities[position].copy(assignedUser = "0")
+        val userId = sessionRepository.currentUser?.id!!
+        val homeActivity = listOfHomeActivities[position].copy(assignedUser = userId.toString())
         unsignedActivitiesViewModel.delete(listOfHomeActivities[position])
         unsignedActivitiesViewModel.assignActivity(homeActivity)
 
-        //todo current user in sessionRepo:::!!!
+
+        //(allActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setItems(listOfHomeActivities)
+
+
 
     }
 

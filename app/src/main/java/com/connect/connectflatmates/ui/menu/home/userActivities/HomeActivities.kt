@@ -12,18 +12,20 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
+import com.connect.connectflatmates.data.repository.SessionRepository
 import com.connect.connectflatmates.ui.HomeActivitiesAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.home_activities_fragment.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivities : Fragment() {
 
     private val viewModel by viewModel<HomeActivitiesViewModel>()
 
-
+    private val sessionRepository by inject<SessionRepository>()
     private val compositeDisposable = CompositeDisposable()
 
     private lateinit var assignedActivitiesRecyclerView: RecyclerView
@@ -52,9 +54,9 @@ class HomeActivities : Fragment() {
                 dismissUser()
             }
         })
-
+        val userId = sessionRepository.currentUser?.id!!
         compositeDisposable.add(
-        viewModel.getAssignedHomeActivities("0").subscribeOn(Schedulers.io())
+        viewModel.getAssignedHomeActivities(userId.toString()).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{listOfActivities ->
                 if(listOfActivities.isNotEmpty()) {
