@@ -10,8 +10,6 @@ import com.connect.connectflatmates.data.repository.SessionRepository
 import com.connect.connectflatmates.data.repository.UserRepository
 import com.connect.connectflatmates.state.login.LoginState
 import com.connect.connectflatmates.state.login.LoginStateManager
-import io.reactivex.Maybe
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -51,13 +49,16 @@ class LoginViewModel(
     }
 
     private fun checkIfUserLogged() {
-        val currentUser = sessionRepository.loadCurrentUser()
-        if(currentUser == null) {
-            Log.d("NOPE","Null user")
-        } else {
-            Log.d("NOPE","Not null")
-            state.onNext(LoginState.LoginValid)
+        compositeDisposable.add(sessionRepository.loadCurrentUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { userProfile, throwable ->
+            userProfile?.let {
+                Log.d("NOPE","we got him")
+                state.onNext(LoginState.UserFromSession)}
+            throwable?.let { Log.d("NOPE","Null user") }
         }
+        )
+       /* sessionRepository.loadCurrentUser()
+        val user = sessionRepository.currentUser
+        Log.d("NOPE","User ${user?.let { it.name }}")*/
     }
 
     fun getAll() {

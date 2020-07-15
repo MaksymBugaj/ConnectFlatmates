@@ -23,5 +23,5 @@ interface UserDao {
     fun getUser(login:String):Single<UserProfile>
 
     @Query("select * from users_table where id =:id")
-    fun getUserById(id: Int): Flowable<UserProfile>
+    fun getUserById(id: Int): Single<UserProfile>
 }

@@ -33,7 +33,7 @@ class UserRepositoryImpl(private val userDao: UserDao) :
         return userDao.getUser(login)
     }
 
-    override fun getUserById(id: Int): Flowable<UserProfile> {
+    override fun getUserById(id: Int): Single<UserProfile> {
         return userDao.getUserById(id)
     }
 }

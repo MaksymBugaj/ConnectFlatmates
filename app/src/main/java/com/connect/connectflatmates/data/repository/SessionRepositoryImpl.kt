@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.connect.connectflatmates.data.db.entity.UserProfile
 import io.reactivex.Completable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
@@ -17,19 +18,20 @@ class SessionRepositoryImpl(
 
     private var user : UserProfile? = null
 
-
-
-
     override val currentUser: UserProfile?
         get() = user
 
-    override fun loadCurrentUser(): UserProfile? {
+    override fun loadCurrentUser(): Single<UserProfile?> {
         val userId = sharedPreferences.getInt(USER_ID_KEY, -1)
-        if(userId != -1) userRepository.getUserById(userId).map {
+        return userRepository.getUserById(userId).map {
+            user = it
+            it
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        /*if(userId != -1) userRepository.getUserById(userId).map {
             Log.d("NOPE","loaded")
             user = it
         }
-        return user
+        return user*/
     }
 
     override fun clearCurrentUser() {
@@ -38,6 +40,7 @@ class SessionRepositoryImpl(
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
+                user = null
                 Log.d("NOPE","deleted")
             }
     }

@@ -22,6 +22,8 @@
     <color name="surfacebck">#363640</color>
     <color name="surfaceOn">#FFF8E1</color>
 
+    <color name="colorProgressBar">#49FAB4</color>
+
     <!-- 1st Gradient color -->
     <color name="colorPurple_A400">#D500F9</color>
     <color name="colorPurple_900">#4A148C</color>
@@ -47,4 +49,5 @@
 
     <color name="color_white_F">#FFFFFF</color>
     <color name="color_white_S">#B3A8A8</color>
+    <color name="black_overlay">#66000000</color>
 </resources>

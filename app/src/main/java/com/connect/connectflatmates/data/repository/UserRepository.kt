@@ -14,5 +14,5 @@ interface UserRepository {
 
     fun getUserByLogin(login: String): Single<UserProfile>
 
-    fun getUserById(id: Int): Flowable<UserProfile>
+    fun getUserById(id: Int): Single<UserProfile>
 }
