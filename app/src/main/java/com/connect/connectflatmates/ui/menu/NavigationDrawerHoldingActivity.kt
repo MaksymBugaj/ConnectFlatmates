@@ -17,6 +17,7 @@ import com.connect.connectflatmates.data.db.entity.UserProfile
 import com.connect.connectflatmates.data.repository.SessionRepository
 import com.google.android.material.navigation.NavigationView
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_navigation_drawer_holding.*
 import org.koin.android.ext.android.inject
 import java.util.*
@@ -28,6 +29,7 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
     private lateinit var drawer: DrawerLayout
     private lateinit var navController: NavController
     private val sessionRepository by inject<SessionRepository>()
+    private val compositeDisposable = CompositeDisposable()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer_holding)
@@ -99,10 +101,17 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
             R.id.logout -> {
                 sessionRepository.clearCurrentUser()
                 navDrawer_group_loading.visibility = View.VISIBLE
-                Observable.just(1).delay(5,TimeUnit.SECONDS).subscribe {
-                    navController.navigate(R.id.loginFragment)
+                navController.navigate(R.id.loginFragment)
+                /*sessionRepository.observableUser
+                    .observe(this, androidx.lifecycle.Observer {
+                        if (it == null) {
+                            Log.d("NOPE", "null user")
 
-                }
+                        }
+                        Log.d("NOPE", "not null user ${it.name}")
+                    }
+                    )*/
+
             }
         }
         drawer.closeDrawer(GravityCompat.START)
@@ -115,7 +124,7 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
         setNavigationDrawerWithUser(currentUser!!)
     }
 
-    private fun setNavigationDrawerWithUser(userProfile: UserProfile){
+    private fun setNavigationDrawerWithUser(userProfile: UserProfile) {
         val navigationView = navigation_drawer_view
         val headerView = navigationView.getHeaderView(0)
         val userName = headerView.findViewById(R.id.navHeader_userName) as TextView
