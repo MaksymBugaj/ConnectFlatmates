@@ -1,5 +1,6 @@
 package com.connect.connectflatmates.ui.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -10,8 +11,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.connect.connectflatmates.MainActivity
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.UserProfile
 import com.connect.connectflatmates.data.repository.SessionRepository
@@ -101,7 +106,8 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
             R.id.logout -> {
                 sessionRepository.clearCurrentUser()
                 navDrawer_group_loading.visibility = View.VISIBLE
-                navController.navigate(R.id.loginFragment)
+
+                startActivity(Intent(this, MainActivity::class.java))
                 /*sessionRepository.observableUser
                     .observe(this, androidx.lifecycle.Observer {
                         if (it == null) {
