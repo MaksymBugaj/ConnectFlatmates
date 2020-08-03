@@ -49,7 +49,7 @@ class LoginViewModel(
     }
 
     private fun checkIfUserLogged() {
-        compositeDisposable.add(sessionRepository.loadCurrentUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { userProfile, throwable ->
+        compositeDisposable.add(sessionRepository.loadCurrentUser().subscribeOn(Schedulers.io()).subscribe { userProfile, throwable ->
             userProfile?.let {
                 Log.d("NOPE","we got him")
                 state.onNext(LoginState.UserFromSession)}
