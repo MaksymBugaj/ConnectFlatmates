@@ -12,4 +12,6 @@ data class UserProfile(
     val login: String,
     val email: String,
     val password: String
-)
+) {
+    constructor() :this(0,"","","","","")
+}
