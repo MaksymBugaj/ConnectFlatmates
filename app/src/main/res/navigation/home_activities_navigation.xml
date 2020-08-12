@@ -7,32 +7,22 @@
 
     <fragment
         android:id="@+id/myActivities"
-        android:name="com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivities"
-        android:label="home_activities_fragment"
-        tools:layout="@layout/home_activities_fragment" />
+        android:name="com.connect.connectflatmates.ui.menu.home.userChores.UserChores"
+        android:label="Today chores"
+        tools:layout="@layout/user_chores_fragment" />
     <fragment
         android:id="@+id/addHomeActivity"
-        android:name="com.connect.connectflatmates.ui.menu.home.add.AddActivity"
-        android:label="add_fragment"
-        tools:layout="@layout/add_fragment" >
-        <action
-            android:id="@+id/action_addHomeActivity_to_unsingedActivities"
-            app:destination="@id/unsingedActivities"
-            app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_exit"
-            app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit" />
-        <action
-            android:id="@+id/action_addHomeActivity_to_myActivities"
-            app:destination="@id/myActivities"
-            app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_exit"
-            app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit" />
-    </fragment>
+        android:name="com.connect.connectflatmates.ui.menu.home.add.AddChore"
+        android:label="Add Chore"
+        tools:layout="@layout/add_fragment" />
     <fragment
         android:id="@+id/unsingedActivities"
-        android:name="com.connect.connectflatmates.ui.menu.home.available.UnsingedActivities"
-        android:label="unsinged_activities_fragment"
+        android:name="com.connect.connectflatmates.ui.menu.home.available.UnsingedChores"
+        android:label="Awaiting"
         tools:layout="@layout/unsinged_activities_fragment" />
+    <fragment
+        android:id="@+id/findFlatmates"
+        android:name="com.connect.connectflatmates.ui.menu.findpepople.FindFlatmates"
+        android:label="find_people_fragment"
+        tools:layout="@layout/find_people_fragment" />
 </navigation>

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/findPeople"
-        android:name="com.connect.connectflatmates.ui.menu.findpepople.FindPeople"
+        android:name="com.connect.connectflatmates.ui.menu.findpepople.FindFlatmates"
         android:label="Find New People"
         tools:layout="@layout/find_people_fragment" />
     <fragment
@@ -23,17 +23,17 @@
         tools:layout="@layout/user_fragment" />
     <fragment
         android:id="@+id/unsingedActivities"
-        android:name="com.connect.connectflatmates.ui.menu.home.available.UnsingedActivities"
+        android:name="com.connect.connectflatmates.ui.menu.home.available.UnsingedChores"
         android:label="Unsigned Activities"
         tools:layout="@layout/unsinged_activities_fragment" />
     <fragment
         android:id="@+id/homeActivities"
-        android:name="com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivities"
+        android:name="com.connect.connectflatmates.ui.menu.home.userChores.UserChores"
         android:label="Home Activities"
-        tools:layout="@layout/home_activities_fragment" />
+        tools:layout="@layout/user_chores_fragment" />
     <fragment
         android:id="@+id/addActivity"
-        android:name="com.connect.connectflatmates.ui.menu.home.add.AddActivity"
+        android:name="com.connect.connectflatmates.ui.menu.home.add.AddChore"
         android:label="Add home activities"
         tools:layout="@layout/add_fragment" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/createNewActivity"
-        android:name="com.connect.connectflatmates.ui.menu.home.add.createnew.CreateNewActivity"
+        android:name="com.connect.connectflatmates.ui.menu.home.add.createnew.CreateNewChores"
         android:label="create_new_fragment"
         tools:layout="@layout/create_new_fragment" />
 

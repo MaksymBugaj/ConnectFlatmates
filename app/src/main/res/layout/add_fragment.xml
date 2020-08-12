@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.connect.connectflatmates.ui.menu.home.add.AddViewModel" />
+            type="com.connect.connectflatmates.ui.menu.home.add.AddChoresViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.menu.home.add.AddActivity">
+        tools:context=".ui.menu.home.add.AddChore">
 
 
         <com.skydoves.powerspinner.PowerSpinnerView

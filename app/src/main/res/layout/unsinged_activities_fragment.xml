@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.menu.home.available.UnsingedActivities">
+    tools:context=".ui.menu.home.available.UnsingedChores">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeActivities_allActivitiesRecycler"

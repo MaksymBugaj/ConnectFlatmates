@@ -10,11 +10,11 @@ import com.connect.connectflatmates.state.login.LoginStateManagerImpl
 import com.connect.connectflatmates.ui.createaccount.CreateAccountViewModel
 import com.connect.connectflatmates.ui.login.LoginViewModel
 import com.connect.connectflatmates.ui.menu.MenuViewModel
-import com.connect.connectflatmates.ui.menu.findpepople.FindPeopleViewModel
-import com.connect.connectflatmates.ui.menu.home.add.AddViewModel
-import com.connect.connectflatmates.ui.menu.home.add.createnew.CreateNewViewModel
-import com.connect.connectflatmates.ui.menu.home.available.UnsingedActivitiesViewModel
-import com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivitiesViewModel
+import com.connect.connectflatmates.ui.menu.findpepople.FindFlatmatesViewModel
+import com.connect.connectflatmates.ui.menu.home.add.AddChoresViewModel
+import com.connect.connectflatmates.ui.menu.home.add.createnew.CreateNewChoresViewModel
+import com.connect.connectflatmates.ui.menu.home.available.UnsingedChoresViewModel
+import com.connect.connectflatmates.ui.menu.home.userChores.UserChoresViewModel
 import com.connect.connectflatmates.ui.menu.userStats.UserViewModel
 import com.connect.connectflatmates.ui.settings.SettingsViewModel
 import org.koin.android.ext.koin.androidApplication
@@ -85,18 +85,18 @@ val viewModelModule = module {
     }
 
     viewModel {
-        FindPeopleViewModel(userRepository = get())
+        FindFlatmatesViewModel(userRepository = get())
     }
 
     viewModel {
-        HomeActivitiesViewModel(
+        UserChoresViewModel(
             homeActivitiesRepository = get(),
             userRepository = get()
         )
     }
 
     viewModel {
-        UnsingedActivitiesViewModel(
+        UnsingedChoresViewModel(
             homeActivitiesRepository = get()
         )
     }
@@ -114,10 +114,10 @@ val viewModelModule = module {
     }
 
     viewModel {
-        AddViewModel(homeActivitiesRepository = get())
+        AddChoresViewModel(homeActivitiesRepository = get())
     }
 
     single {
-        CreateNewViewModel()
+        CreateNewChoresViewModel()
     }
 }

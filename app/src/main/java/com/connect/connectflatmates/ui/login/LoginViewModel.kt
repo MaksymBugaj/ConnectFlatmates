@@ -105,16 +105,20 @@ class LoginViewModel(
 
     private fun performLogin(userProfile: UserProfile) {
         val password = observablePassword.get()!!
-        if (password == userProfile.password) {
-            Log.d("NOPE", "NOPE HELP MEEEE. IM loginValid")
-            sessionRepository.saveUser(userProfile)
-            state.onNext(LoginState.LoginValid)
-        } else if(password.isNullOrEmpty()){
-            state.onNext(LoginState.EmptyPassword)
-        } else {
-            Log.d("NOPE", "NOPE HELP MEEEE. IM password bad")
-            state.onNext(LoginState.WrongPassword)
-            errorLogin.set(true)
+        when {
+            password == userProfile.password -> {
+                Log.d("NOPE", "NOPE HELP MEEEE. IM loginValid")
+                sessionRepository.saveUser(userProfile)
+                state.onNext(LoginState.LoginValid)
+            }
+            password.isEmpty() -> {
+                state.onNext(LoginState.EmptyPassword)
+            }
+            else -> {
+                Log.d("NOPE", "NOPE HELP MEEEE. IM password bad")
+                state.onNext(LoginState.WrongPassword)
+                errorLogin.set(true)
+            }
         }
     }
 

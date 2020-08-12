@@ -1,5 +1,6 @@
-package com.connect.connectflatmates.ui.menu.home.userActivities
+package com.connect.connectflatmates.ui.menu.home.userChores
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,10 +9,12 @@ import com.connect.connectflatmates.data.repository.UserRepository
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
 import io.reactivex.Flowable
 
-class HomeActivitiesViewModel(
+class UserChoresViewModel(
     private val homeActivitiesRepository: HomeActivitiesRepository,
     private val userRepository: UserRepository
 ) : ViewModel() {
+
+    val groupVisibility = ObservableField(false)
 
     private val _listOfActivities = MutableLiveData<List<HomeActivityEntity>>()
     val listOfActivities: LiveData<List<HomeActivityEntity>> = _listOfActivities
@@ -30,5 +33,13 @@ class HomeActivitiesViewModel(
         val activities = homeActivitiesRepository.getAll()
         _listOfActivities.postValue(activities.value)
     }*/
+
+    fun assignActivity(homeActivityEntity: HomeActivityEntity){
+        homeActivitiesRepository.insert(homeActivityEntity)
+    }
+
+    fun delete(homeActivityEntity: HomeActivityEntity){
+        homeActivitiesRepository.delete(homeActivityEntity = homeActivityEntity)
+    }
 
 }

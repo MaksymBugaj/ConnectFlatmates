@@ -30,4 +30,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="extended_fab_label">add chore</string>
+    <string name="all_chores">All chores\nin one place</string>
+    <string name="all_chores_no_tasks">No tasks - add new chore to complete</string>
 </resources>

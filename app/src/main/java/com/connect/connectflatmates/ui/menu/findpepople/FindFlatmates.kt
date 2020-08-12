@@ -2,19 +2,17 @@ package com.connect.connectflatmates.ui.menu.findpepople
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.UserProfile
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FindPeople : Fragment() {
+class FindFlatmates : Fragment() {
 
-    private val viewModel by viewModel<FindPeopleViewModel>()
+    private val viewModel by viewModel<FindFlatmatesViewModel>()
 
 
     private lateinit var list : List<UserProfile>

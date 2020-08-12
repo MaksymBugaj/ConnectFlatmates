@@ -7,24 +7,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
-import com.connect.connectflatmates.state.AddActivityState
 import com.shrikanthravi.collapsiblecalendarview.data.Day
-import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
 import kotlinx.android.synthetic.main.add_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class AddActivity : Fragment() {
+class AddChore : Fragment() {
 
-    private val viewModel by viewModel<AddViewModel>()
+    private val viewModel by viewModel<AddChoresViewModel>()
     private lateinit var startDate: Day
     private lateinit var endDate: Day
 

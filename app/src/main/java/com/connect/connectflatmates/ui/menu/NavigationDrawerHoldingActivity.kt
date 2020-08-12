@@ -55,7 +55,7 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
         drawer = drawer_layout
         val navigationView = navigation_drawer_view
 
-        navController = Navigation.findNavController(this, R.id.fragment_container)
+        navController = findNavController(this, R.id.fragment_container)
 
         NavigationUI.setupActionBarWithNavController(this, navController, drawer)
 
@@ -74,7 +74,7 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(
-            Navigation.findNavController(this, R.id.fragment_container),
+            findNavController(this, R.id.fragment_container),
             drawer
         )
     }
@@ -108,16 +108,6 @@ class NavigationDrawerHoldingActivity : AppCompatActivity(),
                 navDrawer_group_loading.visibility = View.VISIBLE
 
                 startActivity(Intent(this, MainActivity::class.java))
-                /*sessionRepository.observableUser
-                    .observe(this, androidx.lifecycle.Observer {
-                        if (it == null) {
-                            Log.d("NOPE", "null user")
-
-                        }
-                        Log.d("NOPE", "not null user ${it.name}")
-                    }
-                    )*/
-
             }
         }
         drawer.closeDrawer(GravityCompat.START)

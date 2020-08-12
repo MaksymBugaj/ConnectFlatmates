@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.connect.connectflatmates.R
 
-class CreateNewActivity : Fragment() {
+class CreateNewChores : Fragment() {
 
 
 
-    private lateinit var viewModel: CreateNewViewModel
+    private lateinit var choresViewModel: CreateNewChoresViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +23,7 @@ class CreateNewActivity : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CreateNewViewModel::class.java)
+        choresViewModel = ViewModelProviders.of(this).get(CreateNewChoresViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

@@ -19,6 +19,7 @@ import com.connect.connectflatmates.R
 import com.connect.connectflatmates.databinding.LoginFragmentBinding
 import com.connect.connectflatmates.state.login.LoginState
 import com.connect.connectflatmates.ui.menu.NavigationDrawerHoldingActivity
+import com.connect.connectflatmates.ui.menu.home.BottomNavHolderActivity
 import com.fevziomurtekin.customprogress.Type
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
@@ -49,11 +50,6 @@ class LoginFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        /*layoutLogin_createAccountText.setOnClickListener {
-            noAccount()
-            Log.d("NOPE","NOPE HELP anybpody?. IM STUCKK")
-        }*/
 
         compositeDisposable.add(
             loginViewModel.state.subscribe {
@@ -173,7 +169,7 @@ class LoginFragment : Fragment() {
 
     private fun login() {
         Log.d("NOPE", "login")
-        startActivity(Intent(context, NavigationDrawerHoldingActivity::class.java))
+        startActivity(Intent(context, BottomNavHolderActivity::class.java))
     }
 
     private fun showToast(text: String) {

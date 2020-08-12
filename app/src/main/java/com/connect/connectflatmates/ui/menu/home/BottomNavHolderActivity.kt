@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.connect.connectflatmates.R
 import kotlinx.android.synthetic.main.activity_bottom_nav_holder.*
@@ -16,8 +17,10 @@ class BottomNavHolderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_nav_holder)
 
-        //navController = Navigation.findNavController(this, R.id.homeActivities_navHost)
+        navController = Navigation.findNavController(this, R.id.homeActivities_navHost)
 
-        //homeActivities_bottomNav.setupWithNavController(navController)
+        NavigationUI.setupWithNavController(topAppBar, navController)
+
+        homeActivities_bottomNav.setupWithNavController(navController)
     }
 }

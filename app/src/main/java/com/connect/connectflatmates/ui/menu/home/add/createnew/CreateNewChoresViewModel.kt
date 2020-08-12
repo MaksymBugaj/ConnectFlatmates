@@ -4,7 +4,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CreateNewViewModel(
+class CreateNewChoresViewModel(
 
 ) : ViewModel() {
 

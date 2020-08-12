@@ -13,7 +13,7 @@ import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
 import com.connect.connectflatmates.data.repository.SessionRepository
 import com.connect.connectflatmates.ui.HomeActivitiesAdapter
-import com.connect.connectflatmates.ui.menu.home.userActivities.HomeActivitiesViewModel
+import com.connect.connectflatmates.ui.menu.home.userChores.UserChoresViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -21,10 +21,10 @@ import kotlinx.android.synthetic.main.unsinged_activities_fragment.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UnsingedActivities : Fragment() {
+class UnsingedChores : Fragment() {
 
-    private val homeActivitiesViewModel by viewModel<HomeActivitiesViewModel>()
-    private val unsignedActivitiesViewModel by viewModel<UnsingedActivitiesViewModel>()
+    private val homeActivitiesViewModel by viewModel<UserChoresViewModel>()
+    private val unsignedActivitiesViewModel by viewModel<UnsingedChoresViewModel>()
     private val sessionRepository by inject<SessionRepository>()
     private lateinit var allActivitiesRecyclerView: RecyclerView
     private lateinit var listOfHomeActivities : List<HomeActivityEntity>
@@ -50,9 +50,9 @@ class UnsingedActivities : Fragment() {
         allActivitiesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         allActivitiesRecyclerView.adapter = HomeActivitiesAdapter()
 
-
         compositeDisposable.add(
-        homeActivitiesViewModel.getUnassignedHomeActivities().subscribeOn(Schedulers.io())
+        homeActivitiesViewModel.getUnassignedHomeActivities()
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{listOfActivities ->
                 Log.d("NOPE","Unassigned Activities")
@@ -79,12 +79,6 @@ class UnsingedActivities : Fragment() {
         val homeActivity = listOfHomeActivities[position].copy(assignedUser = userId.toString())
         unsignedActivitiesViewModel.delete(listOfHomeActivities[position])
         unsignedActivitiesViewModel.assignActivity(homeActivity)
-
-
-        //(allActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setItems(listOfHomeActivities)
-
-
-
     }
 
 }
