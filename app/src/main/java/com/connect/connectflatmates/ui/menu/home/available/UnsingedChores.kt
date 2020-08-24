@@ -2,13 +2,13 @@ package com.connect.connectflatmates.ui.menu.home.available
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
 import com.connect.connectflatmates.data.repository.SessionRepository
@@ -43,6 +43,7 @@ class UnsingedChores : Fragment() {
 
         setUpRecycler()
         setRecyclerListener()
+        setFAB()
     }
 
     private fun setUpRecycler(){
@@ -76,9 +77,32 @@ class UnsingedChores : Fragment() {
 
     private fun assignUser(position: Int) {
         val userId = sessionRepository.currentUser?.id!!
-        val homeActivity = listOfHomeActivities[position].copy(assignedUser = userId.toString())
+        val homeActivity = listOfHomeActivities[position].copy(assignedUser = userId.toString(), finished = false)
         unsignedActivitiesViewModel.delete(listOfHomeActivities[position])
         unsignedActivitiesViewModel.assignActivity(homeActivity)
     }
 
+    private fun setFAB(){
+        userChores_EXFAB.setOnClickListener {
+            findNavController().navigate(R.id.addHomeActivity)
+        }
+    }
+
+    private fun setScrollListener(){
+        allActivitiesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy < 0) {
+                    // Scrolled up, show floating action button
+                    userChores_EXFAB.show()
+                } else if (dy > 0) {
+                    // Scrolled down, hide floating action button
+                    userChores_EXFAB.hide()
+                }
+            }
+        })
+    }
 }

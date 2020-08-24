@@ -2,15 +2,12 @@ package com.connect.connectflatmates.ui.menu.home.userChores
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
 import com.connect.connectflatmates.data.repository.SessionRepository
 import com.connect.connectflatmates.databinding.UserChoresFragmentBinding
@@ -21,6 +18,9 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.user_chores_fragment.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UserChores : Fragment() {
 
@@ -57,12 +57,12 @@ class UserChores : Fragment() {
         (assignedActivitiesRecyclerView.adapter as HomeActivitiesAdapter).setOnClickListener(object :
             HomeActivitiesAdapter.OnItemClickListener {
             override fun onItemClick(position: Int, view: View) {
-                dismissUser(position)
+                completeTask(position)
             }
         })
         val userId = sessionRepository.currentUser?.id!!
         compositeDisposable.add(
-            userChoresViewModel.getAssignedHomeActivities(userId.toString())
+            userChoresViewModel.getAssignedHomeActivities(userId.toString(), finished = false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError {
@@ -93,14 +93,16 @@ class UserChores : Fragment() {
         })*/
 
 
-        userChores_EXFAB.setOnClickListener {
-            findNavController().navigate(R.id.addHomeActivity)
-        }
+
 
     }
 
-    private fun dismissUser(position: Int) {
-        val homeActivity = listOfAssignedHomeActivities[position].copy(assignedUser = null)
+    private fun completeTask(position: Int) {
+        val str_date = "13-09-2011"
+        val formatter: DateFormat = SimpleDateFormat("dd-MM-yyyy")
+        val date: Date = formatter.parse(str_date) as Date
+        System.out.println("Today is " + date.getTime())
+        val homeActivity = listOfAssignedHomeActivities[position].copy(finished = true)
         userChoresViewModel.delete(listOfAssignedHomeActivities[position])
         userChoresViewModel.assignActivity(homeActivity)
 

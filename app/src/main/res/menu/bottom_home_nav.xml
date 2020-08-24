@@ -14,7 +14,7 @@
         android:title="FlatMates" />
 
     <item
-        android:id="@+id/progress"
+        android:id="@+id/userFragment"
         android:enabled="true"
         android:icon="@drawable/ic_assessment"
         android:title="Progress" />

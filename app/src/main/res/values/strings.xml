@@ -32,5 +32,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="extended_fab_label">add chore</string>
     <string name="all_chores">All chores\nin one place</string>
-    <string name="all_chores_no_tasks">No tasks - add new chore to complete</string>
+    <string name="all_chores_no_tasks">No tasks - assign new chore from chores list</string>
+    <string name="logout">Logout</string>
+    <string name="change_user_data">Change your profile</string>
+    <string name="add_profile_picture">Add profile picture</string>
 </resources>

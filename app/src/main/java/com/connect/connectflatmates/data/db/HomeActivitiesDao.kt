@@ -17,8 +17,8 @@ interface HomeActivitiesDao {
     @Query("select * from home_activities_table")
     fun getAll(): Flowable<List<HomeActivityEntity>>
 
-    @Query("select * from home_activities_table where assignedUser =:userId")
-    fun getAssignedHomeActivitiesToUser(userId: String?): Flowable<List<HomeActivityEntity>>
+    @Query("select * from home_activities_table where assignedUser =:userId and finished = :finished")
+    fun getAssignedHomeActivitiesToUser(userId: String?, finished: Boolean): Flowable<List<HomeActivityEntity>>
 
     @Query("select * from home_activities_table where assignedUser is null")
     fun getUnassignedHomeActivitiesToUser(): Flowable<List<HomeActivityEntity>>

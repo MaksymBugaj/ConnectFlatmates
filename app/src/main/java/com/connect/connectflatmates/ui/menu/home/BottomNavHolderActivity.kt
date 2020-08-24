@@ -1,17 +1,18 @@
 package com.connect.connectflatmates.ui.menu.home
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.connect.connectflatmates.R
 import kotlinx.android.synthetic.main.activity_bottom_nav_holder.*
-import kotlinx.android.synthetic.main.activity_navigation_drawer_holding.*
+
 
 class BottomNavHolderActivity : AppCompatActivity() {
 
@@ -39,7 +40,8 @@ class BottomNavHolderActivity : AppCompatActivity() {
                 R.id.addHomeActivity,
                 R.id.unsingedActivities,
                 R.id.findFlatmates,
-                R.id.userFragment
+                R.id.userFragment,
+                R.id.settingsFragment
             )
         )
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
@@ -48,12 +50,24 @@ class BottomNavHolderActivity : AppCompatActivity() {
             when(menuItem.itemId){
                 R.id.menu_settings -> {
                     navController.navigate(R.id.settingsFragment)
-
                     true
                 }
-                else -> false
+                else -> {
+                    false
+                }
             }
 
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+
+    //fixme work this out
+   /* override fun onResume() {
+        super.onResume()
+        homeActivities_bottomNav.visibility = View.VISIBLE
+    }*/
 }

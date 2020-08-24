@@ -11,22 +11,16 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.connect.connectflatmates.MainActivity
+import com.connect.connectflatmates.ui.MainActivity
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.UserProfile
 import com.connect.connectflatmates.data.repository.SessionRepository
 import com.google.android.material.navigation.NavigationView
-import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_navigation_drawer_holding.*
 import org.koin.android.ext.android.inject
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 class NavigationDrawerHoldingActivity : AppCompatActivity(),

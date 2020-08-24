@@ -6,11 +6,11 @@
     android:orientation="vertical"
     tools:context=".ui.menu.userStats.UserFragment">
 
-    <TextView
-        android:id="@+id/peple"
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/userFragment_barChart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="To Be Implemented" />
+        android:layout_height="match_parent"
+        />
 
 
 </LinearLayout>

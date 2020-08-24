@@ -8,7 +8,8 @@ data class HomeActivityEntity(
     val startDate: String,
     val endDate: String,
     val assignedUser: String?,
-    val finished: Boolean?
+    val finished: Boolean?,
+    val finishedDate: Long?
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

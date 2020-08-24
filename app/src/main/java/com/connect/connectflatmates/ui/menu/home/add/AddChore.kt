@@ -91,7 +91,8 @@ class AddChore : Fragment() {
                 startDate = chosenStartDate,
                 endDate = chosenEndDate,
                 assignedUser = null,
-                finished = null
+                finished = null,
+                finishedDate = null
             )
 
             viewModel.insert(homeActivity)

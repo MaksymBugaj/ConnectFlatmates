@@ -14,10 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:theme">
+        tools:replace="android:theme"
+        android:requestLegacyExternalStorage="true">
         <activity android:name=".ui.menu.NavigationDrawerHoldingActivity"/>
         <activity android:name=".ui.menu.home.BottomNavHolderActivity" />
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.MainActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

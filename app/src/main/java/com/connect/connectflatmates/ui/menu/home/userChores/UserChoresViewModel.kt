@@ -23,8 +23,8 @@ class UserChoresViewModel(
 
     fun getAll(): Flowable<List<HomeActivityEntity>> = homeActivitiesRepository.getAll()
 
-    fun getAssignedHomeActivities(userId: String?): Flowable<List<HomeActivityEntity>> =
-        homeActivitiesRepository.getAssignedHomeActivitiesToUser(userId)
+    fun getAssignedHomeActivities(userId: String?, finished: Boolean): Flowable<List<HomeActivityEntity>> =
+        homeActivitiesRepository.getAssignedHomeActivitiesToUser(userId, finished)
 
     fun getUnassignedHomeActivities(): Flowable<List<HomeActivityEntity>> =
         homeActivitiesRepository.getUnassignedHomeActivitiesToUser()

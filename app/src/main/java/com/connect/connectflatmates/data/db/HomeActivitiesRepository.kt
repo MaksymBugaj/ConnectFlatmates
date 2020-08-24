@@ -12,7 +12,7 @@ interface HomeActivitiesRepository {
 
     fun getAll(): Flowable<List<HomeActivityEntity>>
 
-    fun getAssignedHomeActivitiesToUser(userId: String?): Flowable<List<HomeActivityEntity>>
+    fun getAssignedHomeActivitiesToUser(userId: String?, finished: Boolean): Flowable<List<HomeActivityEntity>>
 
     fun getUnassignedHomeActivitiesToUser(): Flowable<List<HomeActivityEntity>>
 

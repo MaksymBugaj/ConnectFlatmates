@@ -1,9 +1,11 @@
 package com.connect.connectflatmates.ui
 
+import android.content.res.Resources
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +31,33 @@ class HomeActivitiesAdapter : RecyclerView.Adapter<HomeActivitiesAdapter.ViewHol
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setItems(listOfActivities[position])
+
+        if (position + 1 == itemCount) {
+            // It is the last item of the list
+
+            // Set bottom margin to 72dp
+            setBottomMargin(
+                holder.itemView,
+                (72 * Resources.getSystem().getDisplayMetrics().density).toInt()
+            )
+        } else {
+            // Reset bottom margin back to zero
+            setBottomMargin(holder.itemView, 0)
+        }
+    }
+
+    /**
+     * Sets a margin to the bottom of the view.
+     *
+     * @param view         The view to add the margin to.
+     * @param bottomMargin The bottom margin to be added to the view.
+     */
+    private fun setBottomMargin(view: View, bottomMargin: Int) {
+        if (view.layoutParams is MarginLayoutParams) {
+            val params = view.layoutParams as MarginLayoutParams
+            params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, bottomMargin)
+            view.requestLayout()
+        }
     }
 
     fun setOnClickListener(listener: OnItemClickListener) {

@@ -80,6 +80,11 @@ dependencies {
     implementation 'co.metalab.asyncawait:asyncawait:1.0.0'
 
 
+    //imagepicker
+    implementation 'com.github.dhaval2404:imagepicker:1.7.4'
+
+    //charts
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
 
 
     //multidex

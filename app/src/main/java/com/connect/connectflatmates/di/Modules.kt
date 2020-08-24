@@ -102,7 +102,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        UserViewModel(userRepository = get())
+        UserViewModel(sessionRepository = get(), homeActivitiesRepository = get())
     }
 
     viewModel {
@@ -110,7 +110,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        SettingsViewModel()
+        SettingsViewModel(sessionRepository = get())
     }
 
     viewModel {

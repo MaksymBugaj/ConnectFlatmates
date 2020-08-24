@@ -1,7 +1,8 @@
-package com.connect.connectflatmates
+package com.connect.connectflatmates.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.connect.connectflatmates.R
 
 class MainActivity : AppCompatActivity() {
 

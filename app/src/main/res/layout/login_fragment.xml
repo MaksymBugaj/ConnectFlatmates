@@ -23,7 +23,7 @@
             android:background="@drawable/login_bck_2"
             android:padding="15dp"
             android:visibility="invisible"
-            tools:context=".MainActivity">
+            tools:context=".ui.MainActivity">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:focusableInTouchMode="true"
