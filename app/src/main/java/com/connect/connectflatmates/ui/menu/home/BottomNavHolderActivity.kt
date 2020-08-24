@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -37,9 +38,22 @@ class BottomNavHolderActivity : AppCompatActivity() {
                 R.id.myActivities,
                 R.id.addHomeActivity,
                 R.id.unsingedActivities,
-                R.id.findFlatmates
+                R.id.findFlatmates,
+                R.id.userFragment
             )
         )
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+
+        toolbarLayout.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.menu_settings -> {
+                    navController.navigate(R.id.settingsFragment)
+
+                    true
+                }
+                else -> false
+            }
+
+        }
     }
 }

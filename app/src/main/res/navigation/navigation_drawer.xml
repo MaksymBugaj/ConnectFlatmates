@@ -11,11 +11,7 @@
         android:name="com.connect.connectflatmates.ui.menu.findpepople.FindFlatmates"
         android:label="Find New People"
         tools:layout="@layout/find_people_fragment" />
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.connect.connectflatmates.ui.settings.SettingsFragment"
-        android:label="Settings"
-        tools:layout="@layout/settings_fragment" />
+
     <fragment
         android:id="@+id/userFragment"
         android:name="com.connect.connectflatmates.ui.menu.userStats.UserFragment"

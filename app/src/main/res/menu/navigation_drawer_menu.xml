@@ -28,9 +28,7 @@
             android:title="Unsigned Activities"/>
     </group>
 
-    <item android:id="@+id/settingsFragment"
-        android:icon="@drawable/settings"
-        android:title="Settings"/>
+
 
     <item android:id="@+id/logout"
         android:icon="@drawable/finished_circle"

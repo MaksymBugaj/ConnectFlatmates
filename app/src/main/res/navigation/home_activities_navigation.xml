@@ -23,6 +23,18 @@
     <fragment
         android:id="@+id/findFlatmates"
         android:name="com.connect.connectflatmates.ui.menu.findpepople.FindFlatmates"
-        android:label="find_people_fragment"
+        android:label="Find flatmates"
         tools:layout="@layout/find_people_fragment" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.connect.connectflatmates.ui.menu.userStats.UserFragment"
+        android:label="Performance"
+        tools:layout="@layout/user_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.connect.connectflatmates.ui.settings.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
+
+
 </navigation>

@@ -52,6 +52,7 @@
             android:layout_gravity="bottom|end"
             android:text="@string/extended_fab_label"
             app:icon="@drawable/add_button"
+            app:backgroundTint="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
