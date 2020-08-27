@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.anychart.AnyChart
+import com.anychart.AnyChartView
+import com.anychart.chart.common.dataentry.DataEntry
+import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
 import com.github.mikephil.charting.charts.BarChart
@@ -50,7 +54,7 @@ class UserFragment : Fragment() {
     }
 
     private fun drawChart(list: List<HomeActivityEntity>){
-        val chart: BarChart = userFragment_barChart
+        /*val chart: BarChart = userFragment_barChart
 
         val NoOfEmp = ArrayList<BarEntry>()
 
@@ -83,6 +87,18 @@ class UserFragment : Fragment() {
         val data = BarData(year, bardataset)
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS)
         chart.data = data
+*/
+        val pie = AnyChart.line3d()
+
+        val dataSet: MutableList<DataEntry> = ArrayList()
+        dataSet.add(ValueDataEntry("John", 10000))
+        dataSet.add(ValueDataEntry("Jake", 12000))
+        dataSet.add(ValueDataEntry("Peter", 18000))
+
+        pie.data(dataSet)
+
+        pie.animation(true)
+        any_chart_view.setChart(pie)
     }
 
 }

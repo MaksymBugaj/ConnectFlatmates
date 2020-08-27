@@ -99,10 +99,12 @@ class UserChores : Fragment() {
 
     private fun completeTask(position: Int) {
         val str_date = "13-09-2011"
+        val sdf =
+            SimpleDateFormat("dd-MM-yyyy")
+        val currentDateandTime = sdf.format(Date())
         val formatter: DateFormat = SimpleDateFormat("dd-MM-yyyy")
         val date: Date = formatter.parse(str_date) as Date
-        System.out.println("Today is " + date.getTime())
-        val homeActivity = listOfAssignedHomeActivities[position].copy(finished = true)
+        val homeActivity = listOfAssignedHomeActivities[position].copy(finished = true, finishedDate = currentDateandTime.toLong())
         userChoresViewModel.delete(listOfAssignedHomeActivities[position])
         userChoresViewModel.assignActivity(homeActivity)
 

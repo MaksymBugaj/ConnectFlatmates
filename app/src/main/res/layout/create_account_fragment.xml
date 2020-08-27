@@ -10,142 +10,167 @@
             type="com.connect.connectflatmates.ui.createaccount.CreateAccountViewModel" />
     </data>
 
-    <ScrollView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bck_3">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".ui.createaccount.CreateAccount">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/createAccountLayout_name"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:errorEnabled="true"
             app:errorTextColor="@color/colorRed_900"
-            style="@style/TextInputLayout">
+            app:layout_constraintBottom_toTopOf="@id/createAccountLayout_surname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/createAccount_name"
+                style="@style/TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputEditText"
+                android:hint="Name"
                 android:inputType="text"
-                android:text="@={vm.name}"
-                android:hint="Name" />
+                android:text="@={vm.name}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/createAccountLayout_surname"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:errorEnabled="true"
             app:errorTextColor="@color/colorRed_900"
-            style="@style/TextInputLayout">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createAccountLayout_name"
+            app:layout_constraintBottom_toTopOf="@id/createAccountLayout_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/createAccount_surname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:inputType="text"
-                android:text="@={vm.surname}"
                 style="@style/TextInputEditText"
-                android:hint="Surname" />
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:hint="Surname"
+                android:inputType="text"
+                android:text="@={vm.surname}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/createAccountLayout_email"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:errorEnabled="true"
             app:errorTextColor="@color/colorRed_900"
-            style="@style/TextInputLayout">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createAccountLayout_surname"
+            app:layout_constraintBottom_toTopOf="@id/createAccountLayout_login">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/createAccount_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:inputType="textEmailAddress"
                 style="@style/TextInputEditText"
-                android:text="@={vm.email}"
-                android:hint="Email" />
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:text="@={vm.email}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/createAccountLayout_login"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:errorEnabled="true"
             app:errorTextColor="@color/colorRed_900"
-            style="@style/TextInputLayout">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createAccountLayout_email"
+            app:layout_constraintBottom_toTopOf="@id/createAccountLayout_password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/createAccount_login"
+                style="@style/TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputEditText"
+                android:hint="Login"
                 android:inputType="text"
-                android:text="@={vm.login}"
-                android:hint="Login" />
+                android:text="@={vm.login}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/createAccountLayout_password"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:errorEnabled="true"
             app:errorTextColor="@color/colorRed_900"
-            style="@style/TextInputLayout">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createAccountLayout_login"
+            app:layout_constraintBottom_toTopOf="@id/createAccountLayout_passwordCorrect">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/createAccount_password"
+                style="@style/TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputEditText"
+                android:hint="Password"
                 android:inputType="textPassword"
-                android:text="@={vm.password}"
-                android:hint="Password" />
+                android:text="@={vm.password}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/createAccountLayout_passwordCorrect"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:errorEnabled="true"
             app:errorTextColor="@color/colorRed_900"
-            style="@style/TextInputLayout">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createAccountLayout_password"
+            app:layout_constraintBottom_toTopOf="@id/createAccount_createButton"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/createAccount_passwordCorrect"
+                style="@style/TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputEditText"
+                android:hint="Repeat Password"
                 android:inputType="textPassword"
-                android:text="@={vm.repeatPassword}"
-                android:hint="Repeat Password" />
+                android:text="@={vm.repeatPassword}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/createAccount_createButton"
+            style="@style/ButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/ButtonStyle"
             android:onClick="@{() -> vm.onCreateClick()}"
-            android:text="Create" />
+            android:text="Create"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createAccountLayout_passwordCorrect" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+
 </layout>

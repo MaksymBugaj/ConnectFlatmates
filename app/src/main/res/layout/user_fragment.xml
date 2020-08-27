@@ -6,11 +6,25 @@
     android:orientation="vertical"
     tools:context=".ui.menu.userStats.UserFragment">
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/userFragment_barChart"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:orientation="vertical">
+
+        <!--<com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/userFragment_barChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+-->
+        <com.anychart.AnyChartView
+            android:id="@+id/any_chart_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

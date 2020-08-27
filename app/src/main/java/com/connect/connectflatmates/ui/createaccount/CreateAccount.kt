@@ -51,14 +51,14 @@ class CreateAccount : Fragment() {
 
 
 
-        viewModel.observeCreateAccount.observe(this@CreateAccount, Observer {
+        viewModel.observeCreateAccount.observe(viewLifecycleOwner, Observer {
             when (it) {
                 true -> view!!.findNavController().popBackStack(R.id.loginFragment, true)
                 false -> Unit
             }
         })
 
-        viewModel.observeInput.observe(this@CreateAccount, Observer {
+        viewModel.observeInput.observe(viewLifecycleOwner, Observer {
             when (it) {
                 CreatingAccount.NoName -> {
                     createAccountLayout_name.error = resources.getString(R.string.field_not_empty)

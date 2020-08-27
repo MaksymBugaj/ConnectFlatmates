@@ -85,6 +85,7 @@ dependencies {
 
     //charts
     implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
 
     //multidex
@@ -105,7 +106,7 @@ dependencies {
     implementation 'org.kodein.di:kodein-di-framework-android-x:5.2.0'
 
     // Koin
-    def koin_version = '2.0.1'
+    def koin_version = '2.1.5'
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"
@@ -117,7 +118,7 @@ dependencies {
 
 
     //navigation
-    def nav_version = "2.2.1"
+    def nav_version = "2.3.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 

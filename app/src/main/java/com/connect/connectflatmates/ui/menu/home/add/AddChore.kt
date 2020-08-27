@@ -24,8 +24,8 @@ class AddChore : Fragment() {
     private lateinit var startDate: Day
     private lateinit var endDate: Day
 
-    private lateinit var chosenStartDate: String
-    private lateinit var chosenEndDate: String
+    private var chosenStartDate: Long? = 0L
+    private var chosenEndDate: Long? = 0L
 
     private lateinit var datePickerDialog: DatePickerDialog
     private lateinit var calendar: Calendar
@@ -53,11 +53,11 @@ class AddChore : Fragment() {
         addActivityLayout_startDate.setEndIconOnClickListener {
             datePickerDialog = DatePickerDialog(requireContext(),
             DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                val dateToDb: Date = Date(year,month,dayOfMonth)
+                val dateToDb = Date(year,month,dayOfMonth).time
                 val date = dayOfMonth.toString() + "/" + (month+1).toString() + "/" + year.toString()
                 addActivity_startDate.setText(date)
                 addActivity_startDate.isEnabled = false
-                chosenStartDate = date
+                chosenStartDate = dateToDb
             }, year,month,day)
 
             datePickerDialog.show()
@@ -66,10 +66,11 @@ class AddChore : Fragment() {
         addActivityLayout_endDate.setEndIconOnClickListener {
             datePickerDialog = DatePickerDialog(requireContext(),
                 DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                    val dateToDb = Date(year,month,dayOfMonth).time
                     val date = dayOfMonth.toString() + "/" + (month+1).toString() + "/" + year.toString()
                     addActivity_endDate.setText(date)
                     addActivity_endDate.isEnabled = false
-                    chosenEndDate = date
+                    chosenEndDate = dateToDb
                 }, year,month,day)
 
             datePickerDialog.show()
@@ -88,8 +89,8 @@ class AddChore : Fragment() {
 
             val homeActivity = HomeActivityEntity(
                 name = mutableSpinnerItem.value!!,
-                startDate = chosenStartDate,
-                endDate = chosenEndDate,
+                startDate = chosenStartDate!!,
+                endDate = chosenEndDate!!,
                 assignedUser = null,
                 finished = null,
                 finishedDate = null
