@@ -106,10 +106,11 @@ class CreateAccount : Fragment() {
         )
 
 
-        Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe {
+        subscriptions.add(Observable.just(1).delay(3, TimeUnit.SECONDS).subscribe {
             view!!.findNavController().navigate(R.id.action_createAccount_to_loginFragment)
             Log.d("NOPE", "NOPE HELP MEEEE. to te login")
         }
+        )
     }
 
     //todo move to viewModel
@@ -145,5 +146,10 @@ class CreateAccount : Fragment() {
                 }
 
             }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        subscriptions.clear()
     }
 }

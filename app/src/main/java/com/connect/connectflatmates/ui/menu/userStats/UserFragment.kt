@@ -49,6 +49,7 @@ class UserFragment : Fragment() {
             }
             .subscribe{ listOfActivities ->
                 drawChart(listOfActivities)
+                Log.d("NOPE", "Finished: ${listOfActivities.size}")
             }
         )
     }
@@ -101,4 +102,8 @@ class UserFragment : Fragment() {
         any_chart_view.setChart(pie)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
+    }
 }

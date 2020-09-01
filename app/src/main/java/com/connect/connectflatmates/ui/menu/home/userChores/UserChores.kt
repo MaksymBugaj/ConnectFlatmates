@@ -98,16 +98,43 @@ class UserChores : Fragment() {
     }
 
     private fun completeTask(position: Int) {
-        val str_date = "13-09-2011"
+        /*val str_date = "13-09-2011"
         val sdf =
             SimpleDateFormat("dd-MM-yyyy")
-        val currentDateandTime = sdf.format(Date())
+        val currentDateAndTime = sdf.format(Date()) as Date
         val formatter: DateFormat = SimpleDateFormat("dd-MM-yyyy")
-        val date: Date = formatter.parse(str_date) as Date
-        val homeActivity = listOfAssignedHomeActivities[position].copy(finished = true, finishedDate = currentDateandTime.toLong())
+        val date: Date = formatter.parse(str_date) as Date*/
+
+        val homeActivity = listOfAssignedHomeActivities[position].copy(finished = true, finishedDate = calculateDate())
         userChoresViewModel.delete(listOfAssignedHomeActivities[position])
         userChoresViewModel.assignActivity(homeActivity)
 
+    }
+
+    private fun calculateDate(): Long{
+        val calendar = Calendar.getInstance()
+        val currentDate =
+            DateFormat.getDateInstance(DateFormat.YEAR_FIELD, Locale.ENGLISH)
+                .format(calendar.time)
+
+        //fixme go for current date
+        /*val sdf =
+            SimpleDateFormat("dd-MM-yyyy")
+        val currentDateandTime = sdf.format(Date()) as Date*/
+
+        /*val c = Calendar.getInstance()
+        System.out.println("Current time => " + c.time)
+
+        val df = SimpleDateFormat("yyyy-MM-dd")
+        val formattedDate = df.format(c.time)*/
+
+        val date = Date()
+
+        System.out.println(date)
+
+        val msec = date.time
+        Log.d("NOPE","dateL:  + $currentDate $msec")
+        return msec
     }
 
     override fun onStop() {

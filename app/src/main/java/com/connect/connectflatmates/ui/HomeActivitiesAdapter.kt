@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.connect.connectflatmates.R
 import com.connect.connectflatmates.data.db.entity.HomeActivityEntity
 import kotlinx.android.synthetic.main.home_activity_item.view.*
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -99,21 +98,17 @@ class HomeActivitiesAdapter : RecyclerView.Adapter<HomeActivitiesAdapter.ViewHol
             val buttonTextAssign = "ASSIGN"
             val buttonTextDismiss = "COMPLETE"
 
-            var date = Date(homeActivityEntity.startDate)
-
             homeActivityItemName.text = homeActivityEntity.name
-            homeActivityItemStartDate.text = date.toString()
-            homeActivityItemEndDate.text = homeActivityEntity.endDate.toString()
+            homeActivityItemStartDate.text = calculateDate((homeActivityEntity.startDate))
+            homeActivityItemEndDate.text = calculateDate(homeActivityEntity.endDate)
             homeActivityItemButton.text = if(homeActivityEntity.assignedUser != null) buttonTextDismiss else buttonTextAssign
         }
 
-        /*private fun calculateDate(): String{
-           *//* val sdf =
-                SimpleDateFormat("dd-MM-yyyy")
-            val currentDateandTime = sdf.format(Date())
-            val formatter: DateFormat = SimpleDateFormat("dd-MM-yyyy")
-            val date: Date = formatter.parse(str_date) as Date*//*
-        }*/
+        private fun calculateDate(date: Long): String{
+            val sdf =
+                SimpleDateFormat("EEE dd-MM")
+            return sdf.format(date)
+        }
     }
 
     interface OnItemClickListener {
